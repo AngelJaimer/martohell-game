@@ -45,7 +45,8 @@ export function buildTitleScene(): HTMLCanvasElement {
   clean.getContext('2d')!.putImageData(img, 0, 0);
   const carve = (path: () => void) => { ctx.save(); ctx.beginPath(); path(); ctx.closePath(); ctx.clip(); ctx.drawImage(clean, 0, 0); ctx.restore(); };
   carve(() => { ctx.moveTo(146, HOR); ctx.lineTo(146, 92); ctx.quadraticCurveTo(148, 70, 168, 60); ctx.quadraticCurveTo(188, 70, 190, 92); ctx.lineTo(190, HOR); }); // pointed arch
-  carve(() => { ctx.moveTo(66, HOR); ctx.lineTo(66, 104); ctx.arc(88, 104, 22, Math.PI, 0); ctx.lineTo(110, HOR); }); // round arch
+  carve(() => { ctx.moveTo(66, HOR); ctx.lineTo(66, 104); ctx.arc(88, 104, 22, Math.PI, 0); ctx.lineTo(110, HOR); }); // round arch (left)
+  carve(() => { ctx.moveTo(218, HOR); ctx.lineTo(218, 112); ctx.arc(240, 112, 22, Math.PI, 0); ctx.lineTo(262, HOR); }); // round arch (right)
 
   // bridge lit top edge
   ctx.strokeStyle = css(dkLit); ctx.lineWidth = 2;

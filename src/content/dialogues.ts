@@ -137,3 +137,177 @@ export const VIEJOS_DIALOGUE: Dialogue = {
     options: [{ text: 'Gracias, señores.', to: 'end' }],
   },
 };
+
+// ================= EPISODE 2: El Godot =================
+
+// El Marcos — at the Godot door and at the bar (same tree; the cervezas accept
+// on the bar instance delivers the lore reveal).
+export const MARCOS_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Ssshhh, baja la voz. Al Godot no se entra hoy, ha pasado algo gordo ahí dentro. Y nosotros con la última birra... mira, vacía.',
+    options: [
+      { text: '¿Qué ha pasado en el Godot?', to: 'godot' },
+      { text: '¿Me visteis anoche?', to: 'anoche' },
+      { text: '¿Tú quién eres?', to: 'quien', once: true },
+      { text: 'Os invito a una birra y me contáis. (Salir)', to: 'end' },
+    ],
+  },
+  godot: {
+    npc: 'Ni idea, tío, pero el ambiente está cargado. Cosa de espíritus, te lo digo yo, que soy medio demoño.',
+    options: [{ text: '¿Medio demoño?', to: 'demono' }, { text: '(Salir)', to: 'end' }],
+  },
+  demono: {
+    npc: 'Nací con los pies del revés, mirando para adentro. Mi madre dijo que era cosa del diablo y se me quedó el mote. El Markitos te lo confirma.',
+    options: [{ text: 'Ya...', to: 'start' }],
+  },
+  anoche: {
+    npc: 'Vaya si te vimos. Pasaste blanco como la cera, murmurando cosas raras. Parecías haber visto un muerto. O varios.',
+    options: [{ text: '¿Y qué decía?', to: 'decia' }, { text: '(Salir)', to: 'end' }],
+  },
+  decia: {
+    npc: 'Con una birra en el cuerpo igual nos acordamos mejor. Llévanos al Gato Negro y lo hablamos, anda.',
+    options: [{ text: 'Vamos para allá.', to: 'end' }],
+  },
+  quien: {
+    npc: 'El Marcos, coleguita. Y este es el Markitos. Veteranos de la noche de Martorell, de cuando el Godot molaba.',
+    options: [{ text: 'Encantado.', to: 'start' }],
+  },
+};
+
+export const MARKITOS_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Yo no suelto prenda hasta que haya birra. Pero lo del demoño del Marcos... los pies del revés sí los tiene, eso es verdad.',
+    options: [
+      { text: '¿Y lo de los espíritus?', to: 'esp' },
+      { text: 'Nada. (Salir)', to: 'end' },
+    ],
+  },
+  esp: {
+    npc: 'Anoche ibas diciendo que habías visto fantasmas saliendo del Godot. Yo de ti me tomaba algo y me calmaba, chaval.',
+    options: [{ text: 'Eso intento.', to: 'end' }],
+  },
+};
+
+// La Ana — the waitress; will NOT give you credit, points you to the DJ.
+export const ANA_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Soy la Ana, la que aguanta esta barra. ¿Qué va a ser?',
+    options: [
+      { text: '¿Me fías unas cervezas?', to: 'fia' },
+      { text: 'Solo miro. (Salir)', to: 'end' },
+    ],
+  },
+  fia: {
+    npc: 'Ni de broma, guapo. Aquí se fía al que paga, y tú anoche te largaste sin pagar la última. Habla con el Angel si quieres algo gratis, que hoy está sembrado.',
+    options: [{ text: 'Lo pillo.', to: 'end' }],
+  },
+};
+
+// El Angel — the DJ; compliment his music and he stands you the beers.
+export const ANGEL_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Bienvenido al Gato Negro. Soy el Angel, pincho yo. ¿Te mola lo que suena o te pongo otra cosa?',
+    options: [
+      { text: 'Me encanta tu música, tío.', to: 'musica', give: 'cervezas', set: 'has_cervezas', once: true, ifNot: 'has_cervezas' },
+      { text: '¿Qué pinchas?', to: 'pincha' },
+      { text: 'Nada, gracias. (Salir)', to: 'end' },
+    ],
+  },
+  musica: {
+    npc: 'Ese es mi hombre. ¡Ana, unas birras para el caballero, que tiene buen oído! Toma, invita la cabina.',
+    options: [{ text: 'Gracias, máquina.', to: 'end' }],
+  },
+  pincha: {
+    npc: 'De todo lo bueno: electrónica oscura para que la noche no decaiga. La peña del Godot acababa siempre aquí cuando cerraban allá.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Cuco — locked in the toilet; hands over his card even when you say no.
+export const CUCO_DIALOGUE: Dialogue = {
+  start: {
+    npc: '(desde dentro del lavabo) Ocupado. ...¿Querías algo? Tengo de todo, tú pide.',
+    options: [
+      { text: 'No, gracias, nada.', to: 'nada', give: 'tarjeta', set: 'has_tarjeta', once: true, ifNot: 'has_tarjeta' },
+      { text: '¿Espíritus, dicen?', to: 'esp', if: 'has_tarjeta' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  nada: {
+    npc: 'Tú mismo. Pero toma mi tarjeta por si cambias de idea: Pou del Merli, vas de parte del Cuco. Eso sí, hoy yo no iría: dicen que se aparecen espíritus por allá. Cosa fina.',
+    options: [{ text: 'Gracias... supongo.', to: 'end' }],
+  },
+  esp: {
+    npc: 'Lo que oyes, en el Pou del Merli. Pero con mi tarjeta el vigilante te deja pasar igual. Allá tú con lo que encuentres.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El vigilante — the bouncer; only lets you in with the Cuco's card.
+export const VIGILANTE_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Aquí no entra nadie sin invitación. Esto es propiedad privada, ¿estamos?',
+    options: [
+      { text: '¿Y con una tarjeta del Cuco?', to: 'tarjeta' },
+      { text: 'Solo quiero pasar un momento.', to: 'no' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  tarjeta: {
+    npc: 'Del Cuco, dices. Pues enséñamela y hablamos. Sin tarjeta, de aquí no pasas.',
+    options: [{ text: 'Ahora mismo.', to: 'end' }],
+  },
+  no: {
+    npc: 'Todo el mundo quiere pasar un momento. Sin tarjeta, ni un momento ni medio.',
+    options: [{ text: 'Entendido.', to: 'end' }],
+  },
+};
+
+// La Caledonia — the spirit with the stolen key; the nota's code proves you own
+// the Godot (the accept rule grants the key + ends the episode).
+export const CALEDONIA_DIALOGUE: Dialogue = {
+  start: {
+    npc: '(al Curro) ¡Que la llave es MÍA, pesado! ...¿Y este quién es? ¿Otro fantasma o de los vivos?',
+    options: [
+      { text: 'De los vivos. Esa llave es del Godot, y el Godot es mío.', to: 'reclamo' },
+      { text: '¿Por qué discutís?', to: 'discuten' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  reclamo: {
+    npc: 'Tuyo, dices. Demuéstralo. ¿Tienes algo que lo pruebe, o me vas a contar un cuento, guapo?',
+    options: [{ text: 'Tengo esto... (mejor le doy la nota)', to: 'end' }],
+  },
+  discuten: {
+    npc: 'Cogí la llave del Godot para que nadie abra esa puerta. Hay cosas ahí dentro que mejor siguen encerradas. Y el Curro la quiere para tapar lo suyo.',
+    options: [{ text: '¿Lo suyo?', to: 'lo' }, { text: '(Salir)', to: 'end' }],
+  },
+  lo: {
+    npc: 'Pregúntale a él. Yo solo sé que de ese local salió algo que no debía. Tú estabas anoche, lo vi en tu cara.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Curro — the corrupt old cop spirit; lore/colour.
+export const CURRO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Agente Curro, aunque ya nadie me paga. Esa mujer me ha robado la llave del Godot y pienso recuperarla, vivo o muerto. Más muerto que vivo, mírame.',
+    options: [
+      { text: '¿Para qué quieres la llave?', to: 'porque' },
+      { text: '¿Eras policía?', to: 'poli' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  porque: {
+    npc: 'Digamos que en ese local hay papeles, y deudas, y nombres. Cosas que un servidor preferiría que no salieran a la luz. Cosas mías.',
+    options: [{ text: 'Corrupto hasta muerto, vaya.', to: 'corrupto' }, { text: '(Salir)', to: 'end' }],
+  },
+  corrupto: {
+    npc: 'Cuida esa boca, chaval. Pero sí: la placa pesaba menos que los sobres. Y ahora ni placa ni sobres, solo este purgatorio de chalet.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+  poli: {
+    npc: 'El más temido de Martorell, en mis tiempos. Ahora asusto palomas y poco más.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};

@@ -133,6 +133,7 @@ const NPCS: NPC[] = [
           '',
           'EPISODIO 2: El Godot',
         ],
+        goto: 'godot',
       },
     },
   },

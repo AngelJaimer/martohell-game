@@ -67,6 +67,38 @@ export const ITEMS: Record<string, { name: string; draw: Draw }> = {
       ctx.fillRect(x + 16, y + 4, 1, 1); ctx.fillRect(x + 17, y + 2, 1, 1);
     },
   },
+  // ---------- Episode 2 ----------
+  cervezas: {
+    name: 'unas cervezas',
+    draw: (ctx, x, y) => {
+      for (const bx of [x + 6, x + 13]) {
+        ctx.fillStyle = css([54, 38, 20]); ctx.fillRect(bx - 2, y + 5, 4, 12);   // brown bottle
+        ctx.fillStyle = css([92, 64, 34]); ctx.fillRect(bx - 1, y + 6, 1, 10);
+        ctx.fillStyle = css([40, 28, 16]); ctx.fillRect(bx - 1, y + 2, 2, 3);    // neck
+        ctx.fillStyle = css([238, 214, 110]); ctx.fillRect(bx - 2, y + 9, 4, 3); // label
+      }
+    },
+  },
+  tarjeta: {
+    name: 'una tarjeta',
+    draw: (ctx, x, y) => {
+      ctx.fillStyle = css([18, 18, 22]); ctx.fillRect(x + 3, y + 6, 14, 9);
+      ctx.fillStyle = css([198, 44, 44]); ctx.fillRect(x + 4, y + 7, 12, 2);
+      ctx.fillStyle = css([200, 200, 206]); ctx.fillRect(x + 5, y + 10, 9, 1); ctx.fillRect(x + 5, y + 12, 6, 1);
+    },
+  },
+  llave_godot: {
+    name: 'la llave del Godot',
+    draw: (ctx, x, y) => {
+      const steel: RGB = [156, 158, 168];
+      ctx.strokeStyle = css(steel); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(x + 6, y + 8, 3, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = css(steel);
+      ctx.fillRect(x + 8, y + 7, 9, 2);
+      ctx.fillRect(x + 15, y + 9, 2, 3); ctx.fillRect(x + 12, y + 9, 2, 2);
+      ctx.fillStyle = css([96, 96, 104]); ctx.fillRect(x + 5, y + 7, 1, 2);
+    },
+  },
 };
 
 export function makeItem(id: string) {

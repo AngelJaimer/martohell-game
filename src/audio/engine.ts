@@ -20,7 +20,7 @@ const LOOKAHEAD = 0.025;
 const AHEAD = 0.12;
 const STEPS_PER_BAR = 8;
 
-type ThemeName = 'town' | 'gate' | 'title' | 'sardana' | 'medieval' | 'rumba' | 'carrer' | 'flamenco';
+type ThemeName = 'town' | 'gate' | 'title' | 'sardana' | 'medieval' | 'rumba' | 'carrer' | 'flamenco' | 'godot' | 'gatonegro' | 'poumerli';
 let active: ThemeName = 'town';
 let pending: ThemeName | null = null;
 let manualSong: ThemeName | null = null; // when set, overrides per-room adaptivity
@@ -28,8 +28,9 @@ let manualSong: ThemeName | null = null; // when set, overrides per-room adaptiv
 const CHORDS: Record<string, number[]> = {
   Am: [45, 57, 60, 64], G: [43, 55, 59, 62], F: [41, 53, 57, 60], E: [40, 52, 56, 59],
   C: [48, 60, 64, 67], Dm: [38, 57, 62, 65],
+  Em: [40, 52, 55, 59], D: [38, 57, 62, 66],
 };
-type Theme = { bpm: number; style: 'andalusian' | 'sardana' | 'medieval' | 'rumba'; prog: string[]; scale: number[]; gain: number };
+type Theme = { bpm: number; style: 'andalusian' | 'sardana' | 'medieval' | 'rumba' | 'heavy' | 'electro'; prog: string[]; scale: number[]; gain: number };
 const THEMES: Record<ThemeName, Theme> = {
   town:     { bpm: 104, style: 'andalusian', prog: ['Am', 'G', 'F', 'E'], scale: [57, 59, 60, 62, 64, 65, 67, 69], gain: 0.9 },
   title:    { bpm: 96,  style: 'andalusian', prog: ['Am', 'F', 'G', 'E'], scale: [57, 60, 64, 65, 67, 69, 72], gain: 1.0 },
@@ -40,6 +41,10 @@ const THEMES: Record<ThemeName, Theme> = {
   rumba:    { bpm: 112, style: 'rumba',      prog: ['Am', 'Am', 'Dm', 'E'], scale: [57, 59, 60, 62, 64, 65, 68, 69], gain: 0.92 },
   carrer:   { bpm: 104, style: 'rumba',      prog: ['C', 'G', 'Am', 'F'], scale: [60, 62, 64, 65, 67, 69, 71, 72], gain: 0.9 },
   flamenco: { bpm: 92,  style: 'andalusian', prog: ['Am', 'G', 'F', 'E'], scale: [57, 59, 60, 62, 64, 65, 68, 69], gain: 0.92 },
+  // --- Episode 2: El Godot (heavy bar), El Gato Negro (electronic), Pou del Merli (tense electro) ---
+  godot:     { bpm: 150, style: 'heavy',   prog: ['Em', 'Em', 'C', 'D'], scale: [40, 43, 45, 47, 50, 52, 55], gain: 0.95 },
+  gatonegro: { bpm: 126, style: 'electro', prog: ['Am', 'F', 'C', 'G'], scale: [57, 60, 62, 64, 67, 69, 72], gain: 0.86 },
+  poumerli:  { bpm: 96,  style: 'electro', prog: ['Dm', 'Dm', 'Am', 'E'], scale: [50, 53, 55, 57, 60, 62, 65], gain: 0.8 },
 };
 
 const ARP = [{ s: 0, i: 1 }, { s: 2, i: 2 }, { s: 3, i: 3 }, { s: 4, i: 2 }, { s: 6, i: 3 }, { s: 7, i: 1 }];
@@ -215,6 +220,33 @@ function schedule(step: number, bar: number, time: number) {
       const clave = (bar % 2 === 0) ? [0, 3, 6] : [0, 3, 5];
       if (clave.includes(step)) perc(ctx, master, noise, time, 'palma', 0.36 * g);
       if (step % 2 === 1) perc(ctx, master, noise, time, 'shaker', 0.22 * g);
+    }
+  } else if (th.style === 'heavy') {
+    // metal: palm-muted root gallop, power-chord backbeat, snare on 2 & 4, lead wails
+    const chord = CHORDS[th.prog[bar % th.prog.length]];
+    const root = chord[0];
+    bass(ctx, master, time, root - 12, spb() * 0.5, (step % 2 === 0 ? 0.5 : 0.32) * g);
+    if (step === 0 || step === 4) {
+      pluck(ctx, master, time, root, spb() * 1.3, 0.34 * g);
+      pluck(ctx, master, time, root + 7, spb() * 1.3, 0.3 * g);
+      pluck(ctx, master, time, root + 12, spb() * 1.3, 0.2 * g);
+    }
+    if ((step === 3 || step === 6 || step === 7) && rnd(bar * 9 + step * 3) > 0.5)
+      marimba(ctx, master, time, sc[Math.floor(rnd(bar * 5 + step) * sc.length)] + 12, spb() * 1.1, 0.2 * g);
+    if (noise) {
+      if (step % 2 === 0) perc(ctx, master, noise, time, 'clave', 0.34 * g);   // kick
+      if (step === 2 || step === 6) perc(ctx, master, noise, time, 'palma', 0.42 * g); // snare backbeat
+      if (step % 2 === 1) perc(ctx, master, noise, time, 'shaker', 0.24 * g);  // hats
+    }
+  } else if (th.style === 'electro') {
+    // electronic: four-on-the-floor, pulsing bass, a running arpeggio, offbeat hats
+    const chord = CHORDS[th.prog[bar % th.prog.length]];
+    if (step % 2 === 0) bass(ctx, master, time, chord[0], spb() * 0.95, 0.42 * g);
+    pluck(ctx, master, time, sc[(bar * 3 + step) % sc.length] + 12, spb() * 0.8, 0.2 * g);
+    if (step % 4 === 2) marimba(ctx, master, time, chord[2] + 12, spb() * 1.4, 0.18 * g);
+    if (noise) {
+      if (step % 2 === 0) perc(ctx, master, noise, time, 'clave', 0.3 * g);   // kick
+      if (step % 2 === 1) perc(ctx, master, noise, time, 'shaker', 0.28 * g); // offbeat hat
     }
   } else {
     // medieval (Llibre Vermell flavour): open-fifth drone + modal reed + frame drum

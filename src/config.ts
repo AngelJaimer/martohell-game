@@ -13,7 +13,10 @@ export const CONFIG = {
   credit: 'creado por Angel Jaime',
 
   // --- Per-scene music (themes defined in src/audio/engine.ts) ---
-  roomTheme: { pont: 'flamenco', vila: 'rumba', esglesia: 'rumba', piscina: 'carrer' } as Record<string, string>,
+  roomTheme: {
+    pont: 'flamenco', vila: 'rumba', esglesia: 'rumba', piscina: 'carrer',
+    godot: 'godot', gatonegro: 'gatonegro', poumerli: 'poumerli',
+  } as Record<string, string>,
   defaultTheme: 'rumba',
 
   // --- Save slot ---
