@@ -30,54 +30,68 @@ export function buildGodotScene(): HTMLCanvasElement {
   ctx.fillStyle = css([200, 200, 220]);
   for (const [sx, sy] of [[40, 12], [90, 20], [250, 10], [300, 24]] as [number, number][]) ctx.fillRect(sx, sy, 1, 1);
 
-  // bar facade
-  r(ctx, 0, 40, 320, 68, [46, 42, 52]);
-  r(ctx, 0, 40, 320, 3, [64, 58, 70]);
-  r(ctx, 0, 104, 320, 4, [30, 28, 36]);
-  // grime / brick courses
-  ctx.fillStyle = css([38, 34, 44]);
-  for (let y = 48; y < 104; y += 8) ctx.fillRect(0, y, 320, 1);
+  // --- an old narrow street at night ---
+  r(ctx, 0, 16, 116, 92, [66, 56, 50]);            // old building (left)
+  r(ctx, 206, 16, 114, 92, [74, 62, 52]);          // old building (right)
+  r(ctx, 108, 10, 104, 98, [88, 74, 60]);          // centre building (holds the pub)
+  r(ctx, 108, 8, 104, 4, [58, 46, 36]);            // eave
+  r(ctx, 0, 16, 116, 3, [86, 74, 64]); r(ctx, 206, 16, 114, 3, [94, 80, 66]);
+  // upper-floor windows + sills (some warm-lit)
+  const lit: RGB = [201, 162, 86];
+  for (const [bx, bw] of [[6, 110], [114, 92], [210, 104]] as [number, number][]) {
+    for (let wy = 24; wy < 52; wy += 22) for (let wx = bx + 8; wx < bx + bw - 12; wx += 22) {
+      r(ctx, wx, wy, 10, 13, [34, 28, 30]); r(ctx, wx + 1, wy + 1, 8, 11, ((wx + wy) % 3 === 0) ? lit : [50, 56, 70]);
+      r(ctx, wx - 1, wy + 13, 12, 1, [50, 40, 34]);
+    }
+  }
 
-  // band-flyer posters slapped on the wall
-  const flyer: RGB[] = [[150, 40, 40], [60, 70, 120], [120, 110, 40], [80, 60, 110]];
-  for (let i = 0; i < 5; i++) { const fx = 18 + i * 26; r(ctx, fx, 52, 16, 20, flyer[i % 4]); r(ctx, fx + 2, 54, 12, 3, [220, 220, 210]); }
-  for (let i = 0; i < 4; i++) { const fx = 250 + (i % 2) * 22; r(ctx, fx, 56 + (i % 2) * 6, 16, 18, flyer[(i + 1) % 4]); }
+  // --- the pub: a small wooden storefront on the ground floor ---
+  r(ctx, 114, 56, 100, 52, [58, 42, 30]);
+  r(ctx, 114, 56, 100, 3, [86, 62, 42]);
+  r(ctx, 114, 104, 100, 4, [40, 28, 20]);
+  // warm pub window (left of the door), small panes
+  r(ctx, 120, 64, 30, 34, [34, 24, 18]);
+  r(ctx, 123, 67, 24, 28, [224, 168, 92]);
+  ctx.fillStyle = css([92, 64, 36]); ctx.fillRect(134, 67, 2, 28); for (let yy = 67; yy < 95; yy += 9) ctx.fillRect(123, yy, 24, 1);
+  // the wooden door (sticker-covered), centred under the sign
+  const gx = 146, gw = 38;
+  r(ctx, gx - 2, 60, gw + 4, 48, [34, 24, 16]);
+  r(ctx, gx, 62, gw, 46, [96, 64, 40]);
+  for (let i = 0; i < gw; i += 6) r(ctx, gx + i, 62, 1, 46, [70, 46, 28]);
+  r(ctx, gx + 4, 70, 10, 6, [150, 60, 60]); r(ctx, gx + 22, 86, 10, 6, [70, 90, 130]); // stickers
+  r(ctx, gx + gw - 8, 84, 3, 4, [200, 180, 90]);   // handle
+  // a small hanging pub sign on a wrought-iron bracket
+  r(ctx, 150, 18, 2, 6, [40, 36, 34]); r(ctx, 150, 18, 24, 2, [40, 36, 34]);
+  r(ctx, 150, 24, 44, 12, [44, 30, 22]); r(ctx, 150, 24, 44, 2, [70, 50, 34]);
+  drawText(ctx, 'GODOT', 153, 27, [206, 70, 64], 1, [10, 6, 8], 1);
+  // an old streetlamp (left) + a barrel by the door + a few gig flyers
+  r(ctx, 36, 58, 2, 50, [40, 38, 36]); r(ctx, 31, 52, 12, 7, [54, 50, 46]); r(ctx, 33, 54, 8, 4, P.winLit);
+  r(ctx, 198, 96, 14, 12, [96, 66, 40]); r(ctx, 198, 96, 14, 2, [120, 86, 54]); r(ctx, 198, 100, 14, 1, [60, 42, 26]);
+  const flyer: RGB[] = [[150, 40, 40], [60, 70, 120], [120, 110, 40]];
+  for (let i = 0; i < 3; i++) { const fx = 92 + (i % 2) * 14, fy = 60 + i * 14; r(ctx, fx, fy, 14, 12, flyer[i % 3]); r(ctx, fx + 2, fy + 2, 10, 2, [220, 220, 210]); }
 
-  // the GODOT sign (red, with a small skull dot on the O)
-  r(ctx, 110, 12, 100, 22, [24, 16, 20]);
-  r(ctx, 110, 12, 100, 2, [70, 30, 34]);
-  drawText(ctx, 'GODOT', 124, 16, [206, 48, 44], 2, [10, 6, 8], 1);
-
-  // sealed roll-down metal shutter (the door)
-  const gx = 134, gw = 60;
-  r(ctx, gx - 4, 56, gw + 8, 52, [30, 28, 34]);
-  r(ctx, gx, 60, gw, 48, [70, 70, 80]);
-  for (let y = 62; y < 108; y += 4) r(ctx, gx, y, gw, 2, [54, 54, 64]);
-  r(ctx, gx, 60, gw, 2, [96, 96, 108]);
-  // (the hazard tape is drawn live in `dynamic`, only while the bar is sealed in Ep2)
-  // a bare bulb over the door
-  r(ctx, gx + gw / 2 - 1, 50, 2, 6, [60, 56, 50]);
-  r(ctx, gx + gw / 2 - 2, 54, 4, 4, P.winLit);
-
-  // pavement
-  r(ctx, 0, 108, 320, 36, [54, 52, 60]);
-  r(ctx, 0, 108, 320, 1, [78, 76, 84]);
-  for (let y = 116; y < 144; y += 8) for (let x = ((y / 8) % 2) * 10; x < 320; x += 20) r(ctx, x, y, 16, 1, [42, 40, 48]);
+  // cobbled old street
+  r(ctx, 0, 108, 320, 36, [60, 54, 56]);
+  r(ctx, 0, 108, 320, 1, [84, 78, 80]);
+  for (let y = 114; y < 144; y += 6) for (let x = ((y / 6) % 2) * 6; x < 320; x += 12) r(ctx, x, y, 5, 2, ((x + y) % 5 < 2) ? [48, 44, 46] : [60, 54, 56]);
 
   drawText(ctx, 'El Godot', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
 export function godotOverlays(ctx: CanvasRenderingContext2D, t: number) {
-  const f = 0.55 + 0.45 * (Math.sin(t * 3) > 0.7 ? 1 : 0.5); // flickering neon
-  const g = ctx.createRadialGradient(160, 22, 2, 160, 22, 50);
-  g.addColorStop(0, 'rgba(220,60,56,' + (0.22 * f).toFixed(3) + ')');
-  g.addColorStop(1, 'rgba(220,60,56,0)');
-  ctx.fillStyle = g; ctx.fillRect(96, 2, 128, 48);
-  // door bulb glow
-  const bg = ctx.createRadialGradient(164, 56, 1, 164, 56, 14);
-  bg.addColorStop(0, 'rgba(255,220,150,0.35)'); bg.addColorStop(1, 'rgba(255,220,150,0)');
-  ctx.fillStyle = bg; ctx.fillRect(150, 44, 28, 26);
+  // warm light spilling from the pub window
+  const f = 0.85 + 0.15 * Math.sin(t * 1.6);
+  const wg = ctx.createRadialGradient(135, 80, 2, 135, 80, 28);
+  wg.addColorStop(0, 'rgba(255,196,110,' + (0.26 * f).toFixed(3) + ')');
+  wg.addColorStop(1, 'rgba(255,196,110,0)');
+  ctx.fillStyle = wg; ctx.fillRect(106, 56, 60, 46);
+  // old streetlamp glow (left)
+  const lf = 0.75 + 0.25 * Math.sin(t * 7);
+  const lg = ctx.createRadialGradient(37, 55, 1, 37, 55, 22);
+  lg.addColorStop(0, 'rgba(255,222,150,' + (0.3 * lf).toFixed(3) + ')');
+  lg.addColorStop(1, 'rgba(255,222,150,0)');
+  ctx.fillStyle = lg; ctx.fillRect(15, 36, 44, 40);
 }
 
 // hazard tape across the shutter — drawn only while the bar is sealed (Ep2).
@@ -92,8 +106,8 @@ export function drawTape(ctx: CanvasRenderingContext2D) {
 
 const HOTSPOTS: Hotspot[] = [
   { id: 'puerta', name: 'la puerta del Godot', x: 130, y: 56, w: 68, h: 52, walkTo: { x: 164, y: 138 },
-    look: 'La persiana del Godot, bajada y precintada con cinta. Dentro, oscuridad y algo que no me da buena espina.',
-    responses: { Abrir: 'Ni se mueve. Y la cinta dice bien claro que hoy no es el día.', 'Tirar de': 'Tiro de la persiana. La persiana se queda. Yo me quedo en ridículo.' } },
+    look: 'La puerta del Godot, el pub de toda la vida en esta calle vieja. Madera gastada, mil pegatinas y, hoy, una cinta precintándola.',
+    responses: { Abrir: 'Cerrada y con la cinta puesta. Hoy no se entra.', 'Tirar de': 'Tiro de la puerta. La puerta gana. Como siempre.' } },
   { id: 'cartel', name: 'el cartel del Godot', x: 110, y: 10, w: 100, h: 26, walkTo: { x: 160, y: 138 },
     look: 'El cartel del Godot, mi local. Bueno... eso dicen que dije anoche. Que es mío. Ojalá me acordara.' },
   { id: 'flyers', name: 'los carteles', x: 16, y: 50, w: 124, h: 24, walkTo: { x: 70, y: 138 },
