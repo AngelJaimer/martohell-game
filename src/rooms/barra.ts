@@ -73,7 +73,7 @@ const NPCS: NPC[] = [
     draw: drawKilian, dialogue: KILIAN_DIALOGUE,
     accepts: {
       nota: {
-        line: '¡ESA! Trae... (la lee) Ah, no: es mi lista de la compra, que la escribo al revés. "Sajnaran, sallo;bec"... naranjas, cebollas y algo más. Me mola escribir del revés. Gracias, majo: te abro la sala de atrás, échale un ojo.',
+        line: '¡ESA! Trae... (la lee) Ah, no: es mi lista de la compra, que la escribo al revés. "Sajnaran, sallo;bec"... naranjas, cebollas y tal. ...Oye, y ahora me viene todo: la sala de atrás se me fue de las manos anoche, por eso la cerré. Aquello está descontroladísimo. Mejor que lo veas tú mismo: te abro.',
         remove: [],
         flag: 'sala_abierta',
       },

@@ -100,7 +100,7 @@ const NPCS: NPC[] = [
     draw: drawMarcos, dialogue: MARCOS_DIALOGUE,
     accepts: {
       cervezas: {
-        line: 'Aaah, por fin. (trago) Vale, ya me acuerdo: anoche venías del Godot jurando que habías visto a los espíritus de la Caledonia y del Curro saliendo de allá. Ibas cagado de miedo, chaval.',
+        line: 'Aaah, por fin. (trago) Vale, ya me acuerdo de anoche: yo, el demoño, eché la pota en el Godot... y salió RARO, chaval, como de otro mundo. Una tal Caledonia se llevó la llave y cerró el local porque aquello se descontroló del todo. Y tú estabas allí, ¿no te acuerdas? Ibas cagado de miedo.',
         remove: ['cervezas'],
         flag: 'sabe_espiritus',
       },
@@ -122,7 +122,7 @@ const NPCS: NPC[] = [
 
 const EXITS: Exit[] = [
   { id: 'toGodot', name: 'la calle (el Godot)', x: 0, y: 108, w: 14, h: 36, walkTo: { x: 20, y: 138 }, to: 'godot', entry: { x: 290, y: 136 }, arrow: 'left' },
-  { id: 'toPou', name: 'el Pou del Merli', x: 306, y: 108, w: 14, h: 36, walkTo: { x: 300, y: 138 }, to: 'poumerli', entry: { x: 30, y: 135 }, arrow: 'right' },
+  { id: 'toPou', name: 'el Pou del Merli', x: 306, y: 108, w: 14, h: 36, walkTo: { x: 300, y: 138 }, to: 'poumerli', entry: { x: 30, y: 135 }, arrow: 'right', showIf: 'has_tarjeta' },
 ];
 
 export const GATONEGRO: Room = {

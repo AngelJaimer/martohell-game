@@ -277,8 +277,8 @@ export const CALEDONIA_DIALOGUE: Dialogue = {
     ],
   },
   beso: {
-    npc: '¡Huy, huy! (se derrite un poco, y eso que es un fantasma) Hacía siglos que un vivo no me besaba, y nunca mejor dicho. Anda, toma la llave del Godot, granuja. Pero al Curro ni agua.',
-    options: [{ text: 'Gracias, preciosa.', to: 'end' }],
+    npc: '¡Huy, huy! (se derrite un poco, y eso que es un fantasma) Hacía siglos que un vivo no me besaba. Toma la llave del Godot, granuja. Pero el Curro no te dejará salir con ella así como así: tendrás que convencerle a él.',
+    options: [{ text: 'A ver qué le digo al Curro...', to: 'end' }],
   },
   discuten: {
     npc: 'Cogí la llave para que nadie abra esa puerta: hay cosas ahí dentro mejor encerradas. Y el Curro la quiere para tapar lo suyo. A mí, en cambio, se me ablanda con bien poco... un detalle de nada.',
@@ -409,7 +409,7 @@ export const KILIAN_DIALOGUE: Dialogue = {
     options: [{ text: 'Lo tendré en cuenta.', to: 'end' }],
   },
   cerraron: {
-    npc: 'Pregúntale al Sopas, que retiene mejor. Yo, a partir de la décima birra, lo veo todo borroso. Ah, y la sala de atrás la cerré yo anoche, por algo que... ni me acuerdo.',
+    npc: 'Pregúntale al Sopas, que retiene mejor. Yo, a partir de la décima birra, lo veo borroso. Eso sí: la sala de atrás la cerré yo anoche porque aquello se descontroló del todo. Qué fue exactamente... no me viene. Aún.',
     options: [{ text: '(Salir)', to: 'end' }],
   },
 };

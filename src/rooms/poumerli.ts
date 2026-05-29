@@ -107,9 +107,8 @@ const NPCS: NPC[] = [
   },
 ];
 
-const EXITS: Exit[] = [
-  { id: 'toGato', name: 'el Gato Negro', x: 0, y: 108, w: 14, h: 36, walkTo: { x: 20, y: 138 }, to: 'gatonegro', entry: { x: 296, y: 136 }, arrow: 'left' },
-];
+// One-way: from the spirits you can only finish the episode (no going back).
+const EXITS: Exit[] = [];
 
 export const POUMERLI: Room = {
   id: 'poumerli',
