@@ -177,6 +177,8 @@ function startGame() {
     try { (screen.orientation as any)?.lock?.('landscape'); } catch (e) { /* ignore */ }
   }
   if (!state.inventory.find((it: any) => it.id === 'nota')) addItem('nota'); // you wake up holding the note (needed all the way to Ep4)
+  // opening card that focuses on the note; tap dismisses it back into the bridge
+  if (CONFIG.intro && CONFIG.intro.length) state.ending = { since: state.now, lines: CONFIG.intro, goto: START_ROOM };
   state.screen = 'game';
 }
 window.addEventListener('keydown', (e) => {

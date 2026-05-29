@@ -71,7 +71,7 @@ export const FRUTERO_DIALOGUE: Dialogue = {
     options: [{ text: '¿El Godot?', to: 'godot' }, { text: '(Salir)', to: 'end' }],
   },
   godot: {
-    npc: 'La disco de toda la vida, la de la carretera. Tú venías de allí cuando te derrumbaste. Pregúntale al Congui, que andaba por el parque esa noche.',
+    npc: 'El antro ese de los heavies, en la carretera. De ahí venías cuando te derrumbaste. Pregúntale al espíritu del Congui, que rondaba el parque esa noche.',
     options: [{ text: 'Lo haré.', to: 'end' }],
   },
   espiritu: {

@@ -12,6 +12,18 @@ export const CONFIG = {
   subtitle: 'Episodio 1: El despertar',
   credit: 'creado por Angel Jaime',
 
+  // --- Opening card (shown once, when a NEW game starts) ---
+  intro: [
+    'Despiertas bajo el Pont del Diable.',
+    'No recuerdas nada de anoche... nada de nada.',
+    '',
+    'En el bolsillo, una nota con un código raro...',
+    'y la letra ni siquiera parece la tuya.',
+    '',
+    '¿Por qué la llevas? ¿Qué significa ese código?',
+    'Solo hay una forma de averiguarlo.',
+  ],
+
   // --- Per-scene music (themes defined in src/audio/engine.ts) ---
   roomTheme: {
     pont: 'flamenco', vila: 'rumba', esglesia: 'rumba', piscina: 'carrer',
