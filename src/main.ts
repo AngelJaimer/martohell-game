@@ -299,6 +299,7 @@ function selectOption(i: number) {
   if (!o) return;
   if (o.set) state.flags[o.set] = true;
   if (o.give) addItem(o.give);
+  if (o.card) state.ending = { since: state.now, lines: o.card, goto: o.goto };
   if (o.once) state.used.add(o.key);
   state.speech = { lines: wrapText(o.text, 180), until: state.now + Math.max(1200, o.text.length * 45), color: [238, 238, 224], x: state.guy.x };
   if (o.to === 'end') { state.dialogue = null; return; }

@@ -98,26 +98,6 @@ const NPCS: NPC[] = [
     feet: { x: 206, y: 132 }, walkTo: { x: 174, y: 138 }, facing: 'right', color: [150, 230, 196],
     look: 'La Caledonia. Un espíritu enorme en bata y con la cabeza rapada. Aprieta una llave contra el pecho.',
     draw: drawCaledonia, dialogue: CALEDONIA_DIALOGUE, showIf: 'entered_poumerli',
-    accepts: {
-      nota: {
-        line: 'A ver esa nota... (entrecierra los ojos) Este código es el del Godot. Vaya, vaya, conque el nuevo dueño eres tú. Toma la llave, criatura, y carga tú con lo que haya dentro.',
-        give: 'llave_godot',
-        remove: [],
-        flag: 'tiene_llave_godot',
-        card: [
-          'EPISODIO 2 COMPLETADO',
-          '',
-          'La Caledonia te entrega la llave del Godot.',
-          '"Ahora es cosa tuya. Y que los muertos te',
-          'pillen confesado, guapo."',
-          '',
-          'Con la llave en la mano, vuelves al Godot...',
-          '',
-          'CONTINUARÁ... Episodio 3: La llave del Godot',
-        ],
-        goto: 'godot',
-      },
-    },
   },
   {
     id: 'curro', name: 'el Curro', x: 238, y: 82, w: 26, h: 52,

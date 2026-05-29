@@ -10,6 +10,8 @@ export interface Opt {
   if?: string;
   ifNot?: string;
   once?: boolean;
+  card?: string[]; // show an ending/transition card when chosen (end an episode in dialogue)
+  goto?: string;   // room to travel to after the card (absent = terminal)
 }
 export interface DialogueNode {
   npc: string;
@@ -267,43 +269,46 @@ export const VIGILANTE_DIALOGUE: Dialogue = {
 // the Godot (the accept rule grants the key + ends the episode).
 export const CALEDONIA_DIALOGUE: Dialogue = {
   start: {
-    npc: '(al Curro) ¡Que la llave es MÍA, pesado! ...¿Y este quién es? ¿Otro fantasma o de los vivos?',
+    npc: '(al Curro) ¡Que la llave del Godot es MÍA, pesado! ...Vaya. ¿Y este vivo tan apuesto de dónde sale?',
     options: [
-      { text: 'De los vivos. Esa llave es del Godot, y el Godot es mío.', to: 'reclamo' },
+      { text: '(Darle un beso)', to: 'beso', give: 'llave_godot', set: 'beso_caledonia', once: true, ifNot: 'beso_caledonia' },
       { text: '¿Por qué discutís?', to: 'discuten' },
       { text: '(Salir)', to: 'end' },
     ],
   },
-  reclamo: {
-    npc: 'Tuyo, dices. Demuéstralo. ¿Tienes algo que lo pruebe, o me vas a contar un cuento, guapo?',
-    options: [{ text: 'Tengo esto... (mejor le doy la nota)', to: 'end' }],
+  beso: {
+    npc: '¡Huy, huy! (se derrite un poco, y eso que es un fantasma) Hacía siglos que un vivo no me besaba, y nunca mejor dicho. Anda, toma la llave del Godot, granuja. Pero al Curro ni agua.',
+    options: [{ text: 'Gracias, preciosa.', to: 'end' }],
   },
   discuten: {
-    npc: 'Cogí la llave del Godot para que nadie abra esa puerta. Hay cosas ahí dentro que mejor siguen encerradas. Y el Curro la quiere para tapar lo suyo.',
-    options: [{ text: '¿Lo suyo?', to: 'lo' }, { text: '(Salir)', to: 'end' }],
-  },
-  lo: {
-    npc: 'Pregúntale a él. Yo solo sé que de ese local salió algo que no debía. Tú estabas anoche, lo vi en tu cara.',
-    options: [{ text: '(Salir)', to: 'end' }],
+    npc: 'Cogí la llave para que nadie abra esa puerta: hay cosas ahí dentro mejor encerradas. Y el Curro la quiere para tapar lo suyo. A mí, en cambio, se me ablanda con bien poco... un detalle de nada.',
+    options: [{ text: '¿Un detalle?', to: 'start' }, { text: '(Salir)', to: 'end' }],
   },
 };
 
 // El Curro — the corrupt old cop spirit; lore/colour.
 export const CURRO_DIALOGUE: Dialogue = {
   start: {
-    npc: 'Agente Curro, aunque ya nadie me paga. Esa mujer me ha robado la llave del Godot y pienso recuperarla, vivo o muerto. Más muerto que vivo, mírame.',
+    npc: 'Agente Curro, aunque ya nadie me paga. Esa llave del Godot es una prueba y la quiero de vuelta. ¿Y tú qué pintas aquí?',
     options: [
+      { text: 'Soy el dueño del Godot, por eso estaba ahí ayer.', to: 'dueno', if: 'beso_caledonia' },
       { text: '¿Para qué quieres la llave?', to: 'porque' },
       { text: '¿Eras policía?', to: 'poli' },
       { text: '(Salir)', to: 'end' },
     ],
   },
+  dueno: {
+    npc: 'Tú, el dueño. Ya. No me lo trago ni de lejos... pero estoy muerto, cansado y sin jurisdicción. Lárgate con la dichosa llave, anda. Pero esto no acaba aquí, te lo digo yo.',
+    options: [
+      { text: 'Me voy con la llave. (Salir)', to: 'end', set: 'tiene_llave_godot', goto: 'godot', card: ['EPISODIO 2 COMPLETADO', '', 'El Curro refunfuña, pero te deja marchar', 'con la llave del Godot en el bolsillo.', '', '"Esto no acaba aquí", gruñe a tu espalda.', '', 'Vuelves al Godot, llave en mano...', '', 'CONTINUARÁ... Episodio 3: La llave del Godot'] },
+    ],
+  },
   porque: {
-    npc: 'Digamos que en ese local hay papeles, y deudas, y nombres. Cosas que un servidor preferiría que no salieran a la luz. Cosas mías.',
+    npc: 'Digamos que en ese local hay papeles, deudas y nombres. Cosas mías que preferiría que no salieran a la luz.',
     options: [{ text: 'Corrupto hasta muerto, vaya.', to: 'corrupto' }, { text: '(Salir)', to: 'end' }],
   },
   corrupto: {
-    npc: 'Cuida esa boca, chaval. Pero sí: la placa pesaba menos que los sobres. Y ahora ni placa ni sobres, solo este purgatorio de chalet.',
+    npc: 'Cuida esa boca, chaval. Pero sí: la placa pesaba menos que los sobres. Ahora ni placa ni sobres, solo este purgatorio de chalet.',
     options: [{ text: '(Salir)', to: 'end' }],
   },
   poli: {
