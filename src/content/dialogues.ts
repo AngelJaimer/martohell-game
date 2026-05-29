@@ -390,3 +390,86 @@ export const PETITO_DIALOGUE: Dialogue = {
     options: [{ text: 'Trato hecho.', to: 'curro', set: 'ayudando' }],
   },
 };
+
+// ================= EPISODE 4: Dentro del Godot =================
+
+// El Kilian — stuck inside since last night; show him the nota (via Dar) and he
+// opens the back room (the accept lives in the barra room).
+export const KILIAN_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¿Qué hora es? Llevo aquí desde anoche: cerraron con un servidor dentro y el Sopas me ha dado conversación. Oye... he perdido algo, pero no sé ni el qué.',
+    options: [
+      { text: '¿Qué has perdido?', to: 'perdido' },
+      { text: '¿Cerraron contigo dentro?', to: 'cerraron' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  perdido: {
+    npc: 'Un papel, creo. Con números raros. Si lo tuviera delante lo reconocería seguro. Si pillas algo así por ahí, enséñamelo, anda.',
+    options: [{ text: 'Lo tendré en cuenta.', to: 'end' }],
+  },
+  cerraron: {
+    npc: 'Pregúntale al Sopas, que retiene mejor. Yo, a partir de la décima birra, lo veo todo borroso. Ah, y la sala de atrás la cerré yo anoche, por algo que... ni me acuerdo.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Sopas — bald punky spirit at the bar; lore.
+export const SOPAS_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Buenas. El Sopas. Anoche cerraron el Godot y el Kilian se quedó dentro conmigo dándole a la birra. Yo ya no bebo, claro, pero acompaño.',
+    options: [
+      { text: '¿Tú no estás...?', to: 'muerto', once: true },
+      { text: '¿Qué pasó anoche?', to: 'anoche' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  muerto: {
+    npc: '¿Muerto? Un poco, sí. Pero un punky no se rinde ni en el más allá. Calvo, fantasma y a mucha honra.',
+    options: [{ text: 'Respeto.', to: 'start' }],
+  },
+  anoche: {
+    npc: 'Lo de siempre, hasta que la cosa se torció ahí detrás. Pregunta en la sala de los billares, que hay quien lo vio todo.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// Party spirits in the billiards room.
+export const ESPIRITU_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Eeeh, si es el de anoche! Qué alegría volver al Godot. Aquí se está de muerte, nunca mejor dicho. ¡Hay billar y todo!',
+    options: [
+      { text: '¿Me conocéis?', to: 'conoces' },
+      { text: '¿De dónde salís todos?', to: 'puerta' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  conoces: {
+    npc: 'Claro, hombre. Estuviste aquí ayer, antes de que se liara todo. Brindamos y to. ¡Buena gente!',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+  puerta: {
+    npc: 'De esa puerta del fondo no paran de salir colegas. No sabemos de dónde, pero la fiesta lo agradece. Aunque el antiguo dueño anda preocupado, pregúntale a él.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El antiguo dueño — explains the vomit-portal and how to close it.
+export const DUENO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Yo regenté el Godot cuarenta años, y ahora lo regento desde el otro lado. Pero esto se nos va de las manos: por esa puerta del fondo no para de entrar gente del más allá.',
+    options: [
+      { text: '¿Qué hay tras esa puerta?', to: 'puerta' },
+      { text: '¿Cómo se cierra?', to: 'cerrar' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  puerta: {
+    npc: 'Un túnel a otra dimensión. Y lo abrió, agárrate, una pota. La de tu amigo el Marcos, el demoño, que anoche vomitó ahí y rasgó el velo entre mundos. El charco sigue ahí, burbujeando.',
+    options: [{ text: '¿Y eso cómo se arregla?', to: 'cerrar' }, { text: '(Salir)', to: 'end' }],
+  },
+  cerrar: {
+    npc: 'Limpiando el origen: si friegas esa pota, el portal debería cerrarse. Hay un cubo de fregar aquí mismo, en la sala. Tú que estás vivo y tienes manos, hazme el favor.',
+    options: [{ text: 'Voy a por el cubo.', to: 'end', set: 'goal_cubo' }],
+  },
+};

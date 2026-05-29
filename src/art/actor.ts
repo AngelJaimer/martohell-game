@@ -490,3 +490,87 @@ export function drawPetito(ctx: CanvasRenderingContext2D, fx: number, fy: number
   px(ctx, cx - 6, hy - 1, 13, 2, HAT); px(ctx, cx - 4, hy - 3, 9, 2, HAT); px(ctx, cx + 5, hy, 3, 1, HAT); // hard hat
   ctx.restore();
 }
+
+// ================= EPISODE 4 cast =================
+
+// El Kilian — has been drinking inside the Godot all night; tipsy sway, beer in hand.
+export function drawKilian(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const sway = Math.round(Math.sin(t * 1.3));
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const TEE: RGB = [60, 64, 78], JEANS: RGB = [70, 72, 90];
+  blk(ctx, cx - 6 + sway, fyR - 17, 5, 15, JEANS); blk(ctx, cx + 1 + sway, fyR - 17, 5, 15, JEANS);
+  blk(ctx, cx - 7 + sway, fyR - 4, 7, 4, [40, 36, 40]); blk(ctx, cx + 0 + sway, fyR - 4, 7, 4, [40, 36, 40]);
+  const ty = fyR - 35 + sway;
+  blk(ctx, cx - 7, ty, 14, 20, TEE);
+  px(ctx, cx - 2, ty + 4, 4, 7, [150, 60, 60]);  // faded band print
+  blk(ctx, cx - 10, ty + 2, 4, 12, TEE); blk(ctx, cx + 6, ty + 2, 4, 12, TEE);
+  px(ctx, cx - 10, ty + 12, 4, 3, P.skin); px(ctx, cx + 6, ty + 12, 4, 3, P.skin);
+  px(ctx, cx + 8, ty + 8, 3, 8, [54, 38, 20]);   // beer bottle
+  const hy = fyR - 47 + sway;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 1, 11, 2, [70, 54, 40]);  // short hair
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 2, hy + 8, 6, 1, [150, 120, 96]); // stubble grin
+  ctx.restore();
+}
+
+// El Sopas — bald punky spirit; studded vest, ear stud, ghost-green.
+export function drawSopas(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const VEST: RGB = [92, 150, 126], GSKIN: RGB = [176, 226, 196], GOUT: RGB = [40, 80, 64];
+  blk(ctx, cx - 5, fyR - 15, 4, 13, [80, 140, 116], GOUT); blk(ctx, cx + 1, fyR - 15, 4, 13, [80, 140, 116], GOUT);
+  blk(ctx, cx - 6, fyR - 4, 6, 4, [40, 80, 64], GOUT); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 80, 64], GOUT);
+  const ty = fyR - 30;
+  blk(ctx, cx - 6, ty, 13, 16, VEST, GOUT);
+  for (const sx of [cx - 3, cx + 1, cx + 4]) px(ctx, sx, ty + 4, 1, 1, [206, 232, 218]); // studs
+  blk(ctx, cx - 9, ty + 2, 3, 11, VEST, GOUT); blk(ctx, cx + 6, ty + 2, 3, 11, VEST, GOUT);
+  px(ctx, cx - 9, ty + 11, 3, 2, GSKIN); px(ctx, cx + 6, ty + 11, 3, 2, GSKIN);
+  const hy = fyR - 39;
+  blk(ctx, cx - 4, hy, 9, 10, GSKIN, GOUT);
+  px(ctx, cx - 4, hy, 9, 2, [150, 200, 176]);    // bald scalp shine
+  px(ctx, cx + 1, hy + 4, 1, 2, GOUT);
+  px(ctx, cx - 2, hy + 7, 4, 1, GOUT);
+  px(ctx, cx - 5, hy + 4, 1, 1, [206, 232, 218]); // ear stud
+  ctx.globalAlpha = 1; ctx.restore();
+}
+
+// El antiguo dueño — old bar-owner spirit: waistcoat, bowtie, apron, grey moustache.
+export function drawDueno(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const VEST: RGB = [86, 150, 128], APRON: RGB = [150, 210, 186], GSKIN: RGB = [176, 226, 196], GOUT: RGB = [40, 80, 64];
+  blk(ctx, cx - 5, fyR - 16, 5, 14, [70, 120, 100], GOUT); blk(ctx, cx + 1, fyR - 16, 5, 14, [70, 120, 100], GOUT);
+  blk(ctx, cx - 6, fyR - 4, 6, 4, [40, 80, 64], GOUT); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 80, 64], GOUT);
+  const ty = fyR - 36;
+  blk(ctx, cx - 8, ty, 16, 22, VEST, GOUT);       // stout waistcoat torso
+  px(ctx, cx - 5, ty + 8, 10, 12, APRON);         // apron
+  px(ctx, cx - 1, ty + 1, 2, 7, [60, 110, 92]);   // waistcoat seam
+  px(ctx, cx - 2, ty, 4, 2, GOUT);                // bowtie
+  blk(ctx, cx - 11, ty + 2, 4, 13, VEST, GOUT); blk(ctx, cx + 7, ty + 2, 4, 13, VEST, GOUT);
+  px(ctx, cx - 11, ty + 13, 4, 2, GSKIN); px(ctx, cx + 7, ty + 13, 4, 2, GSKIN);
+  const hy = fyR - 47;
+  blk(ctx, cx - 5, hy, 11, 11, GSKIN, GOUT);
+  px(ctx, cx - 5, hy, 11, 2, [150, 200, 176]);    // balding shine
+  px(ctx, cx - 5, hy + 1, 2, 4, [150, 200, 176]); px(ctx, cx + 5, hy + 1, 2, 4, [150, 200, 176]); // grey sides
+  px(ctx, cx - 4, hy + 7, 10, 2, [150, 200, 176]); // moustache
+  px(ctx, cx + 1, hy + 4, 1, 2, GOUT);
+  ctx.globalAlpha = 1; ctx.restore();
+}
+
+// A generic happy party spirit (billiards crowd) — sways/dances, arms up.
+export function drawEspiritu(ctx: CanvasRenderingContext2D, fx: number, fy: number, _facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx) + Math.round(Math.sin(t * 3 + fx) * 2); // dancing sway
+  const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.8;
+  const G: RGB = [150, 224, 190], GD: RGB = [112, 190, 160], GOUT: RGB = [40, 80, 64];
+  blk(ctx, cx - 5, fyR - 16, 11, 16, G, GOUT);
+  px(ctx, cx - 4, fyR - 14, 3, 12, GD);
+  px(ctx, cx - 5, fyR - 1, 3, 1, GOUT); px(ctx, cx, fyR - 2, 3, 1, GOUT); px(ctx, cx + 4, fyR - 1, 2, 1, GOUT); // wavy hem
+  blk(ctx, cx - 8, fyR - 23, 3, 9, G, GOUT); blk(ctx, cx + 5, fyR - 25, 3, 9, G, GOUT); // arms up
+  blk(ctx, cx - 4, fyR - 26, 9, 9, G, GOUT);
+  px(ctx, cx - 1, fyR - 22, 1, 2, GOUT); px(ctx, cx + 2, fyR - 22, 1, 2, GOUT);
+  px(ctx, cx - 1, fyR - 19, 3, 1, GOUT);
+  ctx.globalAlpha = 1; ctx.restore();
+}

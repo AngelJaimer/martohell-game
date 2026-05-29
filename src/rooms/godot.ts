@@ -128,6 +128,7 @@ const NPCS: NPC[] = [
         remove: ['mazinger'],
         flag: 'godot_abierto',
         card: ['EPISODIO 3 COMPLETADO', '', 'El Carmona lima el óxido, mete tu llave y...', 'CLAC. La persiana del Godot por fin sube.', '', 'Dentro te espera lo que buscas desde que', 'despertaste bajo el Pont del Diable...', '', 'CONTINUARÁ... Episodio 4: Dentro del Godot'],
+        goto: 'barra',
       },
     },
   },

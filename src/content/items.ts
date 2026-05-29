@@ -126,6 +126,20 @@ export const ITEMS: Record<string, { name: string; draw: Draw }> = {
       ctx.fillStyle = css(BLUE); ctx.fillRect(x + 5, y + 3, 2, 2); ctx.fillRect(x + 13, y + 3, 2, 2); // side fins
     },
   },
+  // ---------- Episode 4 ----------
+  cubo: {
+    name: 'un cubo de fregar',
+    draw: (ctx, x, y) => {
+      ctx.fillStyle = css([150, 154, 162]);
+      ctx.beginPath(); ctx.moveTo(x + 6, y + 9); ctx.lineTo(x + 15, y + 9); ctx.lineTo(x + 14, y + 18); ctx.lineTo(x + 7, y + 18); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = css([184, 188, 196]); ctx.fillRect(x + 6, y + 9, 9, 2);   // rim
+      ctx.fillStyle = css([110, 162, 202]); ctx.fillRect(x + 8, y + 11, 5, 3);  // soapy water
+      ctx.strokeStyle = css([120, 124, 132]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(x + 10, y + 9, 4, Math.PI, 0); ctx.stroke();     // handle
+      ctx.fillStyle = css([150, 110, 70]); ctx.fillRect(x + 12, y + 2, 2, 8);   // mop stick
+      ctx.fillStyle = css([224, 214, 184]); ctx.fillRect(x + 10, y + 1, 5, 3);  // mop head
+    },
+  },
 };
 
 export function makeItem(id: string) {

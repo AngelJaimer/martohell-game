@@ -17,6 +17,7 @@ export const CONFIG = {
     pont: 'flamenco', vila: 'rumba', esglesia: 'rumba', piscina: 'carrer',
     godot: 'godot', gatonegro: 'gatonegro', poumerli: 'poumerli',
     garaje: 'flamenco', obra: 'rumba',
+    barra: 'godot', billar: 'gatonegro', portal: 'poumerli',
   } as Record<string, string>,
   defaultTheme: 'rumba',
 
