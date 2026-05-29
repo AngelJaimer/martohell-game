@@ -110,10 +110,8 @@ export function drawNota(ctx: CanvasRenderingContext2D) {
 
 const HOTSPOTS: Hotspot[] = [
   {
-    id: 'nota', name: 'una nota misteriosa', x: 166, y: 124, w: 22, h: 14, walkTo: { x: 176, y: 138 },
-    look: 'Una nota arrugada con mi propia letra y, debajo, una serie de números. Un código. No recuerdo haberlo escrito.',
-    pickup: { id: 'nota', name: 'la nota misteriosa' },
-    responses: { Coger: 'Me guardo la nota. Ese código tiene que significar algo.' },
+    id: 'nota', name: 'la nota misteriosa', x: 166, y: 124, w: 22, h: 14, walkTo: { x: 176, y: 138 },
+    look: 'Saco la nota que llevaba encima al despertar: mi propia letra y, debajo, una serie de números. Un código. No recuerdo nada de anoche.',
   },
   { id: 'puente', name: 'el Pont del Diable', x: 40, y: 18, w: 240, h: 78, walkTo: { x: 150, y: 138 },
     look: 'El Pont del Diable. Dicen que lo construyó el diablo en una noche a cambio de un alma. Mira que hay sitios donde despertar resacoso...' },
@@ -129,7 +127,6 @@ export const PONT: Room = {
   id: 'pont',
   build: buildPontScene,
   overlays: pontOverlays,
-  dynamic: (ctx, state) => { if (!state.flags.took_nota) drawNota(ctx); },
   hotspots: HOTSPOTS,
   npcs: [],
   exits: EXITS,

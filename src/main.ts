@@ -176,6 +176,7 @@ function startGame() {
     try { (el.requestFullscreen || el.webkitRequestFullscreen)?.call(el)?.catch?.(() => {}); } catch (e) { /* ignore */ }
     try { (screen.orientation as any)?.lock?.('landscape'); } catch (e) { /* ignore */ }
   }
+  if (!state.inventory.find((it: any) => it.id === 'nota')) addItem('nota'); // you wake up holding the note (needed all the way to Ep4)
   state.screen = 'game';
 }
 window.addEventListener('keydown', (e) => {
