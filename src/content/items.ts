@@ -99,6 +99,33 @@ export const ITEMS: Record<string, { name: string; draw: Draw }> = {
       ctx.fillStyle = css([96, 96, 104]); ctx.fillRect(x + 5, y + 7, 1, 2);
     },
   },
+  // ---------- Episode 3 ----------
+  monedas: {
+    name: 'unas monedas',
+    draw: (ctx, x, y) => {
+      for (let i = 0; i < 3; i++) {
+        const cy = y + 15 - i * 3;
+        ctx.fillStyle = css(P.stoneShadow); ctx.beginPath(); ctx.ellipse(x + 10, cy, 6, 2.5, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = css(P.winLit); ctx.beginPath(); ctx.ellipse(x + 10, cy - 1, 6, 2.5, 0, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.fillStyle = css(P.sunCore); ctx.fillRect(x + 7, y + 6, 2, 1);
+    },
+  },
+  mazinger: {
+    name: 'un robot Mazinger',
+    draw: (ctx, x, y) => {
+      const SIL: RGB = [178, 184, 198], RED: RGB = [198, 52, 48], BLUE: RGB = [58, 92, 182];
+      ctx.fillStyle = css(SIL); ctx.fillRect(x + 6, y + 13, 3, 5); ctx.fillRect(x + 11, y + 13, 3, 5); // legs
+      ctx.fillRect(x + 6, y + 7, 8, 7);                                  // torso
+      ctx.fillStyle = css(RED); ctx.fillRect(x + 7, y + 8, 6, 3);        // chest
+      ctx.fillStyle = css(SIL); ctx.fillRect(x + 4, y + 7, 2, 5); ctx.fillRect(x + 14, y + 7, 2, 5); // arms
+      ctx.fillStyle = css(RED); ctx.fillRect(x + 4, y + 11, 2, 2); ctx.fillRect(x + 14, y + 11, 2, 2); // fists
+      ctx.fillStyle = css(BLUE); ctx.fillRect(x + 7, y + 2, 6, 5);       // helmet
+      ctx.fillStyle = css([232, 200, 90]); ctx.fillRect(x + 8, y + 4, 4, 3); // face
+      ctx.fillStyle = css(RED); ctx.fillRect(x + 8, y + 1, 4, 1);        // crest
+      ctx.fillStyle = css(BLUE); ctx.fillRect(x + 5, y + 3, 2, 2); ctx.fillRect(x + 13, y + 3, 2, 2); // side fins
+    },
+  },
 };
 
 export function makeItem(id: string) {

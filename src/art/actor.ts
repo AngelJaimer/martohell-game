@@ -420,3 +420,73 @@ export function drawCurro(ctx: CanvasRenderingContext2D, fx: number, fy: number,
   px(ctx, cx - 2, hy - 2, 4, 2, [220, 210, 120]); // cap badge
   ctx.globalAlpha = 1; ctx.restore();
 }
+
+// ================= EPISODE 3 cast =================
+
+// El Carmona — figure-collector handyman at the Godot door; cap, flannel, a toy in hand.
+export function drawCarmona(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const bob = Math.sin(t * 1.6) > 0.94 ? 1 : 0;
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const SHIRT: RGB = [150, 80, 70], JEANS: RGB = [66, 70, 92], CAP: RGB = [58, 70, 110];
+  blk(ctx, cx - 6, fyR - 18, 5, 16, JEANS); blk(ctx, cx + 1, fyR - 18, 5, 16, JEANS);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [60, 50, 42]); blk(ctx, cx + 0, fyR - 4, 7, 4, [60, 50, 42]);
+  const ty = fyR - 36 + bob;
+  blk(ctx, cx - 7, ty, 14, 20, SHIRT);
+  px(ctx, cx - 6, ty + 3, 12, 1, [110, 56, 50]); px(ctx, cx - 6, ty + 9, 12, 1, [110, 56, 50]); // flannel checks
+  px(ctx, cx - 1, ty + 1, 1, 18, [110, 56, 50]);
+  blk(ctx, cx - 10, ty + 2, 4, 12, SHIRT); blk(ctx, cx + 6, ty + 2, 4, 12, SHIRT);
+  px(ctx, cx - 10, ty + 12, 4, 3, P.skin); px(ctx, cx + 6, ty + 12, 4, 3, P.skin);
+  px(ctx, cx + 6, ty + 13, 4, 3, [178, 184, 198]); // a little robot figure in hand
+  const hy = fyR - 47 + bob;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 2, hy + 8, 6, 1, [150, 120, 96]);
+  px(ctx, cx - 6, hy - 2, 13, 3, CAP); px(ctx, cx + 5, hy, 4, 2, CAP); // cap + brim
+  ctx.restore();
+}
+
+// El juguetero — the old toy-shop owner: cardigan, white hair, glasses.
+export function drawJuguetero(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const bob = Math.sin(t * 1.4) > 0.96 ? 1 : 0;
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const CARD: RGB = [110, 96, 120], TROUS: RGB = [80, 76, 70];
+  blk(ctx, cx - 5, fyR - 16, 5, 14, TROUS); blk(ctx, cx + 1, fyR - 16, 5, 14, TROUS);
+  blk(ctx, cx - 6, fyR - 4, 6, 4, [50, 44, 40]); blk(ctx, cx + 1, fyR - 4, 6, 4, [50, 44, 40]);
+  const ty = fyR - 33 + bob;
+  blk(ctx, cx - 6, ty, 13, 18, CARD);
+  px(ctx, cx - 1, ty + 1, 1, 16, [90, 78, 98]);
+  blk(ctx, cx - 9, ty + 2, 4, 12, CARD); blk(ctx, cx + 6, ty + 2, 4, 12, CARD);
+  px(ctx, cx - 9, ty + 12, 4, 2, P.skin); px(ctx, cx + 6, ty + 12, 4, 2, P.skin);
+  const hy = fyR - 44 + bob;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 1, 11, 2, [222, 218, 212]); // white hair
+  px(ctx, cx - 5, hy + 1, 2, 3, [222, 218, 212]); px(ctx, cx + 5, hy + 1, 2, 3, [222, 218, 212]);
+  px(ctx, cx, hy + 3, 2, 2, [40, 40, 46]); px(ctx, cx + 3, hy + 3, 2, 2, [40, 40, 46]); px(ctx, cx + 2, hy + 4, 1, 1, [40, 40, 46]); // glasses
+  px(ctx, cx - 2, hy + 8, 6, 1, P.skinShadow);
+  ctx.restore();
+}
+
+// El Petito — the foreman: hard hat, hi-vis vest, moustache, shortish.
+export function drawPetito(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const bob = Math.sin(t * 1.8) > 0.9 ? 1 : 0;
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const VEST: RGB = [228, 142, 40], SHIRT: RGB = [70, 80, 110], HAT: RGB = [230, 198, 60];
+  blk(ctx, cx - 5, fyR - 14, 5, 12, [60, 62, 76]); blk(ctx, cx + 1, fyR - 14, 5, 12, [60, 62, 76]);
+  blk(ctx, cx - 6, fyR - 4, 6, 4, [40, 36, 32]); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 36, 32]);
+  const ty = fyR - 30 + bob;
+  blk(ctx, cx - 7, ty, 14, 17, SHIRT);
+  px(ctx, cx - 6, ty + 1, 12, 15, VEST);
+  px(ctx, cx - 6, ty + 5, 12, 1, [245, 245, 245]); px(ctx, cx - 6, ty + 10, 12, 1, [245, 245, 245]); // reflective stripes
+  px(ctx, cx - 1, ty + 1, 2, 15, SHIRT);  // open front
+  blk(ctx, cx - 10, ty + 2, 4, 11, SHIRT); blk(ctx, cx + 6, ty + 2, 4, 11, SHIRT);
+  px(ctx, cx - 10, ty + 11, 4, 2, P.skin); px(ctx, cx + 6, ty + 11, 4, 2, P.skin);
+  const hy = fyR - 40 + bob;
+  blk(ctx, cx - 5, hy, 10, 10, P.skin); px(ctx, cx - 4, hy + 1, 3, 8, P.skinShadow);
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 3, hy + 7, 7, 1, [120, 90, 64]); // moustache
+  px(ctx, cx - 6, hy - 1, 13, 2, HAT); px(ctx, cx - 4, hy - 3, 9, 2, HAT); px(ctx, cx + 5, hy, 3, 1, HAT); // hard hat
+  ctx.restore();
+}

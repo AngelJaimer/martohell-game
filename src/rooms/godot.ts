@@ -1,8 +1,8 @@
 import { P, css, type RGB } from '../art/palette';
 import { Pixels, rampPick } from '../art/dither';
 import { drawText } from '../art/font';
-import { drawMarcos, drawMarkitos } from '../art/actor';
-import { MARCOS_DIALOGUE, MARKITOS_DIALOGUE } from '../content/dialogues';
+import { drawMarcos, drawMarkitos, drawCarmona } from '../art/actor';
+import { MARCOS_DIALOGUE, MARKITOS_DIALOGUE, CARMONA_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 2 opener — the door of El Godot, a heavy/metal bar, at night.
@@ -54,11 +54,7 @@ export function buildGodotScene(): HTMLCanvasElement {
   r(ctx, gx, 60, gw, 48, [70, 70, 80]);
   for (let y = 62; y < 108; y += 4) r(ctx, gx, y, gw, 2, [54, 54, 64]);
   r(ctx, gx, 60, gw, 2, [96, 96, 108]);
-  // hazard tape across it (sealed!)
-  ctx.save(); ctx.translate(gx + gw / 2, 84); ctx.rotate(-0.25);
-  r(ctx, -38, -3, 76, 6, [206, 180, 60]); ctx.fillStyle = css([30, 28, 20]);
-  for (let i = -36; i < 36; i += 8) ctx.fillRect(i, -3, 4, 6);
-  ctx.restore();
+  // (the hazard tape is drawn live in `dynamic`, only while the bar is sealed in Ep2)
   // a bare bulb over the door
   r(ctx, gx + gw / 2 - 1, 50, 2, 6, [60, 56, 50]);
   r(ctx, gx + gw / 2 - 2, 54, 4, 4, P.winLit);
@@ -84,6 +80,16 @@ export function godotOverlays(ctx: CanvasRenderingContext2D, t: number) {
   ctx.fillStyle = bg; ctx.fillRect(150, 44, 28, 26);
 }
 
+// hazard tape across the shutter — drawn only while the bar is sealed (Ep2).
+// Once you have the key (Ep3) it is gone and el Carmona fixes the rusty lock.
+export function drawTape(ctx: CanvasRenderingContext2D) {
+  ctx.save(); ctx.translate(164, 84); ctx.rotate(-0.25);
+  ctx.fillStyle = css([206, 180, 60]); ctx.fillRect(-38, -3, 76, 6);
+  ctx.fillStyle = css([30, 28, 20]);
+  for (let i = -36; i < 36; i += 8) ctx.fillRect(i, -3, 4, 6);
+  ctx.restore();
+}
+
 const HOTSPOTS: Hotspot[] = [
   { id: 'puerta', name: 'la puerta del Godot', x: 130, y: 56, w: 68, h: 52, walkTo: { x: 164, y: 138 },
     look: 'La persiana del Godot, bajada y precintada con cinta. Dentro, oscuridad y algo que no me da buena espina.',
@@ -95,28 +101,48 @@ const HOTSPOTS: Hotspot[] = [
 ];
 
 const NPCS: NPC[] = [
+  // --- Episode 2: the heavies out front (gone once you hold the key) ---
   {
     id: 'marcos', name: 'el Marcos', x: 84, y: 82, w: 26, h: 50,
     feet: { x: 98, y: 132 }, walkTo: { x: 78, y: 138 }, facing: 'right', color: [220, 150, 150],
     look: 'El Marcos. Melenas, camiseta negra y, según él, medio demonio. Lo de los pies torcidos hacia adentro, eso sí es verdad.',
-    draw: drawMarcos, dialogue: MARCOS_DIALOGUE,
+    draw: drawMarcos, dialogue: MARCOS_DIALOGUE, hideIf: 'tiene_llave_godot',
   },
   {
     id: 'markitos', name: 'el Markitos', x: 116, y: 92, w: 22, h: 40,
     feet: { x: 128, y: 134 }, walkTo: { x: 146, y: 138 }, facing: 'left', color: [200, 200, 210],
     look: 'El Markitos. Punky, cabeza rapada y un palmo de estatura. Pequeño pero correoso.',
-    draw: drawMarkitos, dialogue: MARKITOS_DIALOGUE,
+    draw: drawMarkitos, dialogue: MARKITOS_DIALOGUE, hideIf: 'tiene_llave_godot',
+  },
+  // --- Episode 3: el Carmona, who can fix the rusty lock for a Mazinger ---
+  {
+    id: 'carmona', name: 'el Carmona', x: 84, y: 82, w: 28, h: 50,
+    feet: { x: 100, y: 132 }, walkTo: { x: 124, y: 138 }, facing: 'right', color: [232, 172, 150],
+    look: 'El Carmona, manitas y coleccionista. Mira mi llave del Godot como quien dice "esa cerradura la arreglo yo... por un precio".',
+    draw: drawCarmona, dialogue: CARMONA_DIALOGUE, showIf: 'tiene_llave_godot',
+    accepts: {
+      mazinger: {
+        needAlso: 'llave_godot',
+        missing: 'Bonito robot, pero ¿y la llave del Godot? Sin llave no hay cerradura que limar.',
+        line: 'AAANDA, un Mazinger del 74... (lo abraza) Trato es trato. Trae esa llave... lima, lima... clic. ¡Ya gira! El Godot es todo tuyo.',
+        remove: ['mazinger'],
+        flag: 'godot_abierto',
+        card: ['EPISODIO 3 COMPLETADO', '', 'El Carmona lima el óxido, mete tu llave y...', 'CLAC. La persiana del Godot por fin sube.', '', 'Dentro te espera lo que buscas desde que', 'despertaste bajo el Pont del Diable...', '', 'CONTINUARÁ... Episodio 4: Dentro del Godot'],
+      },
+    },
   },
 ];
 
 const EXITS: Exit[] = [
-  { id: 'toGato', name: 'el Gato Negro', x: 300, y: 108, w: 20, h: 36, walkTo: { x: 296, y: 138 }, to: 'gatonegro', entry: { x: 28, y: 135 }, arrow: 'right' },
+  { id: 'toGato', name: 'el Gato Negro', x: 300, y: 108, w: 20, h: 36, walkTo: { x: 296, y: 138 }, to: 'gatonegro', entry: { x: 28, y: 135 }, arrow: 'right', hideIf: 'tiene_llave_godot' },
+  { id: 'toGaraje', name: 'el Garaje San Cristóbal', x: 0, y: 108, w: 16, h: 36, walkTo: { x: 22, y: 138 }, to: 'garaje', entry: { x: 30, y: 135 }, arrow: 'left', showIf: 'tiene_llave_godot' },
 ];
 
 export const GODOT: Room = {
   id: 'godot',
   build: buildGodotScene,
   overlays: godotOverlays,
+  dynamic: (ctx, state) => { if (!state.flags.tiene_llave_godot) drawTape(ctx); },
   hotspots: HOTSPOTS,
   npcs: NPCS,
   exits: EXITS,

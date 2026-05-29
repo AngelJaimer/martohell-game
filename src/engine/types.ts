@@ -54,6 +54,8 @@ export interface Exit {
   to: string;               // destination room id
   entry: { x: number; y: number };
   arrow: 'left' | 'right' | 'up';
+  showIf?: string;          // only active once this flag is set
+  hideIf?: string;          // inactive once this flag is set (e.g. an episode-specific exit)
 }
 
 export interface Room {

@@ -29,8 +29,8 @@ export const CONGUI_DIALOGUE: Dialogue = {
     ],
   },
   quien: {
-    npc: 'El Congui, noi. Bueno... lo que queda de mí. Ahora hago de espíritu, que el alquiler en el otro barrio está imposible.',
-    options: [{ text: 'Encantado, supongo.', to: 'start' }],
+    npc: 'No me llames Congui, que lo odio. El Petit Pulmó, para servirte. Bueno... lo que queda de mí: ahora hago de espíritu, que el alquiler en el otro barrio está imposible.',
+    options: [{ text: 'Perdona... Petit Pulmó.', to: 'start' }],
   },
   quehacias: {
     npc: 'Buscar chustas de porro, qué va a ser. Uno recicla lo que puede. Y entonces apareciste tú, blanco como yo ahora, diciendo no sé qué.',
@@ -309,5 +309,79 @@ export const CURRO_DIALOGUE: Dialogue = {
   poli: {
     npc: 'El más temido de Martorell, en mis tiempos. Ahora asusto palomas y poco más.',
     options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// ================= EPISODE 3: La llave del Godot =================
+
+// El Carmona — collector at the Godot door; trades fixing the lock for a Mazinger.
+export const CARMONA_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Eh, tú. ¿No habrás visto por ahí los muñecos nuevos del Mazinger Z, edición limitada? Llevo semanas detrás. Dificilísimos de pillar.',
+    options: [
+      { text: 'Necesito abrir esta puerta.', to: 'puerta' },
+      { text: '¿Para qué los quieres?', to: 'porque' },
+      { text: '¿Quién eres?', to: 'quien', once: true },
+      { text: 'Ahora vuelvo. (Salir)', to: 'end' },
+    ],
+  },
+  puerta: {
+    npc: 'La cerradura del Godot está más oxidada que mis rodillas. Tienes la llave, pero así no gira ni de broma. Yo te la arreglo en un momento... a cambio de un Mazinger. Tú verás.',
+    options: [{ text: 'Veré qué encuentro.', to: 'end', set: 'goal_mazinger' }],
+  },
+  porque: {
+    npc: 'Coleccionista de toda la vida, chaval. Por un Mazinger de esos haría CUALQUIER cosa. Hasta arreglarte esa cerradura infame.',
+    options: [{ text: 'Tomo nota...', to: 'puerta' }, { text: '(Salir)', to: 'end' }],
+  },
+  quien: {
+    npc: 'El Carmona. Manitas, cerrajero aficionado y esclavo del plástico articulado. Un placer.',
+    options: [{ text: 'Igualmente.', to: 'start' }],
+  },
+};
+
+// El juguetero — old toy shop; laughs at "new" Mazinger, sells a dusty vintage one.
+export const JUGUETERO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Bienvenido al Garaje San Cristóbal, la juguetería más antigua de Martorell. ¿Qué buscas?',
+    options: [
+      { text: '¿Tienes los Mazinger nuevos de edición limitada?', to: 'risa' },
+      { text: '¿Qué vendes?', to: 'vende' },
+      { text: 'Solo miro. (Salir)', to: 'end' },
+    ],
+  },
+  risa: {
+    npc: '(se ríe) ¿Nuevos? Ja. Aquí no entra mercancía desde hace cuarenta años, chaval. ...Aunque, espera: el Mazinger ya tiene cincuenta. Así que alguno polvoriento sí me queda. Cinco monedas y es tuyo.',
+    options: [
+      { text: '¿Cinco monedas?', to: 'precio' },
+      { text: 'Vuelvo con el dinero.', to: 'end', set: 'goal_monedas' },
+    ],
+  },
+  precio: {
+    npc: 'Cinco. Es una reliquia, no una chuchería. Cuando las tengas, hablamos.',
+    options: [{ text: 'Las conseguiré.', to: 'end', set: 'goal_monedas' }],
+  },
+  vende: {
+    npc: 'Chapas, peonzas, muñecos que ya no fabrica nadie y polvo, mucho polvo. Un museo, pero con caja registradora.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Petito — foreman; the Manu overslept, so he pays you to cover the work.
+export const PETITO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Buenas. Petito, encargado de la obra. Oye, ¿no querrás echar una mano? El Manu se ha quedado dormido y no ha venido, y voy hasta arriba.',
+    options: [
+      { text: 'Te ayudo. ¿Qué hago?', to: 'curro', set: 'ayudando' },
+      { text: '¿Pagas algo?', to: 'paga' },
+      { text: 'Ahora no puedo. (Salir)', to: 'end' },
+    ],
+  },
+  curro: {
+    npc: '¡Grande! Mueve esa pila de ladrillos y échale yeso a la pared. Cuando acabes, te suelto unas monedas para el bocata.',
+    options: [{ text: 'Marchando.', to: 'end' }],
+  },
+  paga: {
+    npc: 'Unas monedas, lo justo. Pero más que el Manu, que hoy cobra cero por dormilón. Ayúdame y verás.',
+    options: [{ text: 'Trato hecho.', to: 'curro', set: 'ayudando' }],
   },
 };

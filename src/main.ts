@@ -113,7 +113,8 @@ const state: any = {
 function inRect(mx: number, my: number, o: any) { return mx >= o.x && mx < o.x + o.w && my >= o.y && my < o.y + o.h; }
 function hitHotspotR(mx: number, my: number) { return currentRoom.hotspots.find((h) => inRect(mx, my, h)) || null; }
 function hitNPCR(mx: number, my: number) { return currentRoom.npcs.find((n) => !(n.hideIf && state.flags[n.hideIf]) && !(n.showIf && !state.flags[n.showIf]) && inRect(mx, my, n)) || null; }
-function hitExitR(mx: number, my: number) { return currentRoom.exits.find((e) => inRect(mx, my, e)) || null; }
+function exitOn(e: any) { return !(e.hideIf && state.flags[e.hideIf]) && !(e.showIf && !state.flags[e.showIf]); }
+function hitExitR(mx: number, my: number) { return currentRoom.exits.find((e) => exitOn(e) && inRect(mx, my, e)) || null; }
 function isWalkableR(mx: number, my: number) { const w = currentRoom.walk; return mx >= w.minX && mx <= w.maxX && my >= w.minY && my <= w.maxY; }
 function clampWalkR(mx: number, my: number) { const w = currentRoom.walk; return { x: Math.max(w.minX, Math.min(w.maxX, mx)), y: Math.max(w.minY, Math.min(w.maxY, my)) }; }
 
@@ -359,6 +360,7 @@ function eraseGame() { try { localStorage.removeItem(SAVE_KEY); flashSave('Parti
 function drawExitArrows(ctx: CanvasRenderingContext2D, t: number) {
   const pulse = (0.55 + 0.45 * Math.sin(t * 3)).toFixed(2);
   for (const ex of currentRoom.exits) {
+    if (!exitOn(ex)) continue;
     const cx = ex.x + ex.w / 2, cy = ex.y + ex.h / 2;
     ctx.fillStyle = `rgba(250,228,152,${pulse})`;
     ctx.beginPath();
