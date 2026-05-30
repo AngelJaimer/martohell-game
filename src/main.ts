@@ -665,6 +665,7 @@ try { const ds = new URLSearchParams(location.search).get('scene'); if (ds) appl
   dlgOptions,
   switchRoom,
   addItem,
+  render: (t: number) => frame(typeof t === 'number' ? t : (state.now || 0) + 16), // paint one frame on demand (headless screenshots)
   settle() {
     if (state.target) { state.guy.x = state.target.x; state.guy.y = state.target.y; }
     state.guy.moving = false; state.target = null;
