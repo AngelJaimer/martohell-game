@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
-import { drawAna, drawAngel, drawMarcos, drawMarkitos, drawCuco } from '../art/actor';
-import { ANA_DIALOGUE, ANGEL_DIALOGUE, MARCOS_DIALOGUE, MARKITOS_DIALOGUE, CUCO_DIALOGUE } from '../content/dialogues';
+import { drawAna, drawAngel, drawMarcos, drawMarkitos, drawCuco, drawCeuta } from '../art/actor';
+import { ANA_DIALOGUE, ANGEL_DIALOGUE, MARCOS_DIALOGUE, MARKITOS_DIALOGUE, CUCO_DIALOGUE, CEUTA_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // El Gato Negro — a small, dark electronic-music bar. Compliment Angel the DJ
@@ -117,6 +117,12 @@ const NPCS: NPC[] = [
     feet: { x: 270, y: 140 }, walkTo: { x: 250, y: 138 }, facing: 'left', color: [200, 200, 200],
     look: 'La puerta del lavabo, cerrada por dentro. Asoman dos zapatos y sube un humillo. Alguien anda a lo suyo ahí dentro.',
     draw: drawCuco, dialogue: CUCO_DIALOGUE,
+  },
+  {
+    id: 'ceuta', name: 'el Ceuta', x: 128, y: 82, w: 24, h: 48,
+    feet: { x: 140, y: 130 }, walkTo: { x: 140, y: 138 }, facing: 'right', color: [150, 226, 196],
+    look: 'El espíritu del Ceuta, dando vueltas y buscando a alguien. Mira por todas partes... menos donde debe.',
+    draw: drawCeuta, dialogue: CEUTA_DIALOGUE,
   },
 ];
 

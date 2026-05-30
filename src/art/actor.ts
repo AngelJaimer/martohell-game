@@ -718,3 +718,125 @@ export function drawRamiro(ctx: CanvasRenderingContext2D, fx: number, fy: number
   px(ctx, cx - 4, hy + 7, 10, 3, JKT_D);          // big beard
   ctx.globalAlpha = 1; ctx.restore();
 }
+
+// ---- El Sami: sits quietly on a branch in the césped tree. Never answers. ----
+export function drawSami(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const sway = Math.round(Math.sin(t * 0.8));
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const TOP: RGB = [120, 150, 188], JEANS: RGB = [72, 82, 112];
+  px(ctx, cx - 15, fyR + 2, 30, 2, P.trunk);                  // the branch he sits on
+  blk(ctx, cx - 4, fyR + 2, 4, 8, JEANS); blk(ctx, cx + 2, fyR + 2, 4, 8, JEANS); // dangling legs
+  px(ctx, cx - 4, fyR + 9, 4, 2, [60, 50, 44]); px(ctx, cx + 2, fyR + 9, 4, 2, [60, 50, 44]);
+  const ty = fyR - 12 + sway;
+  blk(ctx, cx - 5, ty, 11, 14, TOP); px(ctx, cx - 4, ty + 1, 3, 12, [92, 120, 156]);
+  px(ctx, cx - 7, ty + 2, 2, 9, TOP); px(ctx, cx + 5, ty + 2, 2, 9, TOP); // arms resting
+  const hy = fyR - 22 + sway;
+  blk(ctx, cx - 4, hy, 9, 10, P.skin); px(ctx, cx - 3, hy + 1, 2, 8, P.skinShadow);
+  px(ctx, cx - 4, hy - 1, 9, 3, [74, 56, 42]);                // hair
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 1, hy + 8, 4, 1, [182, 122, 110]);             // soft, calm smile
+  ctx.restore();
+}
+
+// ---- El Iván: a pretty-boy Atleti fan in sunglasses, by the pool. Filler. ----
+export function drawIvan(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const bob = Math.sin(t * 1.5) > 0.95 ? 1 : 0;
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const RED: RGB = [200, 60, 56], WHITE: RGB = [228, 228, 232], JEANS: RGB = [60, 64, 86];
+  blk(ctx, cx - 6, fyR - 16, 5, 14, JEANS); blk(ctx, cx + 1, fyR - 16, 5, 14, JEANS);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [230, 230, 234]); blk(ctx, cx + 0, fyR - 4, 7, 4, [230, 230, 234]);
+  const ty = fyR - 36 + bob;
+  blk(ctx, cx - 7, ty, 14, 20, WHITE);
+  for (const sx of [cx - 6, cx - 2, cx + 2]) px(ctx, sx, ty + 1, 2, 18, RED); // rojiblanco stripes
+  blk(ctx, cx - 10, ty + 2, 4, 12, WHITE); blk(ctx, cx + 6, ty + 2, 4, 12, WHITE);
+  px(ctx, cx - 10, ty + 12, 4, 3, P.skin); px(ctx, cx + 6, ty + 12, 4, 3, P.skin);
+  const hy = fyR - 47 + bob;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 1, 11, 3, [40, 30, 24]); px(ctx, cx - 5, hy + 1, 2, 3, [40, 30, 24]); // slick hair
+  px(ctx, cx - 3, hy + 4, 8, 2, [22, 22, 26]);               // sunglasses bar
+  px(ctx, cx - 3, hy + 4, 3, 2, [44, 44, 52]); px(ctx, cx + 2, hy + 4, 3, 2, [44, 44, 52]);
+  px(ctx, cx - 1, hy + 8, 4, 1, [182, 122, 110]);            // smirk
+  ctx.restore();
+}
+
+// ---- El Siles: quiet, stocky, cap, arms folded. Only grunts. ----
+export function drawSiles(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const JKT: RGB = [96, 104, 96], TROUS: RGB = [74, 70, 64], CAP: RGB = [60, 64, 58];
+  blk(ctx, cx - 6, fyR - 16, 5, 14, TROUS); blk(ctx, cx + 1, fyR - 16, 5, 14, TROUS);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [44, 40, 36]); blk(ctx, cx + 0, fyR - 4, 7, 4, [44, 40, 36]);
+  const ty = fyR - 36;
+  blk(ctx, cx - 8, ty, 16, 21, JKT); px(ctx, cx - 6, ty + 1, 3, 19, [78, 86, 78]);
+  px(ctx, cx - 8, ty + 9, 16, 1, P.black);                   // folded arms
+  px(ctx, cx - 5, ty + 10, 3, 2, P.skin); px(ctx, cx + 3, ty + 10, 3, 2, P.skin);
+  const hy = fyR - 47;
+  blk(ctx, cx - 5, hy, 11, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx + 2, hy + 5, 1, 2, P.black);
+  px(ctx, cx - 2, hy + 8, 6, 1, [140, 110, 90]);             // closed mouth
+  px(ctx, cx - 6, hy - 2, 13, 3, CAP); px(ctx, cx + 5, hy, 4, 2, CAP);
+  ctx.restore();
+}
+
+// ---- El Kapa: chatty, gesturing with one raised hand. ----
+export function drawKapa(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const arm = Math.round(Math.sin(t * 3) * 2);
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const TOP: RGB = [150, 120, 80], TROUS: RGB = [70, 72, 84];
+  blk(ctx, cx - 6, fyR - 16, 5, 14, TROUS); blk(ctx, cx + 1, fyR - 16, 5, 14, TROUS);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [50, 44, 40]); blk(ctx, cx + 0, fyR - 4, 7, 4, [50, 44, 40]);
+  const ty = fyR - 35;
+  blk(ctx, cx - 7, ty, 14, 19, TOP); px(ctx, cx - 6, ty + 1, 3, 17, [124, 98, 64]);
+  blk(ctx, cx + 6, ty - 2 - arm, 4, 11, TOP); px(ctx, cx + 6, ty + 8 - arm, 4, 3, P.skin); // raised gesturing arm
+  blk(ctx, cx - 10, ty + 2, 4, 11, TOP); px(ctx, cx - 10, ty + 11, 4, 3, P.skin);
+  const hy = fyR - 46;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 1, 11, 2, [60, 48, 38]);
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 2, hy + 7, 6, 2, [150, 110, 90]);             // open mouth (talking)
+  ctx.restore();
+}
+
+// ---- El Ceuta: a spirit at the Gato Negro, searching for "el Haaaavi". ----
+export function drawCeuta(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const G: RGB = [120, 184, 154], GD: RGB = [92, 152, 124], GSKIN: RGB = [176, 226, 196], GOUT: RGB = [40, 80, 64];
+  blk(ctx, cx - 5, fyR - 16, 4, 14, GD, GOUT); blk(ctx, cx + 1, fyR - 16, 4, 14, GD, GOUT);
+  blk(ctx, cx - 6, fyR - 4, 6, 4, [40, 80, 64], GOUT); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 80, 64], GOUT);
+  const ty = fyR - 34;
+  blk(ctx, cx - 6, ty, 13, 20, G, GOUT); px(ctx, cx - 4, ty + 1, 3, 18, GD);
+  blk(ctx, cx - 9, ty + 2, 3, 11, G, GOUT); blk(ctx, cx + 6, ty + 2, 3, 11, G, GOUT);
+  px(ctx, cx - 9, ty + 11, 3, 2, GSKIN); px(ctx, cx + 6, ty + 11, 3, 2, GSKIN);
+  const hy = fyR - 45;
+  blk(ctx, cx - 5, hy, 10, 11, GSKIN, GOUT);
+  px(ctx, cx - 5, hy - 1, 11, 2, [150, 200, 176]);
+  px(ctx, cx - 6, hy + 3, 11, 1, GD);                        // hand shading eyes (searching)
+  px(ctx, cx + 1, hy + 5, 1, 2, GOUT);
+  px(ctx, cx - 2, hy + 8, 5, 1, GOUT);
+  ctx.globalAlpha = 1; ctx.restore();
+}
+
+// ---- El Alfonso: a round, jolly spirit at the bodeguilla; can't drink beer anymore. ----
+export function drawAlfonso(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const G: RGB = [126, 194, 160], GD: RGB = [96, 158, 128], GSKIN: RGB = [180, 228, 200], GOUT: RGB = [40, 80, 64];
+  blk(ctx, cx - 6, fyR - 14, 5, 12, GD, GOUT); blk(ctx, cx + 1, fyR - 14, 5, 12, GD, GOUT);
+  blk(ctx, cx - 7, fyR - 4, 6, 4, [40, 80, 64], GOUT); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 80, 64], GOUT);
+  const ty = fyR - 34;
+  blk(ctx, cx - 9, ty, 19, 22, G, GOUT); px(ctx, cx - 7, ty + 2, 3, 18, GD);
+  px(ctx, cx - 2, ty + 6, 5, 12, [150, 210, 182]);           // round belly
+  blk(ctx, cx - 12, ty + 3, 4, 12, G, GOUT); blk(ctx, cx + 9, ty + 3, 4, 12, G, GOUT);
+  px(ctx, cx - 12, ty + 13, 4, 2, GSKIN); px(ctx, cx + 9, ty + 13, 4, 2, GSKIN);
+  const hy = fyR - 46;
+  blk(ctx, cx - 6, hy, 13, 12, GSKIN, GOUT);
+  px(ctx, cx - 6, hy - 1, 13, 2, [150, 200, 176]);
+  px(ctx, cx - 2, hy + 5, 1, 2, GOUT); px(ctx, cx + 3, hy + 5, 1, 2, GOUT);
+  px(ctx, cx - 2, hy + 8, 7, 2, GOUT);                       // big happy smile
+  px(ctx, cx - 4, hy + 6, 2, 1, [150, 210, 182]); px(ctx, cx + 5, hy + 6, 2, 1, [150, 210, 182]); // cheeks
+  ctx.globalAlpha = 1; ctx.restore();
+}

@@ -248,7 +248,7 @@ export const CUCO_DIALOGUE: Dialogue = {
 // El vigilante — the bouncer; only lets you in with the Cuco's card.
 export const VIGILANTE_DIALOGUE: Dialogue = {
   start: {
-    npc: 'Aquí no entra nadie sin invitación. Esto es propiedad privada, ¿estamos?',
+    npc: 'Echepares, para servirte. Pero aquí no entra nadie sin invitación, que esto es propiedad privada. ¿Estamos?',
     options: [
       { text: '¿Y con una tarjeta del Cuco?', to: 'tarjeta' },
       { text: 'Solo quiero pasar un momento.', to: 'no' },
@@ -503,7 +503,7 @@ export const CONGUI_FINAL_DIALOGUE: Dialogue = {
       { text: '¿Y ahora qué hago?', to: 'ahora' },
       {
         text: 'Adiós, Petit Pulmó.', to: 'end',
-        card: ['EL SECRETO DE MARTOHELL', '', 'Has salvado el pueblo de los espíritus del más allá.', '', 'Un homenaje a Martorell y al point-and-click', 'de los 90, hecho con cariño por Angel Jaime.', '', 'GRACIAS POR JUGAR. FIN.'],
+        card: ['EL SECRETO DE MARTOHELL', '', 'Has salvado el pueblo de los espíritus del más allá.', '', 'En honor a los que nos dejaron. D.E.P.', '', 'Un homenaje a Martorell y al point-and-click', 'de los 90, hecho con cariño por Angel Jaime.', '', 'GRACIAS POR JUGAR. FIN.'],
       },
     ],
   },
@@ -546,7 +546,7 @@ export const DUENO_BODEGUILLA_DIALOGUE: Dialogue = {
 // El Pistolo — drunk spirit at the bar; hints you were at el césped.
 export const PISTOLO_DIALOGUE: Dialogue = {
   start: {
-    npc: '(le da un trago al aire, que ya no bebe) Eeeh... a ti yo te conozco. Ayer te vi... en el césped... o en el Godot... moloko mololoko... no me acuerdo, oye.',
+    npc: '(le da un trago al aire, que ya no bebe) Eeeh... a ti yo te conozco. Ayer te vi... en el moloko mololoko... o en el Godot... no me acuerdo, oye.',
     options: [
       { text: '¿Dónde me viste exactamente?', to: 'donde' },
       { text: '¿Tú no estabas...?', to: 'muerto', once: true },
@@ -554,7 +554,7 @@ export const PISTOLO_DIALOGUE: Dialogue = {
     ],
   },
   donde: {
-    npc: 'En el césped, fijo. O en el Godot. O en los dos. Yo de noche lo mezclo todo, hasta de espíritu. Pásate por el césped, igual te suena algo.',
+    npc: 'En el moloko mololoko, fijo. O en el Godot. O en los dos. Yo de noche lo mezclo todo, hasta de espíritu. Ni yo sé ya dónde estuve, oye.',
     options: [{ text: 'Gracias, Pistolo.', to: 'end' }],
   },
   muerto: {
@@ -586,7 +586,7 @@ export const CHOKI_DIALOGUE: Dialogue = {
 // Los skaters — beers in the fountain (need a lever), and the iron is in the train tunnel.
 export const SKATERS_DIALOGUE: Dialogue = {
   start: {
-    npc: '...y yo te digo que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. ¿Tú no eras colega del Kilian?',
+    npc: '(los tres frenan en seco con los patines) ...que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. Somos Abel, Julio y César. ¿Tú no eras colega del Kilian?',
     options: [
       { text: '¿Tenéis cervezas?', to: 'cervezas' },
       { text: '¿El Kilian?', to: 'kilian' },
@@ -607,7 +607,7 @@ export const SKATERS_DIALOGUE: Dialogue = {
     options: [{ text: 'Ya lo encontré... más o menos.', to: 'start' }],
   },
   crx: {
-    npc: 'El Honda CRX, tío. Ligero, bajito, una bala. Lo que daría yo por uno. En vez de eso tengo este monopatín y dos amigos pesados.',
+    npc: 'El Honda CRX, tío. Ligero, bajito, una bala. Lo que daría yo por uno. (Y que conste: somos rollers, no skaters... aunque vistamos igual.)',
     options: [{ text: '(Salir)', to: 'end' }],
   },
 };
@@ -706,5 +706,127 @@ export const ESPIRITU3_DIALOGUE: Dialogue = {
   cubo: {
     npc: 'En el cubo, con su agua y su fregona. Producto más cubo, igual a pota muerta. Ciencia del más allá, colega. ¡Ve al lavabo y arrasa!',
     options: [{ text: 'Allá voy.', to: 'end' }],
+  },
+};
+
+// ================= Personajes extra (relleno + homenaje) =================
+
+// El Sami — en su rama del árbol del césped. No contesta nunca; tú le hablas.
+export const SAMI_DIALOGUE: Dialogue = {
+  start: {
+    npc: '...',
+    options: [
+      { text: 'Espero que estés bien ahí arriba, Sami. Se te echa de menos.', to: 'end' },
+      { text: '(Quedarse un momento en silencio)', to: 'end' },
+    ],
+  },
+};
+
+// El Iván — guaperas del Atleti con gafas de sol. Relleno: pistas y chascarrillos.
+export const IVAN_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Ey, máquina. Iván. (se baja un pelín las gafas) ¿Tú juegas al Fantasy? Te compro al Simeone... va, te doy dos millones y gracias.',
+    options: [
+      { text: '¿Dos millones por el Simeone? Ni de broma.', to: 'fichaje' },
+      { text: '¿Tú eres colega del Joan?', to: 'joan' },
+      { text: '¿Me viste anoche?', to: 'anoche' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  fichaje: {
+    npc: 'Vale, vale, dos y medio y es mi última oferta. El Cholo ya no corre, hazme caso. Soy del Atleti, sé de lo que hablo.',
+    options: [{ text: 'Paso, Iván.', to: 'start' }],
+  },
+  joan: {
+    npc: 'El Joan es colega, pero entre tú y yo: hace trampas en el Fantasy con el Santos, se pasan puntos. Y ahora mismo está muerto de hambre, el pobre. Tráele algo de comer y lo tienes en el bote.',
+    options: [{ text: 'Tomo nota.', to: 'end' }],
+  },
+  anoche: {
+    npc: 'Anoche te vi salir del Godot con una cara... blanco como la pared, murmurando solo. Pensé: "este ha visto algo gordo". Yo de fantasmas no entiendo, yo entiendo de fútbol y de gafas de sol.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Kapa — uno de los dos de la plaza; el hablador. Lore de espíritus.
+export const KAPA_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Buenas. El Kapa, y este callado es el Siles. Andábamos de recados por la vila y nos hemos topado con el Zerry. Oye... ¿tú también lo notas?',
+    options: [
+      { text: '¿Notar el qué?', to: 'espiritus' },
+      { text: '¿El Siles no habla?', to: 'siles' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  espiritus: {
+    npc: 'Martorell está lleno de espíritus desde anoche, te lo digo yo. En cada esquina hay uno. Algo gordo pasó, y huele a Godot.',
+    options: [{ text: '¿El Godot?', to: 'godot' }, { text: '(Salir)', to: 'end' }],
+  },
+  godot: {
+    npc: 'El antro de los heavies, en la carretera. De ahí salió todo, fijo. Pregunta por ahí, que el personal de noche lo vio.',
+    options: [{ text: 'Gracias, Kapa.', to: 'end' }],
+  },
+  siles: {
+    npc: 'El Siles es de pocas palabras. De ninguna, más bien. Pero para los recados no hay otro igual. ¿A que sí, Siles?',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Siles — solo gruñe.
+export const SILES_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Mmmm.',
+    options: [
+      { text: '¿Todo bien, Siles?', to: 'bien' },
+      { text: '¿Has visto algún espíritu?', to: 'esp' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  bien: {
+    npc: 'Ssshhh... mmm. (asiente despacio)',
+    options: [{ text: 'Me alegro.', to: 'start' }],
+  },
+  esp: {
+    npc: 'Mmmmm. (señala vagamente a todas partes) Sshh.',
+    options: [{ text: 'Ya... gracias, Siles.', to: 'end' }],
+  },
+};
+
+// El Ceuta — espíritu del Gato Negro; busca al "Haaaavi" (el Cuco).
+export const CEUTA_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Psst, oye. El Ceuta. ¿Has visto al Haaaavi? Llevo toda la noche buscándolo.',
+    options: [
+      { text: '¿El Haaaavi?', to: 'javi' },
+      { text: '¿Tú no estás...?', to: 'muerto', once: true },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  javi: {
+    npc: 'El Haaaavi, sí, el que llamáis el Cuco. Igual está en el lavabo, consumiéndose lo suyo, como siempre el jodío. Mira en el váter del fondo.',
+    options: [{ text: 'Voy a mirar.', to: 'end' }],
+  },
+  muerto: {
+    npc: '¿Muerto? Bah, detalles. Aquí la fiesta no entiende de eso. Pero sin el Haaaavi no es lo mismo, oye.',
+    options: [{ text: 'Te entiendo.', to: 'start' }],
+  },
+};
+
+// El Alfonso — espíritu gordete y feliz de la bodeguilla; no puede beber.
+export const ALFONSO_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Ey! El Alfonso. (sonríe de oreja a oreja) Mira que estar en un bar y no poder meterle mano a una birra... el karma más cruel que existe, te lo juro.',
+    options: [
+      { text: '¿No puedes beber?', to: 'beber' },
+      { text: '¿Conoces al Angel?', to: 'angel' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  beber: {
+    npc: 'Qué va. La birra me atraviesa, literal. Pero el ambiente de bar no se me quita ni muerto. Aquí me tienes, feliz como una perdiz.',
+    options: [{ text: 'Filosofía pura.', to: 'start' }],
+  },
+  angel: {
+    npc: '¿El Angel, el pincha? ¡Crack! ¿Lo has visto por el Gato Negro? Dile que el Alfonso le manda un saludo desde el otro barrio. Por cierto, ayer ibas finísimo por el Godot, chaval.',
+    options: [{ text: 'Se lo diré.', to: 'end' }],
   },
 };

@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
-import { drawSkaters } from '../art/actor';
-import { SKATERS_DIALOGUE } from '../content/dialogues';
+import { drawSkaters, drawSami } from '../art/actor';
+import { SKATERS_DIALOGUE, SAMI_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 5 — el césped: a scrap of public garden. Three skaters on a bench, a
@@ -78,10 +78,16 @@ const HOTSPOTS: Hotspot[] = [
 
 const NPCS: NPC[] = [
   {
-    id: 'skaters', name: 'los skaters', x: 54, y: 86, w: 70, h: 36,
+    id: 'skaters', name: 'Abel, Julio y César', x: 54, y: 86, w: 70, h: 36,
     feet: { x: 88, y: 116 }, walkTo: { x: 88, y: 138 }, facing: 'right', color: [220, 220, 230],
-    look: 'Tres skaters en el banco, arreglando el mundo y los motores de Honda. Llevan aquí desde que tienen memoria.',
+    look: 'El Abel, el Julio y el César en el banco, arreglando el mundo y los motores de Honda. Rollers de toda la vida, aunque vistan de skater.',
     draw: drawSkaters, dialogue: SKATERS_DIALOGUE,
+  },
+  {
+    id: 'sami', name: 'el Sami', x: 274, y: 22, w: 28, h: 36,
+    feet: { x: 286, y: 46 }, walkTo: { x: 268, y: 138 }, facing: 'left', color: [180, 200, 230],
+    look: 'Ahí arriba, en su rama de siempre, está el Sami. Tranquilo, mirando el cielo. No baja, pero se agradece saludarle.',
+    draw: drawSami, dialogue: SAMI_DIALOGUE,
   },
 ];
 

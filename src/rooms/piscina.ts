@@ -1,8 +1,8 @@
 import { P, css, type RGB } from '../art/palette';
 import { Pixels, rampPick } from '../art/dither';
 import { drawText } from '../art/font';
-import { drawJoan } from '../art/actor';
-import { JOAN_DIALOGUE } from '../content/dialogues';
+import { drawJoan, drawIvan } from '../art/actor';
+import { JOAN_DIALOGUE, IVAN_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // Entrada de la piscina municipal — a modern street. El Joan, the lifeguard,
@@ -115,6 +115,12 @@ const NPCS: NPC[] = [
         flag: 'has_porro',
       },
     },
+  },
+  {
+    id: 'ivan', name: 'el Iván', x: 236, y: 80, w: 24, h: 50,
+    feet: { x: 248, y: 122 }, walkTo: { x: 236, y: 138 }, facing: 'left', color: [232, 212, 212],
+    look: 'El Iván, un guaperas del Atleti con gafas de sol hasta de noche. Habla de fútbol, de fichajes y poco más.',
+    draw: drawIvan, dialogue: IVAN_DIALOGUE,
   },
 ];
 

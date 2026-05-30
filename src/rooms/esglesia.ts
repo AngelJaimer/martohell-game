@@ -1,8 +1,8 @@
 import { P, css, type RGB } from '../art/palette';
 import { Pixels, rampPick } from '../art/dither';
 import { drawText } from '../art/font';
-import { drawZerry, drawViejo } from '../art/actor';
-import { ZERRY_DIALOGUE, VIEJOS_DIALOGUE } from '../content/dialogues';
+import { drawZerry, drawSiles, drawKapa } from '../art/actor';
+import { ZERRY_DIALOGUE, KAPA_DIALOGUE, SILES_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // Plaça de l'Església — el Zerry hands out burgers (swaps one for the oranges);
@@ -124,11 +124,16 @@ const NPCS: NPC[] = [
     },
   },
   {
-    id: 'viejos', name: 'los viejos', x: 44, y: 92, w: 46, h: 42,
-    feet: { x: 64, y: 126 }, walkTo: { x: 96, y: 138 }, facing: 'right', color: [220, 214, 200],
-    look: 'Dos viejos del pueblo en su banco, doctorados en vidas ajenas. Hoy el tema es de ultratumba.',
-    draw: (ctx, fx, fy, _facing, t) => { drawViejo(ctx, fx - 9, fy, 'right', t); drawViejo(ctx, fx + 10, fy, 'left', t); },
-    dialogue: VIEJOS_DIALOGUE,
+    id: 'kapa', name: 'el Kapa', x: 40, y: 80, w: 26, h: 48,
+    feet: { x: 54, y: 126 }, walkTo: { x: 72, y: 138 }, facing: 'right', color: [230, 214, 180],
+    look: 'El Kapa, dándole a la lengua. De recados por la vila, dice, pero no para de hablar de espíritus.',
+    draw: drawKapa, dialogue: KAPA_DIALOGUE,
+  },
+  {
+    id: 'siles', name: 'el Siles', x: 72, y: 80, w: 26, h: 48,
+    feet: { x: 86, y: 126 }, walkTo: { x: 104, y: 138 }, facing: 'left', color: [200, 210, 200],
+    look: 'El Siles, callado como una tumba. Asiente, gruñe y poco más. Un fenómeno para los recados.',
+    draw: drawSiles, dialogue: SILES_DIALOGUE,
   },
 ];
 

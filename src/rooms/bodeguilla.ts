@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
-import { drawDuenoBodeguilla, drawPistolo, drawChoki } from '../art/actor';
-import { DUENO_BODEGUILLA_DIALOGUE, PISTOLO_DIALOGUE, CHOKI_DIALOGUE } from '../content/dialogues';
+import { drawDuenoBodeguilla, drawPistolo, drawChoki, drawAlfonso } from '../art/actor';
+import { DUENO_BODEGUILLA_DIALOGUE, PISTOLO_DIALOGUE, CHOKI_DIALOGUE, ALFONSO_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 5 — la bodeguilla: a tiny hole-in-the-wall dive bar that opens onto the
@@ -82,6 +82,12 @@ const NPCS: NPC[] = [
     feet: { x: 202, y: 124 }, walkTo: { x: 202, y: 136 }, facing: 'left', color: [230, 210, 180],
     look: 'El Choki, dándose un homenaje de bravas. Mastica con una devoción casi religiosa.',
     draw: drawChoki, dialogue: CHOKI_DIALOGUE,
+  },
+  {
+    id: 'alfonso', name: 'el Alfonso', x: 108, y: 78, w: 26, h: 46,
+    feet: { x: 120, y: 122 }, walkTo: { x: 120, y: 136 }, facing: 'right', color: [150, 226, 196],
+    look: 'El espíritu del Alfonso, gordito y feliz, sufriendo porque ya no puede catar una birra. Aun así, no para de sonreír.',
+    draw: drawAlfonso, dialogue: ALFONSO_DIALOGUE,
   },
 ];
 
