@@ -283,7 +283,7 @@ function runAction(verb: string, hs: any) {
 
 function handleNPC(verb: string, npc: any) {
   state.guy.facing = npc.feet.x < state.guy.x ? 'left' : 'right';
-  if (verb === 'Hablar con' && npc.dialogue) openDialogue(npc);
+  if ((verb === 'Hablar con' || (npc.talkVerbs && npc.talkVerbs.includes(verb))) && npc.dialogue) openDialogue(npc);
   else if (verb === 'Mirar') say(npc.look);
   else say(DEFAULT_RESPONSES[verb] || 'No parece buena idea.');
 }

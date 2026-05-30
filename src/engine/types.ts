@@ -45,6 +45,7 @@ export interface NPC {
   look: string;
   draw: (ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right', t: number) => void;
   dialogue?: Dialogue;
+  talkVerbs?: string[];     // extra verbs (besides 'Hablar con') that also open the dialogue, e.g. ['Abrir'] for a door
   accepts?: Record<string, NPCAccept>;
   hideIf?: string;          // not drawn / not interactable once this flag is set
   showIf?: string;          // only drawn / interactable once this flag is set

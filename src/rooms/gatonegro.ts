@@ -116,7 +116,7 @@ const NPCS: NPC[] = [
     id: 'cuco', name: 'la puerta del lavabo', x: 258, y: 60, w: 24, h: 48,
     feet: { x: 270, y: 140 }, walkTo: { x: 250, y: 138 }, facing: 'left', color: [200, 200, 200],
     look: 'La puerta del lavabo, cerrada por dentro. Asoman dos zapatos y sube un humillo. Alguien anda a lo suyo ahí dentro.',
-    draw: drawCuco, dialogue: CUCO_DIALOGUE,
+    draw: drawCuco, dialogue: CUCO_DIALOGUE, talkVerbs: ['Abrir'],
   },
   {
     id: 'ceuta', name: 'el Ceuta', x: 128, y: 82, w: 24, h: 48,
