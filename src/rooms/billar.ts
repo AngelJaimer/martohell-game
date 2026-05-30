@@ -46,6 +46,14 @@ export function buildBillarScene(): HTMLCanvasElement {
   pool(ctx, 60, 86);
   pool(ctx, 150, 90);
 
+  // a framed painting of the Godot legends, on the wall (left)
+  r(ctx, 34, 24, 52, 32, [88, 62, 40]);            // wood frame
+  r(ctx, 34, 24, 52, 2, [122, 90, 58]); r(ctx, 34, 54, 52, 2, [60, 42, 26]);
+  r(ctx, 38, 28, 44, 24, [28, 28, 40]);            // dark canvas
+  r(ctx, 41, 39, 8, 13, [104, 168, 140]); r(ctx, 42, 32, 6, 7, [176, 226, 196]); r(ctx, 42, 32, 6, 2, [150, 200, 176]); // el Sopas (bald spirit)
+  r(ctx, 53, 39, 8, 13, [120, 108, 88]); r(ctx, 54, 32, 6, 7, [234, 186, 146]); r(ctx, 54, 31, 6, 2, [60, 46, 38]);    // a living legend
+  r(ctx, 65, 40, 7, 12, [104, 168, 140]); r(ctx, 65, 33, 6, 7, [176, 226, 196]); r(ctx, 71, 36, 2, 3, [176, 226, 196]); r(ctx, 65, 32, 6, 2, [228, 250, 236]); // el Congui (white hair, big nose)
+
   drawText(ctx, 'El Godot: los billares', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
@@ -85,6 +93,8 @@ const HOTSPOTS: Hotspot[] = [
     look: 'Dos billares, y espíritus echando una partida. Juegan fatal, pero llevan toda la eternidad para mejorar.' },
   { id: 'puertafondo', name: 'el lavabo', x: 286, y: 48, w: 30, h: 60, walkTo: { x: 278, y: 138 },
     look: 'La puerta del lavabo del Godot. De ahí no paran de salir espíritus... y de ahí salió la pota que lo lió todo.' },
+  { id: 'cuadro', name: 'el cuadro', x: 32, y: 22, w: 56, h: 36, walkTo: { x: 64, y: 138 },
+    look: 'Un cuadro con la peña mítica del Godot. Caras de toda la vida, muchas ya en el otro barrio: ahí está el Sopas, calvo y a lo suyo, y hasta el Congui asomando con su naricísima. Leyendas todas.' },
 ];
 
 const NPCS: NPC[] = [
