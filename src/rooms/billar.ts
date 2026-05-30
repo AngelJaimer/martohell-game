@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
 import { drawEspiritu, drawDueno } from '../art/actor';
-import { ESPIRITU_DIALOGUE, ESPIRITU2_DIALOGUE, DUENO_DIALOGUE } from '../content/dialogues';
+import { ESPIRITU_DIALOGUE, ESPIRITU2_DIALOGUE, ESPIRITU3_DIALOGUE, DUENO_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 4 — the back room: two pool tables, spirits partying, the old owner.
@@ -83,8 +83,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   { id: 'billares', name: 'los billares', x: 56, y: 84, w: 168, h: 30, walkTo: { x: 140, y: 138 },
     look: 'Dos billares, y espíritus echando una partida. Juegan fatal, pero llevan toda la eternidad para mejorar.' },
-  { id: 'puertafondo', name: 'la puerta del fondo', x: 286, y: 48, w: 30, h: 60, walkTo: { x: 278, y: 138 },
-    look: 'Una puerta al fondo de la que no paran de salir espíritus. De ahí viene toda esta fiesta... y el problema.' },
+  { id: 'puertafondo', name: 'el lavabo', x: 286, y: 48, w: 30, h: 60, walkTo: { x: 278, y: 138 },
+    look: 'La puerta del lavabo del Godot. De ahí no paran de salir espíritus... y de ahí salió la pota que lo lió todo.' },
 ];
 
 const NPCS: NPC[] = [
@@ -106,11 +106,17 @@ const NPCS: NPC[] = [
     look: 'Otra espíritu bailando sola junto al billar. La eternidad se lleva mejor con ritmo.',
     draw: drawEspiritu, dialogue: ESPIRITU2_DIALOGUE,
   },
+  {
+    id: 'esp3', name: 'un espíritu enterado', x: 128, y: 84, w: 24, h: 48,
+    feet: { x: 140, y: 124 }, walkTo: { x: 140, y: 138 }, facing: 'right', color: [160, 230, 200],
+    look: 'Un espíritu que parece saber algo. Te hace señas para que te acerques.',
+    draw: drawEspiritu, dialogue: ESPIRITU3_DIALOGUE, showIf: 'tiene_limpiador',
+  },
 ];
 
 const EXITS: Exit[] = [
   { id: 'toBarra', name: 'la barra', x: 0, y: 104, w: 16, h: 40, walkTo: { x: 22, y: 138 }, to: 'barra', entry: { x: 280, y: 135 }, arrow: 'left' },
-  { id: 'toPortal', name: 'la puerta del fondo', x: 300, y: 104, w: 20, h: 40, walkTo: { x: 290, y: 138 }, to: 'portal', entry: { x: 36, y: 135 }, arrow: 'right' },
+  { id: 'toPortal', name: 'el lavabo', x: 300, y: 104, w: 20, h: 40, walkTo: { x: 290, y: 138 }, to: 'portal', entry: { x: 36, y: 135 }, arrow: 'right' },
 ];
 
 export const BILLAR: Room = {

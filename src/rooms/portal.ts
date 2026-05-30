@@ -2,8 +2,9 @@ import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
 import type { Room, Hotspot, Exit } from '../engine/types';
 
-// EPISODE 4 finale — the back door: el Marcos's vomit tore a portal to another
-// dimension and spirits pour through. Mop it with the cubo to close it and win.
+// EPISODE 4/6 finale — el lavabo del Godot: el Marcos's vomit tore a portal to
+// another dimension here. Water alone won't shift the pota (Ep4 sends you to la
+// bodeguilla for the super-cleaner); cubo + limpia_superpotas closes it and wins.
 
 function r(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, c: RGB) {
   ctx.fillStyle = css(c);
@@ -17,11 +18,16 @@ export function buildPortalScene(): HTMLCanvasElement {
   ctx.imageSmoothingEnabled = false;
   r(ctx, 0, 0, 320, 144, [18, 14, 26]); // dark tunnel base
 
-  // rough brick tunnel walls
-  r(ctx, 0, 12, 320, 96, [34, 28, 42]);
-  ctx.fillStyle = css([26, 22, 34]);
-  for (let y = 18; y < 104; y += 8) ctx.fillRect(0, y, 320, 1);
-  for (let y = 18; y < 104; y += 8) { const off = (((y - 18) / 8) % 2) * 12; for (let x = off; x < 320; x += 24) ctx.fillRect(x, y, 1, 8); }
+  // grimy tiled bathroom walls
+  r(ctx, 0, 12, 320, 96, [56, 64, 70]);
+  for (let ty = 14; ty < 104; ty += 9) for (let tx = 0; tx < 320; tx += 13) {
+    const alt = ((((tx / 13) | 0) + ((ty / 9) | 0)) % 2) === 0;
+    r(ctx, tx + 1, ty + 1, 11, 7, alt ? [76, 84, 90] : [66, 74, 80]);
+  }
+  // a grimy toilet (left) and a cracked sink (right)
+  r(ctx, 16, 80, 26, 12, [200, 204, 212]); r(ctx, 20, 72, 18, 9, [212, 216, 222]); // bowl + cistern
+  r(ctx, 18, 90, 22, 8, [224, 228, 234]); r(ctx, 22, 92, 14, 4, [118, 150, 172]);  // seat + water
+  r(ctx, 282, 84, 26, 7, [208, 212, 218]); r(ctx, 290, 91, 10, 6, [118, 122, 130]); // sink + pipe
 
   // the portal: concentric rings in the back wall
   for (let i = 5; i >= 0; i--) {
@@ -34,7 +40,7 @@ export function buildPortalScene(): HTMLCanvasElement {
   r(ctx, 0, 108, 320, 36, [30, 26, 34]);
   r(ctx, 0, 108, 320, 1, [50, 44, 56]);
 
-  drawText(ctx, 'El Godot: el fondo', 36, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El Godot: el lavabo', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
@@ -70,9 +76,10 @@ const HOTSPOTS: Hotspot[] = [
   {
     id: 'vomito', name: 'la pota dimensional', x: 140, y: 116, w: 50, h: 20, walkTo: { x: 164, y: 138 },
     look: 'El charco que lo empezó todo: la pota del Marcos, burbujeando y escupiendo espíritus. Repugnante y cósmico a partes iguales.',
-    needs: ['cubo'],
-    needsBlocked: 'Hay que fregar esto para cerrar el portal, pero a mano ni de broma. Necesito un cubo y una fregona.',
-    responses: { Usar: 'Meto la fregona a fondo. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.', Abrir: 'Meto la fregona a fondo. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.' },
+    needs: ['cubo', 'limpia_superpotas'],
+    needsBlocked: 'Lo intento con el cubo, pero solo con agua esta pota del demoño no se va ni de broma. Necesito un limpia-potas bien bestia... de esos que solo hay en un antro como la bodeguilla.',
+    blockedFlag: 'sabe_bodeguilla',
+    responses: { Usar: 'Echo el limpia-superpotas en el cubo y friego la pota del demoño con toda mi alma. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.', Abrir: 'Echo el limpia-superpotas en el cubo y friego la pota del demoño con toda mi alma. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.' },
     flag: 'portal_cerrado',
     card: [
       'Friegas la pota a conciencia.',

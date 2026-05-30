@@ -140,6 +140,53 @@ export const ITEMS: Record<string, { name: string; draw: Draw }> = {
       ctx.fillStyle = css([224, 214, 184]); ctx.fillRect(x + 10, y + 1, 5, 3);  // mop head
     },
   },
+  // ---------- Episodes 5 & 6 ----------
+  mechero: {
+    name: 'un mechero',
+    draw: (ctx, x, y) => {
+      ctx.fillStyle = css([180, 40, 44]); ctx.fillRect(x + 7, y + 8, 6, 9);    // red body
+      ctx.fillStyle = css([150, 28, 32]); ctx.fillRect(x + 7, y + 8, 2, 9);
+      ctx.fillStyle = css([182, 186, 194]); ctx.fillRect(x + 7, y + 5, 6, 3);  // metal top
+      ctx.fillStyle = css([120, 124, 132]); ctx.fillRect(x + 8, y + 4, 2, 1);  // striker
+      ctx.fillStyle = css([242, 150, 40]); ctx.fillRect(x + 9, y + 1, 2, 3);   // flame
+      ctx.fillStyle = css([255, 224, 130]); ctx.fillRect(x + 9, y + 2, 1, 2);
+    },
+  },
+  hierro: {
+    name: 'un hierro (palanca)',
+    draw: (ctx, x, y) => {
+      ctx.strokeStyle = css([96, 98, 106]); ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(x + 4, y + 17); ctx.lineTo(x + 13, y + 7); ctx.lineTo(x + 16, y + 4); ctx.stroke();
+      ctx.fillStyle = css([140, 142, 150]); ctx.fillRect(x + 14, y + 2, 4, 3); // hooked tip
+      ctx.fillStyle = css([70, 72, 80]); ctx.fillRect(x + 3, y + 15, 3, 4);    // foot end
+      ctx.fillStyle = css([162, 164, 172]); ctx.fillRect(x + 8, y + 11, 1, 1); ctx.fillRect(x + 11, y + 8, 1, 1); // shine
+      ctx.fillStyle = css([150, 92, 52]); ctx.fillRect(x + 6, y + 14, 1, 1); ctx.fillRect(x + 10, y + 9, 1, 1);   // rust
+    },
+  },
+  cervezas_emergencia: {
+    name: 'una caja de cervezas',
+    draw: (ctx, x, y) => {
+      for (const bx of [x + 4, x + 8, x + 12, x + 16]) {
+        ctx.fillStyle = css([54, 38, 20]); ctx.fillRect(bx - 1, y + 4, 2, 6);     // bottle necks
+        ctx.fillStyle = css([238, 214, 110]); ctx.fillRect(bx - 1, y + 4, 2, 1);  // caps
+      }
+      ctx.fillStyle = css([120, 80, 46]); ctx.fillRect(x + 2, y + 9, 16, 9);      // wooden crate
+      ctx.fillStyle = css([96, 62, 34]); ctx.fillRect(x + 2, y + 9, 16, 1); ctx.fillRect(x + 2, y + 13, 16, 1);
+      ctx.fillStyle = css([150, 104, 60]); ctx.fillRect(x + 2, y + 17, 16, 1);
+    },
+  },
+  limpia_superpotas: {
+    name: 'limpia-superpotas',
+    draw: (ctx, x, y) => {
+      ctx.fillStyle = css([60, 170, 120]); ctx.fillRect(x + 6, y + 7, 8, 11);    // green bottle
+      ctx.fillStyle = css([40, 140, 96]); ctx.fillRect(x + 6, y + 7, 2, 11);
+      ctx.fillStyle = css([230, 232, 235]); ctx.fillRect(x + 7, y + 10, 6, 5);   // white label
+      ctx.fillStyle = css([200, 60, 56]); ctx.fillRect(x + 8, y + 11, 4, 1); ctx.fillRect(x + 8, y + 13, 3, 1);
+      ctx.fillStyle = css([70, 74, 82]); ctx.fillRect(x + 8, y + 3, 5, 4);       // trigger
+      ctx.fillStyle = css([90, 94, 102]); ctx.fillRect(x + 5, y + 4, 4, 2);      // nozzle
+      ctx.fillStyle = css([180, 240, 255]); ctx.fillRect(x + 3, y + 4, 2, 1);    // spray mist
+    },
+  },
 };
 
 export function makeItem(id: string) {

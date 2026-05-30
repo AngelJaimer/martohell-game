@@ -574,3 +574,147 @@ export function drawEspiritu(ctx: CanvasRenderingContext2D, fx: number, fy: numb
   px(ctx, cx - 1, fyR - 19, 3, 1, GOUT);
   ctx.globalAlpha = 1; ctx.restore();
 }
+
+// ================= EPISODES 5 & 6 cast =================
+
+// El dueño de la bodeguilla — stout, stained apron, balding, big moustache (alive).
+export function drawDuenoBodeguilla(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const bob = Math.sin(t * 1.3) > 0.95 ? 1 : 0;
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const SHIRT: RGB = [150, 150, 156], APRON: RGB = [120, 86, 60], APRON_D: RGB = [92, 64, 42];
+  blk(ctx, cx - 6, fyR - 16, 5, 14, [60, 62, 68]); blk(ctx, cx + 1, fyR - 16, 5, 14, [60, 62, 68]);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [40, 38, 40]); blk(ctx, cx + 0, fyR - 4, 7, 4, [40, 38, 40]);
+  const ty = fyR - 36 + bob;
+  blk(ctx, cx - 8, ty, 16, 22, SHIRT);
+  px(ctx, cx - 6, ty + 5, 12, 15, APRON);
+  px(ctx, cx - 6, ty + 5, 12, 1, APRON_D);
+  px(ctx, cx - 2, ty + 10, 4, 3, [70, 50, 36]);   // stain
+  blk(ctx, cx - 11, ty + 2, 4, 13, SHIRT); blk(ctx, cx + 7, ty + 2, 4, 12, SHIRT);
+  px(ctx, cx - 11, ty + 13, 4, 2, P.skin); px(ctx, cx + 7, ty + 12, 4, 3, P.skin);
+  const hy = fyR - 47 + bob;
+  blk(ctx, cx - 5, hy, 11, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy, 2, 3, [60, 52, 46]); px(ctx, cx + 4, hy, 2, 3, [60, 52, 46]); // hair sides (balding)
+  px(ctx, cx + 2, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 3, hy + 7, 8, 2, [110, 84, 60]);   // big moustache
+  ctx.restore();
+}
+
+// El Pistolo — drunk old regular, sitting at the bar with a glass; a spirit (green/float).
+export function drawPistolo(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const G: RGB = [120, 182, 152], GD: RGB = [92, 150, 124], GSKIN: RGB = [176, 226, 196], GOUT: RGB = [40, 80, 64];
+  px(ctx, cx - 5, fyR - 9, 2, 9, GOUT); px(ctx, cx + 3, fyR - 9, 2, 9, GOUT); // stool legs
+  blk(ctx, cx - 6, fyR - 14, 12, 4, GD, GOUT);                                // hips on stool
+  blk(ctx, cx - 5, fyR - 11, 4, 7, G, GOUT); blk(ctx, cx + 1, fyR - 11, 4, 7, G, GOUT); // dangling legs
+  const ty = fyR - 27;
+  blk(ctx, cx - 6, ty, 12, 14, G, GOUT);
+  px(ctx, cx - 4, ty + 1, 3, 12, GD);
+  blk(ctx, cx + 5, ty + 4, 4, 8, G, GOUT);        // arm on the bar
+  px(ctx, cx + 6, ty + 11, 3, 2, GSKIN);
+  px(ctx, cx + 6, ty + 8, 3, 4, [206, 232, 218]); // a glass
+  const hy = fyR - 38;
+  blk(ctx, cx - 4, hy, 9, 10, GSKIN, GOUT);
+  px(ctx, cx - 4, hy - 1, 9, 2, [206, 232, 218]); // grey hair
+  px(ctx, cx + 1, hy + 4, 1, 2, GOUT);
+  px(ctx, cx - 2, hy + 7, 5, 1, GOUT);
+  px(ctx, cx - 3, hy + 5, 2, 1, [150, 200, 176]); // ruddy cheek
+  ctx.globalAlpha = 1; ctx.restore();
+}
+
+// El Choki — sitting at the bar eating bravas; tracksuit (alive).
+export function drawChoki(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const TRACK: RGB = [70, 90, 140], STRIPE: RGB = [230, 232, 238];
+  px(ctx, cx - 5, fyR - 9, 2, 9, [60, 44, 32]); px(ctx, cx + 3, fyR - 9, 2, 9, [60, 44, 32]); // stool
+  blk(ctx, cx - 6, fyR - 14, 12, 4, [50, 54, 84]);
+  blk(ctx, cx - 5, fyR - 11, 4, 7, TRACK); blk(ctx, cx + 1, fyR - 11, 4, 7, TRACK);
+  px(ctx, cx - 5, fyR - 10, 1, 6, STRIPE); px(ctx, cx + 4, fyR - 10, 1, 6, STRIPE);
+  const ty = fyR - 27;
+  blk(ctx, cx - 7, ty, 14, 14, TRACK);
+  px(ctx, cx - 7, ty + 1, 1, 12, STRIPE); px(ctx, cx + 6, ty + 1, 1, 12, STRIPE);
+  blk(ctx, cx - 10, ty + 2, 4, 9, TRACK); px(ctx, cx - 10, ty + 10, 4, 2, P.skin);
+  px(ctx, cx + 6, ty + 9, 7, 3, [220, 212, 202]); // plate of bravas
+  px(ctx, cx + 7, ty + 8, 5, 2, [222, 132, 42]);
+  px(ctx, cx + 8, ty + 7, 1, 1, [200, 60, 40]);   // sauce
+  const hy = fyR - 38;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 1, 11, 2, [40, 34, 30]);
+  px(ctx, cx + 1, hy + 4, 1, 2, P.black);
+  px(ctx, cx - 1, hy + 8, 4, 1, P.skinShadow);    // chewing
+  ctx.restore();
+}
+
+// Los skaters — three lads on a bench, baggy clothes + caps/beanies (alive). Faces forward.
+export function drawSkaters(ctx: CanvasRenderingContext2D, fx: number, fy: number, _facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  px(ctx, cx - 30, fyR - 16, 60, 4, [120, 90, 60]); // backrest
+  px(ctx, cx - 28, fyR - 15, 2, 8, [90, 66, 42]); px(ctx, cx + 26, fyR - 15, 2, 8, [90, 66, 42]);
+  px(ctx, cx - 30, fyR - 8, 60, 4, [128, 96, 64]);  // seat
+  px(ctx, cx - 30, fyR - 7, 60, 1, [156, 118, 80]);
+  px(ctx, cx - 28, fyR - 4, 3, 6, [90, 66, 42]); px(ctx, cx + 25, fyR - 4, 3, 6, [90, 66, 42]);
+  const cols: [RGB, RGB][] = [[[60, 70, 96], [210, 90, 60]], [[80, 60, 110], [230, 210, 90]], [[50, 92, 84], [200, 200, 210]]];
+  const xs = [cx - 18, cx, cx + 18];
+  for (let i = 0; i < 3; i++) {
+    const sx = xs[i]; const top = cols[i][0], cap = cols[i][1];
+    const b = Math.sin(t * 1.5 + i * 2) > 0.9 ? 1 : 0;
+    blk(ctx, sx - 5, fyR - 8, 4, 6, [50, 52, 66]); blk(ctx, sx + 1, fyR - 8, 4, 6, [50, 52, 66]);
+    const ty = fyR - 20 + b;
+    blk(ctx, sx - 5, ty, 10, 13, top);
+    px(ctx, sx - 7, ty + 3, 2, 8, top); px(ctx, sx + 5, ty + 3, 2, 8, top);
+    const hy = fyR - 28 + b;
+    blk(ctx, sx - 3, hy, 7, 8, P.skin); px(ctx, sx - 2, hy + 1, 2, 6, P.skinShadow);
+    px(ctx, sx - 4, hy - 1, 9, 3, cap);
+    px(ctx, sx + 2, hy + 3, 1, 1, P.black);
+  }
+}
+
+// El Meno — chill stoner: beanie, hoodie, a joint between his fingers (alive).
+export function drawMeno(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
+  const cx = Math.round(fx), fyR = Math.round(fy);
+  const sway = Math.round(Math.sin(t * 1.1));
+  ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const HOOD: RGB = [92, 112, 98], HOOD_D: RGB = [64, 82, 70], JEANS: RGB = [66, 70, 86], BEANIE: RGB = [150, 90, 60];
+  blk(ctx, cx - 6, fyR - 17, 5, 15, JEANS); blk(ctx, cx + 1, fyR - 17, 5, 15, JEANS);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [40, 40, 46]); blk(ctx, cx + 0, fyR - 4, 7, 4, [40, 40, 46]);
+  const ty = fyR - 36 + sway;
+  blk(ctx, cx - 7, ty, 14, 20, HOOD);
+  px(ctx, cx - 6, ty + 1, 3, 18, HOOD_D);
+  px(ctx, cx - 5, ty + 1, 10, 3, HOOD_D);         // hood collar
+  blk(ctx, cx - 10, ty + 2, 4, 12, HOOD); blk(ctx, cx + 6, ty + 2, 4, 12, HOOD);
+  px(ctx, cx - 10, ty + 12, 4, 3, P.skin); px(ctx, cx + 6, ty + 12, 4, 3, P.skin);
+  px(ctx, cx + 9, ty + 12, 3, 1, [240, 234, 218]); // a joint in his fingers
+  px(ctx, cx + 12, ty + 11, 1, 1, [242, 130, 50]);
+  const hy = fyR - 47 + sway;
+  blk(ctx, cx - 5, hy, 10, 11, P.skin); px(ctx, cx - 4, hy + 1, 3, 9, P.skinShadow);
+  px(ctx, cx - 5, hy - 2, 11, 4, BEANIE);
+  px(ctx, cx - 5, hy + 1, 11, 1, [120, 72, 48]);
+  px(ctx, cx + 1, hy + 5, 1, 1, P.black);          // half-lidded eye
+  px(ctx, cx - 2, hy + 8, 5, 1, [150, 120, 96]);   // chill grin
+  ctx.restore();
+}
+
+// El Ramiro — biker spirit (no bike): leather jacket, bandana, big beard; a great guy (green/float).
+export function drawRamiro(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'left', t = 0) {
+  const cx = Math.round(fx); const fyR = ghost(fy, t);
+  ctx.save(); ctx.globalAlpha = 0.82; if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
+  const JKT: RGB = [80, 140, 118], JKT_D: RGB = [58, 112, 92], GSKIN: RGB = [176, 226, 196], GOUT: RGB = [40, 80, 64], BAND: RGB = [120, 190, 160];
+  blk(ctx, cx - 6, fyR - 17, 5, 15, JKT_D, GOUT); blk(ctx, cx + 1, fyR - 17, 5, 15, JKT_D, GOUT);
+  blk(ctx, cx - 7, fyR - 4, 7, 4, [40, 80, 64], GOUT); blk(ctx, cx + 0, fyR - 4, 7, 4, [40, 80, 64], GOUT);
+  const ty = fyR - 37;
+  blk(ctx, cx - 8, ty, 16, 21, JKT, GOUT);
+  px(ctx, cx - 6, ty + 1, 3, 19, JKT_D);
+  px(ctx, cx - 1, ty + 1, 2, 19, JKT_D);          // zip
+  px(ctx, cx - 7, ty + 2, 2, 4, [206, 232, 218]); // zip glint
+  blk(ctx, cx - 11, ty + 2, 4, 14, JKT, GOUT); blk(ctx, cx + 7, ty + 2, 4, 14, JKT, GOUT);
+  px(ctx, cx - 11, ty + 14, 4, 2, GSKIN); px(ctx, cx + 7, ty + 14, 4, 2, GSKIN);
+  const hy = fyR - 49;
+  blk(ctx, cx - 5, hy, 11, 11, GSKIN, GOUT);
+  px(ctx, cx - 5, hy - 1, 11, 3, BAND);           // bandana
+  px(ctx, cx + 4, hy + 1, 2, 3, BAND);            // knot tail
+  px(ctx, cx + 1, hy + 4, 1, 2, GOUT);
+  px(ctx, cx - 4, hy + 7, 10, 3, JKT_D);          // big beard
+  ctx.globalAlpha = 1; ctx.restore();
+}

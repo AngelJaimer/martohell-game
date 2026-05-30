@@ -30,6 +30,7 @@ export const CONFIG = {
     godot: 'godot', gatonegro: 'gatonegro', poumerli: 'gfunk',
     garaje: 'jazzhop', obra: 'grimehop',
     barra: 'godot', billar: 'godot', portal: 'godot',
+    bodeguilla: 'carrer', cesped: 'jazzhop', tunel: 'grimehop',
     final: 'soulhop',
   } as Record<string, string>,
   defaultTheme: 'rumba',

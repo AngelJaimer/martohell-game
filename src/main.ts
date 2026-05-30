@@ -239,10 +239,12 @@ function runAction(verb: string, hs: any) {
     if (hs.needs.every((id: string) => hasItem(id))) {
       hs.needs.forEach((id: string) => removeItem(id));
       if (hs.flag) state.flags[hs.flag] = true;
+      if (hs.give) addItem(hs.give);
       audio.sfx('win');
       if (hs.card) state.ending = { since: state.now, lines: hs.card, goto: hs.goto };
       text = hs.responses?.[verb] || hs.responses?.Abrir || 'Las cerraduras ceden, una tras otra...';
     } else {
+      if (hs.blockedFlag) state.flags[hs.blockedFlag] = true;
       text = hs.needsBlocked || 'Aún me faltan llaves.';
     }
   } else if (verb === 'Coger' && hs.pickup) {

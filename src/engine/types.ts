@@ -12,7 +12,9 @@ export interface Hotspot {
   pickupBlocked?: string;   // line shown when trying to collect before pickupIf
   needs?: string[];         // Abrir/Usar requires all these item ids (e.g. the vault keys)
   needsBlocked?: string;    // line shown when items are missing
+  blockedFlag?: string;     // flag raised when a needs-Abrir/Usar is attempted but blocked (e.g. "you realise you need X")
   flag?: string;            // flag raised when the `needs` are satisfied
+  give?: string;            // item id granted when the `needs` are satisfied (Usar/Abrir)
   card?: string[];          // ending/transition card shown when `needs` satisfied
   goto?: string;            // room to travel to after the card (absent = terminal)
 }

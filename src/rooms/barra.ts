@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
-import { drawKilian, drawSopas } from '../art/actor';
-import { KILIAN_DIALOGUE, SOPAS_DIALOGUE } from '../content/dialogues';
+import { drawKilian, drawSopas, drawRamiro } from '../art/actor';
+import { KILIAN_DIALOGUE, KILIAN2_DIALOGUE, RAMIRO_DIALOGUE, SOPAS_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 4 — inside the Godot, the bar. El Kilian (drinking since last night)
@@ -78,6 +78,7 @@ const NPCS: NPC[] = [
         flag: 'sala_abierta',
       },
     },
+    hideIf: 'tiene_limpiador',
   },
   {
     id: 'sopas', name: 'el Sopas', x: 50, y: 84, w: 26, h: 48,
@@ -85,10 +86,23 @@ const NPCS: NPC[] = [
     look: 'El espíritu del Sopas. Punky, calvo y translúcido. La muerte no le ha quitado ni un piercing.',
     draw: drawSopas, dialogue: SOPAS_DIALOGUE,
   },
+  {
+    id: 'kilian2', name: 'el Kilian', x: 82, y: 82, w: 26, h: 50,
+    feet: { x: 96, y: 132 }, walkTo: { x: 118, y: 138 }, facing: 'right', color: [230, 210, 170],
+    look: 'El Kilian, dale que te pego con el Ramiro. Para currar en la funeraria, qué aguante tiene.',
+    draw: drawKilian, dialogue: KILIAN2_DIALOGUE, showIf: 'tiene_limpiador',
+  },
+  {
+    id: 'ramiro', name: 'el Ramiro', x: 128, y: 80, w: 26, h: 52,
+    feet: { x: 142, y: 130 }, walkTo: { x: 160, y: 138 }, facing: 'left', color: [150, 226, 196],
+    look: 'El espíritu del Ramiro: chupa de cuero, pañuelo y una sonrisa de oreja a oreja. Un fenómeno, oye.',
+    draw: drawRamiro, dialogue: RAMIRO_DIALOGUE, showIf: 'tiene_limpiador',
+  },
 ];
 
 const EXITS: Exit[] = [
   { id: 'toBillar', name: 'la sala de atrás', x: 300, y: 104, w: 20, h: 40, walkTo: { x: 296, y: 138 }, to: 'billar', entry: { x: 28, y: 135 }, arrow: 'right', showIf: 'sala_abierta' },
+  { id: 'toBodeguilla', name: 'la calle (la bodeguilla)', x: 0, y: 104, w: 16, h: 40, walkTo: { x: 22, y: 138 }, to: 'bodeguilla', entry: { x: 280, y: 135 }, arrow: 'left', showIf: 'sabe_bodeguilla' },
 ];
 
 export const BARRA: Room = {

@@ -516,3 +516,195 @@ export const CONGUI_FINAL_DIALOGUE: Dialogue = {
     options: [{ text: 'Hasta entonces, Petit Pulmó.', to: 'start' }],
   },
 };
+
+// ================= EPISODE 5: La bodeguilla =================
+
+// El dueño de la bodeguilla — trades the super-cleaner for emergency beers.
+export const DUENO_BODEGUILLA_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Bienvenido a la bodeguilla, el bar más pequeño de Martorell. ¿Qué te pongo? Aviso: ando justo de todo.',
+    options: [
+      { text: 'Busco algo para limpiar una pota muy bestia.', to: 'pota' },
+      { text: '¿Por qué andas tan justo?', to: 'justo' },
+      { text: 'Nada, gracias. (Salir)', to: 'end' },
+    ],
+  },
+  pota: {
+    npc: 'De potas fuertes sé un rato: aquí se vomitan las más legendarias del Baix. Tengo un limpia-superpotas de los buenos... pero no es gratis. Tráeme cervezas y es tuyo.',
+    options: [{ text: '¿Cervezas?', to: 'cervezas' }, { text: '(Salir)', to: 'end' }],
+  },
+  cervezas: {
+    npc: 'Me he quedado sin birra, y un bar sin birra es un velatorio. Tráeme unas de emergencia y te doy el limpia-superpotas. El Choki sabe dónde hay escondidas, pregúntale.',
+    options: [{ text: 'Voy a por ellas.', to: 'end', set: 'goal_cervezas_e' }],
+  },
+  justo: {
+    npc: 'Mira alrededor, chaval: una barra, una puerta y un servidor. Más justo, imposible. Y encima sin birra. Un drama.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Pistolo — drunk spirit at the bar; hints you were at el césped.
+export const PISTOLO_DIALOGUE: Dialogue = {
+  start: {
+    npc: '(le da un trago al aire, que ya no bebe) Eeeh... a ti yo te conozco. Ayer te vi... en el césped... o en el Godot... moloko mololoko... no me acuerdo, oye.',
+    options: [
+      { text: '¿Dónde me viste exactamente?', to: 'donde' },
+      { text: '¿Tú no estabas...?', to: 'muerto', once: true },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  donde: {
+    npc: 'En el césped, fijo. O en el Godot. O en los dos. Yo de noche lo mezclo todo, hasta de espíritu. Pásate por el césped, igual te suena algo.',
+    options: [{ text: 'Gracias, Pistolo.', to: 'end' }],
+  },
+  muerto: {
+    npc: 'Muertísimo. Pero un bar es un bar, vivo o muerto, y aquí sigo, en mi taburete de toda la vida. El dueño ya ni me cobra.',
+    options: [{ text: 'Toda una institución.', to: 'start' }],
+  },
+};
+
+// El Choki — eating bravas; points you to the beers in el césped.
+export const CHOKI_DIALOGUE: Dialogue = {
+  start: {
+    npc: '(mastica) Prueba estas bravas, crack. Las mejores de Martorell, te lo firmo. Pican que matan.',
+    options: [
+      { text: '¿Sabes dónde hay cervezas?', to: 'cervezas' },
+      { text: '¿Tan buenas son?', to: 'bravas' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  cervezas: {
+    npc: 'Birra escondida hay en el césped, en la fuente, como siempre. Los del banco lo saben. Pero pesa lo suyo sacarla, ya te aviso.',
+    options: [{ text: 'Voy para allá.', to: 'end' }],
+  },
+  bravas: {
+    npc: 'Mejores que estas, solo las de mi madre. Pero no se lo digas al dueño, que se pica más que la salsa.',
+    options: [{ text: 'Je. (Salir)', to: 'end' }],
+  },
+};
+
+// Los skaters — beers in the fountain (need a lever), and the iron is in the train tunnel.
+export const SKATERS_DIALOGUE: Dialogue = {
+  start: {
+    npc: '...y yo te digo que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. ¿Tú no eras colega del Kilian?',
+    options: [
+      { text: '¿Tenéis cervezas?', to: 'cervezas' },
+      { text: '¿El Kilian?', to: 'kilian' },
+      { text: '¿Honda CRX?', to: 'crx' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  cervezas: {
+    npc: 'Birra hay, escondida en la fuente, debajo de la rendija. Pero esa tapa pesa un quintal: sin una buena palanca no la mueves ni de coña.',
+    options: [{ text: '¿De dónde saco una palanca?', to: 'palanca' }, { text: '(Salir)', to: 'end' }],
+  },
+  palanca: {
+    npc: 'En el túnel del tren hay hierros sueltos de la vía que van de lujo. Cógete uno y haces palanca con la rendija. Eso sí: ojo con los trenes.',
+    options: [{ text: 'Voy al túnel.', to: 'end', set: 'goal_palanca' }],
+  },
+  kilian: {
+    npc: 'El Kilian, sí, el de la funeraria. No lo vemos desde ayer. Andará liado con sus muertos: ese tío no le tiene miedo a nada.',
+    options: [{ text: 'Ya lo encontré... más o menos.', to: 'start' }],
+  },
+  crx: {
+    npc: 'El Honda CRX, tío. Ligero, bajito, una bala. Lo que daría yo por uno. En vez de eso tengo este monopatín y dos amigos pesados.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// El Meno — wants fire for a porro; lights up and yanks the iron loose for you.
+export const MENO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Eh, tío, ¿no llevarás fuego? Tengo el porro liado desde hace media hora y aquí ni un mechero. Una tragedia.',
+    options: [
+      { text: '¿Qué haces en el túnel?', to: 'tunel' },
+      { text: '¿Me sacas el hierro de la vía?', to: 'hierro' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  tunel: {
+    npc: 'He quedado con el Petit Pulmó para fumar. Es mi maestro, ¿sabes? Pero él ya es espíritu y no consume... así que fumo yo por los dos. Solo me falta el puñetero fuego.',
+    options: [{ text: 'Te traigo fuego.', to: 'end', set: 'goal_fuego' }],
+  },
+  hierro: {
+    npc: 'Ese hierro lo arranco yo de un tirón... en cuanto le pegue una calada y me venga la fuerza. Tráeme fuego y te lo saco, va.',
+    options: [{ text: 'Marchando ese fuego.', to: 'end', set: 'goal_fuego' }],
+  },
+};
+
+// El Petit Pulmó (en el túnel) — chilling, waiting for the Meno; warns about the train.
+export const CONGUI_TUNEL_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Anda, el de la pota! ¿Tú por aquí? Espero a que el Meno consiga fuego: el chaval me ha salido devoto y quiere fumar conmigo.',
+    options: [
+      { text: '¿No es peligroso, con los trenes?', to: 'tren' },
+      { text: '¿El Meno es tu discípulo?', to: 'meno' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  tren: {
+    npc: 'Date prisa tú, que a mí un tren ya no me hace ni cosquillas. Lo malo es para los vivos. Cuando oigas el pitido, tú muévete, hazme caso.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+  meno: {
+    npc: 'Algo así. Le enseño lo poco que sé: a no tener prisa y a respetar las potas ajenas. Lo demás ya lo trae de casa.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
+// ================= EPISODE 6: De vuelta al Godot =================
+
+// El Ramiro — biker spirit (no bike), beloved in Martorell.
+export const RAMIRO_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Buenas, chaval. El Ramiro. Motero de corazón, aunque moto nunca tuve... cosas de la vida. Y de la muerte.',
+    options: [
+      { text: '¿Motero sin moto?', to: 'moto' },
+      { text: '¿Qué tal por el otro barrio?', to: 'otro' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  moto: {
+    npc: 'La moto es una actitud, no un vehículo. Yo iba en autobús, pero con un estilo... Aquí en Martorell me querían todos. Buena gente, oye.',
+    options: [{ text: 'Se te echa de menos, seguro.', to: 'start' }],
+  },
+  otro: {
+    npc: 'Tranquilo: mucho colega y birra que no se acaba. Brindo contigo, va, por Martorell. (alza un vaso que no está)',
+    options: [{ text: 'Por Martorell. (Salir)', to: 'end' }],
+  },
+};
+
+// El Kilian (fase 6) — con el Ramiro; te reabre la sala; bromas de funeraria.
+export const KILIAN2_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Hombre, otra vez por aquí! Te presento al Ramiro, un fenómeno. Brindábamos a su salud... bueno, a su memoria. ¿Otra vez para dentro?',
+    options: [
+      { text: '¿Me abres la puerta otra vez?', to: 'abrir' },
+      { text: '¿No te da yuyu tanto espíritu?', to: 'yuyu' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  abrir: {
+    npc: 'Va, te abro, pesado. Ya sabes lo que hay: aquello sigue de fiesta de ultratumba. Tú a lo tuyo, que para limpiar potas no hay horario.',
+    options: [{ text: 'Gracias, Kilian.', to: 'end' }],
+  },
+  yuyu: {
+    npc: 'Qué va, hombre. Trabajo en la funeraria: los muertos son mi clientela. Miedo, a los vivos, que esos sí que la lían. Estos solo quieren birra y charla.',
+    options: [{ text: 'Visto así...', to: 'start' }],
+  },
+};
+
+// Espíritu de los billares (fase 6) — la pista de combinar producto + cubo.
+export const ESPIRITU3_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Ehhh, el héroe de la fregona! Oye, un truco: ese limpia-superpotas échalo dentro del cubo, bien mezclado. Solo así le puedes a la pota del demoño.',
+    options: [
+      { text: '¿En el cubo, dices?', to: 'cubo' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  cubo: {
+    npc: 'En el cubo, con su agua y su fregona. Producto más cubo, igual a pota muerta. Ciencia del más allá, colega. ¡Ve al lavabo y arrasa!',
+    options: [{ text: 'Allá voy.', to: 'end' }],
+  },
+};
