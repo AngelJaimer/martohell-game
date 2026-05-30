@@ -26,11 +26,11 @@ export const CONFIG = {
 
   // --- Per-scene music (themes defined in src/audio/engine.ts) ---
   roomTheme: {
-    pont: 'flamenco', vila: 'rumba', esglesia: 'sardana', piscina: 'carrer',
-    godot: 'godot', gatonegro: 'gatonegro', poumerli: 'poumerli',
-    garaje: 'town', obra: 'rumba',
+    pont: 'hiphop', vila: 'rumba', esglesia: 'sardana', piscina: 'carrer',
+    godot: 'godot', gatonegro: 'gatonegro', poumerli: 'gfunk',
+    garaje: 'jazzhop', obra: 'grimehop',
     barra: 'godot', billar: 'godot', portal: 'godot',
-    final: 'flamenco',
+    final: 'soulhop',
   } as Record<string, string>,
   defaultTheme: 'rumba',
 

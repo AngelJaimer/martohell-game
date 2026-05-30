@@ -20,7 +20,7 @@ const LOOKAHEAD = 0.025;
 const AHEAD = 0.12;
 const STEPS_PER_BAR = 8;
 
-type ThemeName = 'town' | 'gate' | 'title' | 'sardana' | 'medieval' | 'rumba' | 'carrer' | 'flamenco' | 'godot' | 'gatonegro' | 'poumerli';
+type ThemeName = 'town' | 'gate' | 'title' | 'sardana' | 'medieval' | 'rumba' | 'carrer' | 'godot' | 'gatonegro' | 'poumerli' | 'hiphop' | 'jazzhop' | 'grimehop' | 'soulhop' | 'gfunk';
 let active: ThemeName = 'town';
 let pending: ThemeName | null = null;
 let manualSong: ThemeName | null = null; // when set, overrides per-room adaptivity
@@ -30,21 +30,26 @@ const CHORDS: Record<string, number[]> = {
   C: [48, 60, 64, 67], Dm: [38, 57, 62, 65],
   Em: [40, 52, 55, 59], D: [38, 57, 62, 66],
 };
-type Theme = { bpm: number; style: 'andalusian' | 'sardana' | 'medieval' | 'rumba' | 'heavy' | 'electro'; prog: string[]; scale: number[]; gain: number };
+type Theme = { bpm: number; style: 'andalusian' | 'sardana' | 'medieval' | 'rumba' | 'heavy' | 'electro' | 'hiphop' | 'gfunk'; prog: string[]; scale: number[]; gain: number };
 const THEMES: Record<ThemeName, Theme> = {
   town:     { bpm: 104, style: 'andalusian', prog: ['Am', 'G', 'F', 'E'], scale: [57, 59, 60, 62, 64, 65, 67, 69], gain: 0.9 },
   title:    { bpm: 96,  style: 'andalusian', prog: ['Am', 'F', 'G', 'E'], scale: [57, 60, 64, 65, 67, 69, 72], gain: 1.0 },
   gate:     { bpm: 78,  style: 'andalusian', prog: ['Am', 'Am', 'E', 'E'], scale: [57, 60, 62, 64, 67], gain: 0.8 },
   sardana:  { bpm: 116, style: 'sardana',    prog: ['C', 'F', 'G', 'C'], scale: [60, 62, 64, 65, 67, 69, 71, 72], gain: 0.85 },
   medieval: { bpm: 100, style: 'medieval',   prog: ['Dm', 'Dm', 'Dm', 'Dm'], scale: [62, 64, 65, 67, 69, 71, 72], gain: 0.85 },
-  // --- Martohell: rumba catalana (Estopa vibe), street-rumba (Los Delincuentes vibe), flamenco ---
+  // --- Martohell: rumba catalana (Estopa vibe), street-rumba (Los Delincuentes vibe) ---
   rumba:    { bpm: 112, style: 'rumba',      prog: ['Am', 'Am', 'Dm', 'E'], scale: [57, 59, 60, 62, 64, 65, 68, 69], gain: 0.92 },
   carrer:   { bpm: 104, style: 'rumba',      prog: ['C', 'G', 'Am', 'F'], scale: [60, 62, 64, 65, 67, 69, 71, 72], gain: 0.9 },
-  flamenco: { bpm: 92,  style: 'andalusian', prog: ['Am', 'G', 'F', 'E'], scale: [57, 59, 60, 62, 64, 65, 68, 69], gain: 0.92 },
   // --- Episode 2: El Godot (heavy bar), El Gato Negro (electronic), Pou del Merli (tense electro) ---
   godot:     { bpm: 150, style: 'heavy',   prog: ['Em', 'Em', 'C', 'D'], scale: [40, 43, 45, 47, 50, 52, 55], gain: 0.95 },
   gatonegro: { bpm: 126, style: 'electro', prog: ['Am', 'F', 'C', 'G'], scale: [57, 60, 62, 64, 67, 69, 72], gain: 0.86 },
   poumerli:  { bpm: 96,  style: 'electro', prog: ['Dm', 'Dm', 'Am', 'E'], scale: [50, 53, 55, 57, 60, 62, 65], gain: 0.8 },
+  // --- 90s hip-hop, ALL ORIGINAL (evoke the era; not the real records) ---
+  hiphop:   { bpm: 93, style: 'hiphop', prog: ['Am', 'Am', 'Dm', 'E'],  scale: [57, 59, 60, 62, 64, 65, 68, 69], gain: 0.96 }, // Beatnuts "Watch Out Now" boom-bap (MAIN)
+  jazzhop:  { bpm: 87, style: 'hiphop', prog: ['Dm', 'G', 'C', 'Am'],   scale: [57, 60, 62, 64, 65, 67, 69, 72], gain: 0.9 },  // Nas / Illmatic dusty jazz
+  grimehop: { bpm: 90, style: 'hiphop', prog: ['Em', 'Em', 'Am', 'Em'], scale: [52, 55, 57, 59, 62, 64, 67],     gain: 0.92 }, // Wu-Tang dark & gritty
+  soulhop:  { bpm: 84, style: 'hiphop', prog: ['Am', 'F', 'C', 'G'],    scale: [57, 60, 62, 64, 65, 67, 69, 72], gain: 0.9 },  // Fugees soulful & eerie
+  gfunk:    { bpm: 94, style: 'gfunk',  prog: ['Am', 'Am', 'Em', 'Em'], scale: [57, 60, 62, 64, 67, 69, 72],     gain: 0.92 }, // Dr. Dre "Still D.R.E." G-funk
 };
 
 const ARP = [{ s: 0, i: 1 }, { s: 2, i: 2 }, { s: 3, i: 3 }, { s: 4, i: 2 }, { s: 6, i: 3 }, { s: 7, i: 1 }];
@@ -54,7 +59,7 @@ export const SONGS = [
   { label: 'Automática', key: 'auto' },
   { label: 'Rumba', key: 'rumba' },
   { label: 'El carrer', key: 'carrer' },
-  { label: 'Flamenco', key: 'flamenco' },
+  { label: 'Hip Hop', key: 'hiphop' },
 ];
 let songKey = 'auto';
 export function getSong(): string { return songKey; }
@@ -247,6 +252,42 @@ function schedule(step: number, bar: number, time: number) {
     if (noise) {
       if (step % 2 === 0) perc(ctx, master, noise, time, 'clave', 0.3 * g);   // kick
       if (step % 2 === 1) perc(ctx, master, noise, time, 'shaker', 0.28 * g); // offbeat hat
+    }
+  } else if (th.style === 'hiphop') {
+    // 90s boom-bap: kick on 1, snare backbeat on 2 & 4, swung hats, dusty Rhodes stabs over a
+    // deep sub, sparse jazzy lead. (Original; evokes Beatnuts / Nas / Wu-Tang / Fugees.)
+    const chord = CHORDS[th.prog[bar % th.prog.length]];
+    const root = chord[0];
+    const tt = time + ((step % 2 === 1) ? spb() * 0.17 : 0); // lay the offbeats back (swing)
+    if (step === 0) bass(ctx, master, time, root - 12, spb() * 2.2, 0.55 * g);
+    if (step === 3) bass(ctx, master, time, root - 12, spb() * 1.1, 0.3 * g);
+    if (step === 6) bass(ctx, master, time, chord[2] - 12, spb() * 1.4, 0.34 * g);
+    if (step === 2 || step === 5) {
+      pluck(ctx, master, tt, chord[1], spb() * 1.0, 0.16 * g);
+      pluck(ctx, master, tt, chord[2], spb() * 1.0, 0.13 * g);
+      pluck(ctx, master, tt, chord[3], spb() * 1.0, 0.1 * g);
+    }
+    if ((step === 1 || step === 4 || step === 7) && rnd(bar * 8 + step) > 0.4)
+      marimba(ctx, master, tt, sc[Math.floor(rnd(bar * 13 + step * 7) * sc.length)] + 12, spb() * 1.3, 0.2 * g);
+    if (noise) {
+      if (step === 0) perc(ctx, master, noise, time, 'clave', 0.5 * g);                          // kick
+      if (step === 3 && rnd(bar * 3) > 0.5) perc(ctx, master, noise, time, 'clave', 0.28 * g);   // ghost kick
+      if (step === 2 || step === 6) perc(ctx, master, noise, time, 'palma', 0.46 * g);           // snare
+      perc(ctx, master, noise, tt, 'shaker', (step % 2 === 1 ? 0.26 : 0.16) * g);                // swung hats
+    }
+  } else if (th.style === 'gfunk') {
+    // G-funk: funky moving bass, a high whiny lead, soft chord pulse. (Original; Still-D.R.E. flavour.)
+    const chord = CHORDS[th.prog[bar % th.prog.length]];
+    const root = chord[0];
+    const tt = time + ((step % 2 === 1) ? spb() * 0.14 : 0);
+    const walk = [root, root, root + 7, root, root + 5, root + 7, root + 3, root + 7][step];
+    bass(ctx, master, time, walk - 12, spb() * (step % 2 === 0 ? 1.0 : 0.7), (step % 2 === 0 ? 0.48 : 0.3) * g);
+    if (step === 0 || step === 4) reed(ctx, master, tt, sc[(bar * 2 + (step === 4 ? 2 : 0)) % sc.length] + 24, spb() * 3.4, 0.15 * g);
+    if (step === 2 || step === 6) { pluck(ctx, master, tt, chord[1], spb() * 1.2, 0.12 * g); pluck(ctx, master, tt, chord[2], spb() * 1.2, 0.1 * g); }
+    if (noise) {
+      if (step === 0) perc(ctx, master, noise, time, 'clave', 0.46 * g);
+      if (step === 2 || step === 6) perc(ctx, master, noise, time, 'palma', 0.4 * g);
+      if (step % 2 === 1) perc(ctx, master, noise, tt, 'shaker', 0.2 * g);
     }
   } else {
     // medieval (Llibre Vermell flavour): open-fifth drone + modal reed + frame drum
