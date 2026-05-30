@@ -45,7 +45,7 @@ export function buildBodeguillaScene(): HTMLCanvasElement {
   // street floor
   r(ctx, 0, 108, 320, 36, [58, 56, 64]); r(ctx, 0, 108, 320, 1, [80, 78, 88]);
   for (let x = 0; x < 320; x += 26) r(ctx, x, 108, 1, 36, [44, 42, 50]);
-  drawText(ctx, 'La bodeguilla', 8, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'La bodeguilla', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 

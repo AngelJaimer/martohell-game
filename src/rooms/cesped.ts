@@ -40,7 +40,7 @@ export function buildCespedScene(): HTMLCanvasElement {
   // the grate (rendija) in the path in front of the fountain
   r(ctx, 194, 120, 48, 14, [96, 98, 104]); r(ctx, 194, 120, 48, 2, [120, 122, 128]);
   for (let gx = 198; gx < 242; gx += 6) r(ctx, gx, 122, 2, 10, [60, 62, 68]);
-  drawText(ctx, 'El césped', 8, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El césped', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 

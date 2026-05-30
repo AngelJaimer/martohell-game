@@ -36,7 +36,7 @@ export function buildTunelScene(): HTMLCanvasElement {
   r(ctx, 196, 120, 44, 4, [60, 44, 36]);
   ctx.strokeStyle = css([96, 98, 106]); ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(196, 122); ctx.lineTo(214, 121); ctx.stroke();   // rail breaks off
-  drawText(ctx, 'El tunel del tren', 8, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El túnel del tren', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
