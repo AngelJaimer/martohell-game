@@ -791,7 +791,7 @@ export const SILES_DIALOGUE: Dialogue = {
     options: [{ text: 'Me alegro.', to: 'start' }],
   },
   esp: {
-    npc: 'Mmmmm. (señala vagamente a todas partes) Sshh.',
+    npc: 'Mmm... alguno. (señala vagamente a todas partes) Sshh.',
     options: [{ text: 'Ya... gracias, Siles.', to: 'end' }],
   },
 };
