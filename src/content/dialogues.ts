@@ -771,7 +771,7 @@ export const KAPA_DIALOGUE: Dialogue = {
     options: [{ text: 'Gracias, Kapa.', to: 'end' }],
   },
   siles: {
-    npc: 'El Siles es de pocas palabras. De ninguna, más bien. Pero para los recados no hay otro igual. ¿A que sí, Siles?',
+    npc: 'El Siles es de pocas palabras. De ninguna, más bien. Pero es un buen colega, de los de verdad, y para los recados no hay otro igual. ¿A que sí, Siles?',
     options: [{ text: '(Salir)', to: 'end' }],
   },
 };
