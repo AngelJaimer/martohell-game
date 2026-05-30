@@ -37,14 +37,20 @@ window.addEventListener('orientationchange', fit);
 document.addEventListener('fullscreenchange', fit);
 fit();
 
-// iOS "Add to Home Screen" hint — shown only on Safari when not already standalone.
+// "Add to Home Screen" hint — iOS (Safari) and Android (Chrome), platform-specific
+// wording, shown only when not already installed/standalone.
 const pwahint = document.getElementById('pwahint');
 {
   const standalone = (navigator as any).standalone === true || matchMedia('(display-mode: standalone)').matches;
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const android = /Android/.test(navigator.userAgent);
   let dismissed = false;
   try { dismissed = localStorage.getItem('pck_pwahint') === '1'; } catch (e) { /* ignore */ }
-  if (pwahint && ios && !standalone && !dismissed) {
+  if (pwahint && (ios || android) && !standalone && !dismissed) {
+    if (android) {
+      const tx = document.getElementById('pwahinttext');
+      if (tx) tx.innerHTML = '📲 Para <b>pantalla completa</b>: abre el menú <b>⋮</b> de Chrome y pulsa «<b>Instalar aplicación</b>» (o «Añadir a pantalla de inicio»), y abre el juego desde el icono.';
+    }
     pwahint.classList.add('show');
     document.getElementById('pwahintx')?.addEventListener('click', (e) => {
       e.stopPropagation();
