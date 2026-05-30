@@ -473,3 +473,26 @@ export const DUENO_DIALOGUE: Dialogue = {
     options: [{ text: 'Voy a por el cubo.', to: 'end', set: 'goal_cubo' }],
   },
 };
+
+// ================= FINAL: el Petit Pulmó desde el cielo =================
+export const CONGUI_FINAL_DIALOGUE: Dialogue = {
+  start: {
+    npc: '¡Eh, noi! Aquí arriba. Soy yo, el Petit Pulmó. Cerraste aquel desaguisado del Godot... gracias de verdad. Toda Martohell te lo debe.',
+    options: [
+      { text: '¿Qué tal por ahí arriba?', to: 'arriba' },
+      { text: '¿Y ahora qué hago?', to: 'ahora' },
+      {
+        text: 'Adiós, Petit Pulmó.', to: 'end',
+        card: ['EL SECRETO DE MARTOHELL', '', 'Has salvado el pueblo de los espíritus del más allá.', '', 'Un homenaje a Martorell y al point-and-click', 'de los 90, hecho con cariño por Angel Jaime.', '', 'GRACIAS POR JUGAR. FIN.'],
+      },
+    ],
+  },
+  arriba: {
+    npc: 'No se está tan mal, mira. Buena gente, birra fresca que no se acaba y unas vistas del Pont del Diable de quitar el hipo. Hasta el Sopas se ha pasado a saludar.',
+    options: [{ text: 'Me alegro un montón.', to: 'start' }],
+  },
+  ahora: {
+    npc: 'Ahora, a vivir, que son dos días. Pero tranquilo: tarde o temprano te subes para acá y nos echamos unas risas. Te guardo sitio en la barra de las nubes.',
+    options: [{ text: 'Hasta entonces, Petit Pulmó.', to: 'start' }],
+  },
+};

@@ -320,6 +320,7 @@ function switchRoom(toId: string, entry: any) {
   state.guy.x = entry.x; state.guy.y = entry.y;
   state.guy.moving = false; state.target = null; state.pending = null;
   state.dialogue = null; state.speech = null; state.npcSpeech = null; state.selectedItem = null;
+  currentRoom.onEnter?.(state);
   saveGame(true);
 }
 

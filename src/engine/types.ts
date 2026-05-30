@@ -69,4 +69,5 @@ export interface Room {
   exits: Exit[];
   walk: { minX: number; maxX: number; minY: number; maxY: number };
   start: { x: number; y: number };
+  onEnter?: (state: any) => void;          // runs once when you enter the room (e.g. a cutscene line)
 }
