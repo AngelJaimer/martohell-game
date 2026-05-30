@@ -62,14 +62,14 @@ const HOTSPOTS: Hotspot[] = [
   { id: 'grafiti', name: 'los grafitis', x: 140, y: 24, w: 140, h: 28, walkTo: { x: 200, y: 138 },
     look: 'Grafitis encima de grafitis. Hay nombres de grupos que ya no existen y de gente que ya tampoco, por lo visto.' },
   { id: 'puerta', name: 'la puerta de atrás', x: 286, y: 54, w: 30, h: 54, walkTo: { x: 280, y: 138 },
-    look: 'La puerta de la sala de atrás. El Kilian la cerró anoche, dice que por algo que no recuerda. Mal asunto.' },
+    look: 'La puerta de la sala de atrás. El Killian la cerró anoche, dice que por algo que no recuerda. Mal asunto.' },
 ];
 
 const NPCS: NPC[] = [
   {
-    id: 'kilian', name: 'el Kilian', x: 82, y: 82, w: 26, h: 50,
+    id: 'kilian', name: 'el Killian', x: 82, y: 82, w: 26, h: 50,
     feet: { x: 96, y: 132 }, walkTo: { x: 118, y: 138 }, facing: 'right', color: [230, 210, 170],
-    look: 'El Kilian, atrincherado en la barra desde anoche. Más birras que neuronas le quedan ya.',
+    look: 'El Killian, atrincherado en la barra desde anoche. Más birras que neuronas le quedan ya.',
     draw: drawKilian, dialogue: KILIAN_DIALOGUE,
     accepts: {
       nota: {
@@ -87,9 +87,9 @@ const NPCS: NPC[] = [
     draw: drawSopas, dialogue: SOPAS_DIALOGUE,
   },
   {
-    id: 'kilian2', name: 'el Kilian', x: 82, y: 82, w: 26, h: 50,
+    id: 'kilian2', name: 'el Killian', x: 82, y: 82, w: 26, h: 50,
     feet: { x: 96, y: 132 }, walkTo: { x: 118, y: 138 }, facing: 'right', color: [230, 210, 170],
-    look: 'El Kilian, dale que te pego con el Ramiro. Para currar en la funeraria, qué aguante tiene.',
+    look: 'El Killian, dale que te pego con el Ramiro. Para currar en la funeraria, qué aguante tiene.',
     draw: drawKilian, dialogue: KILIAN2_DIALOGUE, showIf: 'tiene_limpiador',
   },
   {

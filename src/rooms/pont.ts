@@ -111,7 +111,7 @@ export function drawNota(ctx: CanvasRenderingContext2D) {
 const HOTSPOTS: Hotspot[] = [
   {
     id: 'nota', name: 'la nota misteriosa', x: 166, y: 124, w: 22, h: 14, walkTo: { x: 176, y: 138 },
-    look: 'Saco la nota que llevaba encima al despertar: un código rarísimo. Y la letra no es la mía... juraría que es la del Kilian. (¿Quién es el Kilian? Ni idea, pero el nombre me sale solo.)',
+    look: 'Saco la nota que llevaba encima al despertar: un código rarísimo. Y la letra no es la mía... juraría que es la del Killian. (¿Quién es el Killian? Ni idea, pero el nombre me sale solo.)',
   },
   { id: 'puente', name: 'el Pont del Diable', x: 40, y: 18, w: 240, h: 78, walkTo: { x: 150, y: 138 },
     look: 'El Pont del Diable. Dicen que lo construyó el diablo en una noche a cambio de un alma. Mira que hay sitios donde despertar resacoso...' },

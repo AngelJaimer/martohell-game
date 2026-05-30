@@ -422,7 +422,7 @@ export const KILIAN_DIALOGUE: Dialogue = {
 // El Sopas — bald punky spirit at the bar; lore.
 export const SOPAS_DIALOGUE: Dialogue = {
   start: {
-    npc: 'Buenas. El Sopas. Anoche cerraron el Godot y el Kilian se quedó dentro conmigo dándole a la birra. Yo ya no bebo, claro, pero acompaño.',
+    npc: 'Buenas. El Sopas. Anoche cerraron el Godot y el Killian se quedó dentro conmigo dándole a la birra. Yo ya no bebo, claro, pero acompaño.',
     options: [
       { text: '¿Tú no estás...?', to: 'muerto', once: true },
       { text: '¿Qué pasó anoche?', to: 'anoche' },
@@ -591,10 +591,10 @@ export const CHOKI_DIALOGUE: Dialogue = {
 // Los skaters — beers in the fountain (need a lever), and the iron is in the train tunnel.
 export const SKATERS_DIALOGUE: Dialogue = {
   start: {
-    npc: '(discutiendo a voces) ...que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. Somos Abel, Julio y César. ¿Tú no eras colega del Kilian?',
+    npc: '(discutiendo a voces) ...que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. Somos Abel, Julio y César. ¿Tú no eras colega del Killian?',
     options: [
       { text: '¿Tenéis cervezas?', to: 'cervezas' },
-      { text: '¿El Kilian?', to: 'kilian' },
+      { text: '¿El Killian?', to: 'kilian' },
       { text: '¿Honda CRX?', to: 'crx' },
       { text: '(Salir)', to: 'end' },
     ],
@@ -608,7 +608,7 @@ export const SKATERS_DIALOGUE: Dialogue = {
     options: [{ text: 'Voy al túnel.', to: 'end', set: 'goal_palanca' }],
   },
   kilian: {
-    npc: 'El Kilian, sí, el de la funeraria. No lo vemos desde anoche. Andará liado con sus muertos: ese tío no le tiene miedo a nada.',
+    npc: 'El Killian, sí, el de la funeraria. No lo vemos desde anoche. Andará liado con sus muertos: ese tío no le tiene miedo a nada.',
     options: [{ text: 'Ya lo encontré... más o menos.', to: 'start' }],
   },
   crx: {
@@ -691,7 +691,7 @@ export const KILIAN2_DIALOGUE: Dialogue = {
   },
   abrir: {
     npc: 'Va, te abro, pesado. Ya sabes lo que hay: aquello sigue de fiesta de ultratumba. Tú a lo tuyo, que para limpiar potas no hay horario.',
-    options: [{ text: 'Gracias, Kilian.', to: 'end' }],
+    options: [{ text: 'Gracias, Killian.', to: 'end' }],
   },
   yuyu: {
     npc: 'Qué va, hombre. Trabajo en la funeraria: los muertos son mi clientela. Miedo, a los vivos, que esos sí que la lían. Estos solo quieren birra y charla.',
