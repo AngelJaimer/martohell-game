@@ -1,7 +1,7 @@
 import { P, css, type RGB } from '../art/palette';
 import { drawText } from '../art/font';
 import { drawEspiritu, drawDueno } from '../art/actor';
-import { ESPIRITU_DIALOGUE, DUENO_DIALOGUE } from '../content/dialogues';
+import { ESPIRITU_DIALOGUE, ESPIRITU2_DIALOGUE, DUENO_DIALOGUE } from '../content/dialogues';
 import type { Room, NPC, Hotspot, Exit } from '../engine/types';
 
 // EPISODE 4 — the back room: two pool tables, spirits partying, the old owner.
@@ -46,7 +46,7 @@ export function buildBillarScene(): HTMLCanvasElement {
   pool(ctx, 60, 86);
   pool(ctx, 150, 90);
 
-  drawText(ctx, 'El Godot', 36, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El Godot: los billares', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
@@ -104,7 +104,7 @@ const NPCS: NPC[] = [
     id: 'esp2', name: 'una espíritu', x: 170, y: 84, w: 22, h: 50,
     feet: { x: 182, y: 132 }, walkTo: { x: 196, y: 138 }, facing: 'left', color: [160, 230, 200],
     look: 'Otra espíritu bailando sola junto al billar. La eternidad se lleva mejor con ritmo.',
-    draw: drawEspiritu, dialogue: ESPIRITU_DIALOGUE,
+    draw: drawEspiritu, dialogue: ESPIRITU2_DIALOGUE,
   },
 ];
 

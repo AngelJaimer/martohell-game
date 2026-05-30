@@ -454,6 +454,26 @@ export const ESPIRITU_DIALOGUE: Dialogue = {
   },
 };
 
+// La espíritu bailonga — the dancing spirit; distinct flavour, still nudges to the dueño.
+export const ESPIRITU2_DIALOGUE: Dialogue = {
+  start: {
+    npc: 'Uy, un vivo de verdad. Hueles a champú y a problemas. ¡Échate un baile, anda, que la noche es joven... o eterna, ya ni sé!',
+    options: [
+      { text: '¿Qué celebráis?', to: 'fiesta' },
+      { text: '¿Tú saliste por esa puerta?', to: 'puerta' },
+      { text: '(Salir)', to: 'end' },
+    ],
+  },
+  fiesta: {
+    npc: 'Nada en concreto. Estar, que ya es bastante cuando estás muerta. Aquí no cierran nunca y la birra no engorda. El paraíso, oye.',
+    options: [{ text: 'Visto así...', to: 'start' }],
+  },
+  puerta: {
+    npc: 'Como todo el mundo, guapo. Esa puerta es la mejor discoteca del más allá. Pero al dueño de antes le ha cogido manía: ve y que te lo cuente.',
+    options: [{ text: '(Salir)', to: 'end' }],
+  },
+};
+
 // El antiguo dueño — explains the vomit-portal and how to close it.
 export const DUENO_DIALOGUE: Dialogue = {
   start: {

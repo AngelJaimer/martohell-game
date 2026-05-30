@@ -139,7 +139,7 @@ const NPCS: NPC[] = [
         needAlso: 'llave_godot',
         missing: 'Bonito robot, pero ¿y la llave del Godot? Sin llave no hay cerradura que limar.',
         line: 'AAANDA, un Mazinger del 74... (lo abraza) Trato es trato. Trae esa llave... lima, lima... clic. ¡Ya gira! El Godot es todo tuyo.',
-        remove: ['mazinger'],
+        remove: ['mazinger', 'llave_godot'],
         flag: 'godot_abierto',
         card: ['EPISODIO 3 COMPLETADO', '', 'El Carmona lima el óxido, mete tu llave y...', 'CLAC. La persiana del Godot por fin sube.', '', 'Dentro te espera lo que buscas desde que', 'despertaste bajo el Pont del Diable...', '', 'CONTINUARÁ... Episodio 4: Dentro del Godot'],
         goto: 'barra',

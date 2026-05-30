@@ -52,7 +52,7 @@ export function buildBarraScene(): HTMLCanvasElement {
   r(ctx, 0, 108, 320, 1, [72, 60, 54]);
   for (let x = 0; x < 320; x += 24) r(ctx, x, 108, 1, 36, [38, 32, 30]);
 
-  drawText(ctx, 'El Godot', 36, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El Godot: la barra', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
@@ -73,7 +73,7 @@ const NPCS: NPC[] = [
     draw: drawKilian, dialogue: KILIAN_DIALOGUE,
     accepts: {
       nota: {
-        line: '¡ESA! Trae... (la lee) Ah, no: es mi lista de la compra, que la escribo al revés. "Sajnaran, sallo;bec"... naranjas, cebollas y tal. ...Oye, y ahora me viene todo: la sala de atrás se me fue de las manos anoche, por eso la cerré. Aquello está descontroladísimo. Mejor que lo veas tú mismo: te abro.',
+        line: '¡ESA! Trae... (la lee) Ah, no: es mi lista de la compra, que la escribo al revés. "sajnaran, sallobec"... naranjas, cebollas y tal. ...Oye, y ahora me viene todo: la sala de atrás se me fue de las manos anoche, por eso la cerré. Aquello está descontroladísimo. Mejor que lo veas tú mismo: te abro.',
         remove: [],
         flag: 'sala_abierta',
       },

@@ -34,7 +34,7 @@ export function buildPortalScene(): HTMLCanvasElement {
   r(ctx, 0, 108, 320, 36, [30, 26, 34]);
   r(ctx, 0, 108, 320, 1, [50, 44, 56]);
 
-  drawText(ctx, 'El Godot', 36, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'El Godot: el fondo', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 
