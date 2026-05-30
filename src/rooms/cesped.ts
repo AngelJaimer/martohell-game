@@ -86,7 +86,7 @@ const NPCS: NPC[] = [
   {
     id: 'sami', name: 'el Sami', x: 274, y: 22, w: 28, h: 36,
     feet: { x: 286, y: 46 }, walkTo: { x: 268, y: 138 }, facing: 'left', color: [180, 200, 230],
-    look: 'Ahí arriba, en su rama de siempre, está el Sami. Tranquilo, mirando el cielo. No baja, pero se agradece saludarle.',
+    look: 'Ahí arriba, en su rama de siempre, el Sami. Hace tiempo que casi no habla, pero ahí sigue, tranquilo, mirando el cielo. Se agradece saludarle.',
     draw: drawSami, dialogue: SAMI_DIALOGUE,
   },
 ];

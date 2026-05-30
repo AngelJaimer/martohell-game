@@ -151,6 +151,14 @@ display.addEventListener('pointerdown', (e) => {
   if (state.screen === 'title') { startGame(); return; }
   const { mx, my } = toInternal(e);
   if (state.ending) {
+    // a card may be queued behind an NPC line / response — let it be read first;
+    // a tap skips the message and reveals the card, the next tap advances.
+    const speaking = (state.npcSpeech && state.now < state.npcSpeech.until) || (state.speech && state.now < state.speech.until);
+    if (speaking) {
+      if (state.npcSpeech) state.npcSpeech.until = state.now;
+      if (state.speech) state.speech.until = state.now;
+      return;
+    }
     if (state.ending.goto && state.now - state.ending.since > 1500) {
       const go = state.ending.goto;
       state.ending = null;
@@ -604,7 +612,11 @@ function frame(ts: number) {
   drawGearIcon(ictx);
   if (state.settings) drawSettings(ictx);
   if (state.about) drawAbout(ictx);
-  if (state.ending) drawEnding(ictx);
+  if (state.ending) {
+    // hold the ending card while an NPC line / response is still being read
+    const speaking = (state.npcSpeech && state.now < state.npcSpeech.until) || (state.speech && state.now < state.speech.until);
+    if (speaking) state.ending.since = state.now; else drawEnding(ictx);
+  }
 
   dctx.drawImage(internal, 0, 0);
   requestAnimationFrame(frame);
