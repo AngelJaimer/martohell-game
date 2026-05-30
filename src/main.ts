@@ -258,6 +258,7 @@ function runAction(verb: string, hs: any) {
       if (hs.card) state.ending = { since: state.now, lines: hs.card, goto: hs.goto };
       text = hs.responses?.[verb] || hs.responses?.Abrir || 'Las cerraduras ceden, una tras otra...';
     } else {
+      if (hs.blockedCard && hs.blockedFlag && !state.flags[hs.blockedFlag]) state.ending = { since: state.now, lines: hs.blockedCard, goto: hs.blockedGoto };
       if (hs.blockedFlag) state.flags[hs.blockedFlag] = true;
       text = hs.needsBlocked || 'Aún me faltan llaves.';
     }

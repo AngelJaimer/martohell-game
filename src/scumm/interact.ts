@@ -37,7 +37,7 @@ const SPEECH_SHADOW: RGB = [10, 8, 10];
 export function drawSpeechLines(ctx: CanvasRenderingContext2D, lines: string[], cx: number, headY: number, color: RGB, W: number) {
   const lineH = 9;
   let top = headY - lines.length * lineH;
-  if (top < 2) top = 2;
+  if (top < 20) top = 20; // keep speech below the mute/settings icons (top-left, y0-16)
   // position each line, then draw a subtle dark backing so speech stays legible
   // on busy or same-tone backgrounds (e.g. tan text over tan buildings).
   const xs: number[] = [];

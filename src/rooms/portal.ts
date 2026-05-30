@@ -79,6 +79,13 @@ const HOTSPOTS: Hotspot[] = [
     needs: ['cubo', 'limpia_superpotas'],
     needsBlocked: 'Lo intento con el cubo, pero solo con agua esta pota del demoño no se va ni de broma. Necesito un limpia-potas bien bestia... de esos que solo hay en un antro como la bodeguilla.',
     blockedFlag: 'sabe_bodeguilla',
+    blockedCard: [
+      'Con el cubo y agua, ni de broma.',
+      '',
+      'Pones rumbo a la bodeguilla, a por un',
+      'limpia-potas a la altura de esta bestia.',
+    ],
+    blockedGoto: 'bodeguilla',
     responses: { Usar: 'Echo el limpia-superpotas en el cubo y friego la pota del demoño con toda mi alma. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.', Abrir: 'Echo el limpia-superpotas en el cubo y friego la pota del demoño con toda mi alma. El charco chisporrotea, se encoge y, con un último eructo, el portal se traga a sí mismo.' },
     flag: 'portal_cerrado',
     card: [
