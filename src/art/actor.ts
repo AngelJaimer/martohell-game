@@ -472,16 +472,19 @@ export function drawPetito(ctx: CanvasRenderingContext2D, fx: number, fy: number
   const cx = Math.round(fx), fyR = Math.round(fy);
   const bob = Math.sin(t * 1.8) > 0.9 ? 1 : 0;
   ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
-  const VEST: RGB = [228, 142, 40], SHIRT: RGB = [70, 80, 110], HAT: RGB = [230, 198, 60];
-  blk(ctx, cx - 5, fyR - 14, 5, 12, [60, 62, 76]); blk(ctx, cx + 1, fyR - 14, 5, 12, [60, 62, 76]);
+  const TROUS: RGB = [70, 80, 110], HAT: RGB = [230, 198, 60];
+  blk(ctx, cx - 5, fyR - 14, 5, 12, TROUS); blk(ctx, cx + 1, fyR - 14, 5, 12, TROUS);
   blk(ctx, cx - 6, fyR - 4, 6, 4, [40, 36, 32]); blk(ctx, cx + 1, fyR - 4, 6, 4, [40, 36, 32]);
   const ty = fyR - 30 + bob;
-  blk(ctx, cx - 7, ty, 14, 17, SHIRT);
-  px(ctx, cx - 6, ty + 1, 12, 15, VEST);
-  px(ctx, cx - 6, ty + 5, 12, 1, [245, 245, 245]); px(ctx, cx - 6, ty + 10, 12, 1, [245, 245, 245]); // reflective stripes
-  px(ctx, cx - 1, ty + 1, 2, 15, SHIRT);  // open front
-  blk(ctx, cx - 10, ty + 2, 4, 11, SHIRT); blk(ctx, cx + 6, ty + 2, 4, 11, SHIRT);
-  px(ctx, cx - 10, ty + 11, 4, 2, P.skin); px(ctx, cx + 6, ty + 11, 4, 2, P.skin);
+  // shirtless, with a bit of a belly — only the hard hat on top
+  blk(ctx, cx - 8, ty, 16, 18, P.skin);
+  px(ctx, cx - 6, ty + 1, 3, 16, P.skinShadow);          // side shading
+  px(ctx, cx - 3, ty + 5, 8, 1, [202, 152, 112]);        // chest line
+  px(ctx, cx - 5, ty + 11, 10, 1, [224, 174, 136]);      // soft belly sheen
+  px(ctx, cx - 1, ty + 12, 1, 2, [176, 128, 94]);        // navel
+  px(ctx, cx - 8, ty + 16, 16, 2, [120, 80, 48]);        // trouser waistband under the belly
+  blk(ctx, cx - 12, ty + 2, 5, 12, P.skin); blk(ctx, cx + 7, ty + 2, 5, 12, P.skin); // bare arms
+  px(ctx, cx - 12, ty + 12, 5, 2, P.skinShadow); px(ctx, cx + 7, ty + 12, 5, 2, P.skinShadow);
   const hy = fyR - 40 + bob;
   blk(ctx, cx - 5, hy, 10, 10, P.skin); px(ctx, cx - 4, hy + 1, 3, 8, P.skinShadow);
   px(ctx, cx + 1, hy + 4, 1, 2, P.black);
