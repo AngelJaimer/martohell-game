@@ -208,7 +208,7 @@ export const ANA_DIALOGUE: Dialogue = {
 // El Angel — the DJ; compliment his music and he stands you the beers.
 export const ANGEL_DIALOGUE: Dialogue = {
   start: {
-    npc: 'Bienvenido al Gato Negro. Soy el Angel, pincho yo. ¿Te mola lo que suena o te pongo otra cosa?',
+    npc: 'Bienvenidooo al Gato Negro, máquina. (hipa) Soy el Angel, el que pincha... o el que se pincha, ya ni sé. ¿Te mola lo que suena, o te pongo otra cosita?',
     options: [
       { text: 'Me encanta tu música, tío.', to: 'musica', give: 'cervezas', set: 'has_cervezas', once: true, ifNot: 'has_cervezas' },
       { text: '¿Qué pinchas?', to: 'pincha' },
@@ -216,11 +216,11 @@ export const ANGEL_DIALOGUE: Dialogue = {
     ],
   },
   musica: {
-    npc: 'Ese es mi hombre. ¡Ana, unas birras para el caballero, que tiene buen oído! Toma, invita la cabina.',
+    npc: 'Eseee es mi hombreee. ¡Ana, unas birras para el caballero, que tiene buen oído... mejor que yo ahora mismo! (se ríe solo) Toma, invita la cabina.',
     options: [{ text: 'Gracias, máquina.', to: 'end' }],
   },
   pincha: {
-    npc: 'De todo lo bueno: electrónica oscura para que la noche no decaiga. La peña del Godot acababa siempre aquí cuando cerraban allá.',
+    npc: 'De todo lo bueno, oye. Electrónica oscura, asín, para que la noche no decaiga... ni yo tampoco, fíjate. La peña del Godot acababa siempre aquí.',
     options: [{ text: '(Salir)', to: 'end' }],
   },
 };
@@ -591,7 +591,7 @@ export const CHOKI_DIALOGUE: Dialogue = {
 // Los skaters — beers in the fountain (need a lever), and the iron is in the train tunnel.
 export const SKATERS_DIALOGUE: Dialogue = {
   start: {
-    npc: '(los tres frenan en seco con los patines) ...que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. Somos Abel, Julio y César. ¿Tú no eras colega del Kilian?',
+    npc: '(discutiendo a voces) ...que el CRX del 88 es el mejor coche jamás hecho, y punto. Ah, hola. Somos Abel, Julio y César. ¿Tú no eras colega del Kilian?',
     options: [
       { text: '¿Tenéis cervezas?', to: 'cervezas' },
       { text: '¿El Kilian?', to: 'kilian' },
@@ -608,11 +608,11 @@ export const SKATERS_DIALOGUE: Dialogue = {
     options: [{ text: 'Voy al túnel.', to: 'end', set: 'goal_palanca' }],
   },
   kilian: {
-    npc: 'El Kilian, sí, el de la funeraria. No lo vemos desde ayer. Andará liado con sus muertos: ese tío no le tiene miedo a nada.',
+    npc: 'El Kilian, sí, el de la funeraria. No lo vemos desde anoche. Andará liado con sus muertos: ese tío no le tiene miedo a nada.',
     options: [{ text: 'Ya lo encontré... más o menos.', to: 'start' }],
   },
   crx: {
-    npc: 'El Honda CRX, tío. Ligero, bajito, una bala. Lo que daría yo por uno. (Y que conste: somos rollers, no skaters... aunque vistamos igual.)',
+    npc: 'El Honda CRX, tío. Ligero, bajito, una bala. Lo que daría yo por uno. Algún día caerá, algún día.',
     options: [{ text: '(Salir)', to: 'end' }],
   },
 };
@@ -640,7 +640,7 @@ export const MENO_DIALOGUE: Dialogue = {
 // El Petit Pulmó (en el túnel) — chilling, waiting for the Meno; warns about the train.
 export const CONGUI_TUNEL_DIALOGUE: Dialogue = {
   start: {
-    npc: '¡Anda, el de la pota! ¿Tú por aquí? Espero a que el Meno consiga fuego: el chaval me ha salido devoto y quiere fumar conmigo.',
+    npc: '¡Anda, el que dormía bajo el Pont del Diable! ¿Tú por aquí? Espero a que el Meno consiga fuego: el chaval me ha salido devoto y quiere fumar conmigo.',
     options: [
       { text: '¿No es peligroso, con los trenes?', to: 'tren' },
       { text: '¿El Meno es tu discípulo?', to: 'meno' },

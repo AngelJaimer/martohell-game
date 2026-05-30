@@ -314,7 +314,7 @@ export function drawAna(ctx: CanvasRenderingContext2D, fx: number, fy: number, f
 
 // El Angel — the DJ: big headphones, hands on the decks.
 export function drawAngel(ctx: CanvasRenderingContext2D, fx: number, fy: number, facing: 'left' | 'right' = 'right', t = 0) {
-  const cx = Math.round(fx), fyR = Math.round(fy);
+  const cx = Math.round(fx) + Math.round(Math.sin(t * 1.7)), fyR = Math.round(fy); // a tipsy sway
   const nod = Math.sin(t * 4) > 0 ? 1 : 0;
   ctx.save(); if (facing === 'left') { ctx.translate(cx * 2, 0); ctx.scale(-1, 1); }
   const HOODIE: RGB = [60, 70, 96];

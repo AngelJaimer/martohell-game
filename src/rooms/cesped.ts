@@ -80,7 +80,7 @@ const NPCS: NPC[] = [
   {
     id: 'skaters', name: 'Abel, Julio y César', x: 54, y: 86, w: 70, h: 36,
     feet: { x: 88, y: 116 }, walkTo: { x: 88, y: 138 }, facing: 'right', color: [220, 220, 230],
-    look: 'El Abel, el Julio y el César en el banco, arreglando el mundo y los motores de Honda. Rollers de toda la vida, aunque vistan de skater.',
+    look: 'El Abel, el Julio y el César en el banco, con su pinta skater, arreglando el mundo y los motores de Honda. Llevan aquí toda la vida.',
     draw: drawSkaters, dialogue: SKATERS_DIALOGUE,
   },
   {
