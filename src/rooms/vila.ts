@@ -141,7 +141,7 @@ const NPCS: NPC[] = [
 
 const EXITS: Exit[] = [
   { id: 'toPont', name: 'el Pont del Diable', x: 0, y: 104, w: 16, h: 40, walkTo: { x: 22, y: 138 }, to: 'pont', entry: { x: 292, y: 136 }, arrow: 'left' },
-  { id: 'toEsglesia', name: 'la plaza de la Iglesia', x: 300, y: 100, w: 20, h: 44, walkTo: { x: 298, y: 138 }, to: 'esglesia', entry: { x: 28, y: 135 }, arrow: 'right' },
+  { id: 'toEsglesia', name: 'la Iglesia de la Vila', x: 300, y: 100, w: 20, h: 44, walkTo: { x: 298, y: 138 }, to: 'esglesia', entry: { x: 28, y: 135 }, arrow: 'right' },
 ];
 
 export const VILA: Room = {

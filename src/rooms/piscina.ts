@@ -125,7 +125,7 @@ const NPCS: NPC[] = [
 ];
 
 const EXITS: Exit[] = [
-  { id: 'toEsglesia', name: 'la plaza de la Iglesia', x: 0, y: 104, w: 16, h: 40, walkTo: { x: 22, y: 138 }, to: 'esglesia', entry: { x: 290, y: 136 }, arrow: 'left' },
+  { id: 'toEsglesia', name: 'la Iglesia de la Vila', x: 0, y: 104, w: 16, h: 40, walkTo: { x: 22, y: 138 }, to: 'esglesia', entry: { x: 290, y: 136 }, arrow: 'left' },
 ];
 
 export const PISCINA: Room = {

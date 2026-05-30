@@ -85,7 +85,7 @@ export function buildEsglesiaScene(): HTMLCanvasElement {
   // a couple of street lamps
   for (const lx of [110, 210]) { r(ctx, lx, 64, 2, 34, [54, 50, 46]); r(ctx, lx - 3, 60, 8, 5, [70, 64, 58]); r(ctx, lx - 2, 61, 6, 3, P.winLit); }
 
-  drawText(ctx, 'Església', 36, 7, P.inkLight, 1, P.black, 1);
+  drawText(ctx, 'Iglesia de la Vila', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
 }
 

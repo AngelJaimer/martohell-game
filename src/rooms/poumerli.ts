@@ -85,9 +85,9 @@ const HOTSPOTS: Hotspot[] = [
 
 const NPCS: NPC[] = [
   {
-    id: 'vigilante', name: 'Echepares', x: 64, y: 84, w: 28, h: 50,
+    id: 'vigilante', name: 'el Joche', x: 64, y: 84, w: 28, h: 50,
     feet: { x: 78, y: 134 }, walkTo: { x: 52, y: 138 }, facing: 'right', color: [220, 200, 170],
-    look: 'Echepares, el vigilante gitano de la urbanización. Cadenón de oro, brazos cruzados y cara de pocos amigos... hasta que le caes bien.',
+    look: 'El Joche, el vigilante gitano de la urbanización. Cadenón de oro, brazos cruzados y un ichillerato a sus espaldas, según dice.',
     draw: drawVigilante, dialogue: VIGILANTE_DIALOGUE,
     accepts: {
       tarjeta: { line: 'Del Cuco, ¿eh? Habérmelo dicho antes. Pasa, anda, pero no toques nada de los señores.', remove: ['tarjeta'], flag: 'entered_poumerli' },

@@ -611,6 +611,39 @@ function frame(ts: number) {
 }
 requestAnimationFrame(frame);
 
+// ---- Dev: jump straight to a scene with ?scene=NAME (for testing/checks) ----
+const DEV_SCENES: Record<string, { room: string; flags?: string[]; items?: string[] }> = {
+  pont:       { room: 'pont',       items: ['nota'] },
+  vila:       { room: 'vila',       items: ['nota'] },
+  iglesia:    { room: 'esglesia',   items: ['nota'] },
+  piscina:    { room: 'piscina',    items: ['nota'] },
+  godot2:     { room: 'godot',      items: ['nota'] },
+  gatonegro:  { room: 'gatonegro',  items: ['nota'] },
+  poumerli:   { room: 'poumerli',   items: ['nota', 'tarjeta'], flags: ['has_tarjeta', 'entered_poumerli'] },
+  godot3:     { room: 'godot',      items: ['nota', 'llave_godot'], flags: ['tiene_llave_godot'] },
+  garaje:     { room: 'garaje',     items: ['nota', 'llave_godot'], flags: ['tiene_llave_godot'] },
+  obra:       { room: 'obra',       items: ['nota', 'llave_godot'], flags: ['tiene_llave_godot', 'ayudando'] },
+  barra4:     { room: 'barra',      items: ['nota'] },
+  billar:     { room: 'billar',     items: ['nota', 'cubo'], flags: ['sala_abierta'] },
+  lavabo:     { room: 'portal',     items: ['nota', 'cubo'], flags: ['sala_abierta'] },
+  bodeguilla: { room: 'bodeguilla', items: ['nota', 'cubo'], flags: ['sala_abierta', 'sabe_bodeguilla'] },
+  cesped:     { room: 'cesped',     items: ['nota', 'cubo', 'mechero'], flags: ['sala_abierta', 'sabe_bodeguilla'] },
+  tunel:      { room: 'tunel',      items: ['nota', 'cubo', 'mechero'], flags: ['sala_abierta', 'sabe_bodeguilla'] },
+  barra6:     { room: 'barra',      items: ['nota', 'cubo', 'limpia_superpotas'], flags: ['sala_abierta', 'sabe_bodeguilla', 'tiene_limpiador'] },
+  lavabo_win: { room: 'portal',     items: ['nota', 'cubo', 'limpia_superpotas'], flags: ['sala_abierta', 'sabe_bodeguilla', 'tiene_limpiador'] },
+  final:      { room: 'final',      items: ['nota'] },
+};
+function applyDevScene(name: string) {
+  const sc = DEV_SCENES[name];
+  if (!sc || !ROOMS[sc.room]) return;
+  state.flags = {}; (sc.flags || []).forEach((f) => { state.flags[f] = true; });
+  state.inventory = []; (sc.items || []).forEach((id) => addItem(id));
+  state.dialogue = null; state.ending = null; state.speech = null; state.npcSpeech = null; state.selectedItem = null;
+  state.screen = 'game';
+  switchRoom(sc.room, ROOMS[sc.room].start);
+}
+try { const ds = new URLSearchParams(location.search).get('scene'); if (ds) applyDevScene(ds); } catch (e) { /* ignore */ }
+
 // Debug hook for headless verification.
 (window as any).__game = {
   state,

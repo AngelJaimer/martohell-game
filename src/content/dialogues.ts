@@ -245,13 +245,14 @@ export const CUCO_DIALOGUE: Dialogue = {
   },
 };
 
-// El vigilante — the bouncer; only lets you in with the Cuco's card.
+// El Joche — the gitano bouncer; only lets you in with the Cuco's card. Warns about the cop spirit.
 export const VIGILANTE_DIALOGUE: Dialogue = {
   start: {
-    npc: 'Echepares, para servirte. Pero aquí no entra nadie sin invitación, que esto es propiedad privada. ¿Estamos?',
+    npc: 'El Joche, para servirte. Pero aquí no entra nadie sin invitación, que esto es propiedad privada. ¿Estamos?',
     options: [
       { text: '¿Y con una tarjeta del Cuco?', to: 'tarjeta' },
-      { text: 'Solo quiero pasar un momento.', to: 'no' },
+      { text: '¿El Joche?', to: 'quien' },
+      { text: '¿Pasa algo ahí dentro?', to: 'poli' },
       { text: '(Salir)', to: 'end' },
     ],
   },
@@ -259,9 +260,13 @@ export const VIGILANTE_DIALOGUE: Dialogue = {
     npc: 'Del Cuco, dices. Pues enséñamela y hablamos. Sin tarjeta, de aquí no pasas.',
     options: [{ text: 'Ahora mismo.', to: 'end' }],
   },
-  no: {
-    npc: 'Todo el mundo quiere pasar un momento. Sin tarjeta, ni un momento ni medio.',
-    options: [{ text: 'Entendido.', to: 'end' }],
+  quien: {
+    npc: 'El Joche, sí. Y un servidor ha estudiado, ¿eh? Tengo el ichillerato y todo. No te fíes de las pintas, primo.',
+    options: [{ text: 'Respeto, Joche.', to: 'start' }],
+  },
+  poli: {
+    npc: 'Te aviso: hoy, aunque pases, no vas a pillar nada por ahí. Anda rondando el espíritu de un poli, y con un madero cerca no hay negocio que valga.',
+    options: [{ text: 'Gracias por el aviso.', to: 'end' }],
   },
 };
 
@@ -502,7 +507,7 @@ export const CONGUI_FINAL_DIALOGUE: Dialogue = {
       { text: '¿Qué tal por ahí arriba?', to: 'arriba' },
       { text: '¿Y ahora qué hago?', to: 'ahora' },
       {
-        text: 'Adiós, Petit Pulmó.', to: 'end',
+        text: 'Adiós, Petit Pulmó. (FIN)', to: 'end',
         card: ['EL SECRETO DE MARTOHELL', '', 'Has salvado el pueblo de los espíritus del más allá.', '', 'En honor a los que nos dejaron. D.E.P.', '', 'Un homenaje a Martorell y al point-and-click', 'de los 90, hecho con cariño por Angel Jaime.', '', 'GRACIAS POR JUGAR. FIN.'],
       },
     ],
