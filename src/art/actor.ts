@@ -89,11 +89,10 @@ export function drawCongui(ctx: CanvasRenderingContext2D, fx: number, fy: number
   blk(ctx, cx + 5, ty + 1, 3, 12, GTEE, GOUT);
   px(ctx, cx - 8, ty + 11, 3, 2, GSKIN);
   px(ctx, cx + 5, ty + 11, 3, 2, GSKIN);
-  // head with a big nose
+  // head (just a small nose — el Congui no tiene mucha nariz)
   const hy = fyR - 39;
   blk(ctx, cx - 4, hy, 9, 10, GSKIN, GOUT);
-  px(ctx, cx + 4, hy + 4, 3, 3, GSKIN);          // big nose pokes out (right)
-  px(ctx, cx + 6, hy + 5, 1, 2, GSKIN);
+  px(ctx, cx + 4, hy + 5, 1, 2, GSKIN);          // small nose
   px(ctx, cx - 4, hy - 1, 9, 2, GHAIR);          // short white hair
   px(ctx, cx - 5, hy, 2, 3, GHAIR);
   px(ctx, cx + 1, hy + 3, 1, 2, GOUT);           // eye
