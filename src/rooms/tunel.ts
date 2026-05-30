@@ -52,7 +52,6 @@ export function buildTunelScene(): HTMLCanvasElement {
   r(ctx, 42, 98, 82, 8, [56, 52, 58]);              // ledge / platform
   r(ctx, 42, 98, 82, 2, [74, 70, 76]);
   r(ctx, 82, 50, 3, 5, [60, 56, 50]); r(ctx, 80, 55, 6, 3, [214, 188, 104]); // little lamp
-  drawText(ctx, 'REFUGI', 58, 88, [150, 146, 140], 1, [10, 8, 12], 1);
 
   drawText(ctx, 'El túnel del tren', 36, 7, P.inkLight, 1, P.black, 1);
   return cv;
@@ -89,8 +88,8 @@ const HOTSPOTS: Hotspot[] = [
     pickupBlocked: 'Está bien encajado. Yo solo no puedo con él. A ver si el Meno me echa un cable.',
     responses: { Coger: 'Cojo el hierro suelto. Pesa lo suyo, pero hará de palanca de lujo.' },
   },
-  { id: 'casilla', name: 'la casilla de refugio', x: 36, y: 46, w: 92, h: 18, walkTo: { x: 120, y: 138 },
-    look: 'Una casilla de refugio: el hueco donde te metes cuando pasa el tren. El Congui y el Meno la han hecho su salón particular.' },
+  { id: 'casilla', name: 'la casilla', x: 36, y: 46, w: 92, h: 18, walkTo: { x: 120, y: 138 },
+    look: 'Una casilla en la pared, de esas donde te metes cuando pasa el tren. El Congui y el Meno la han hecho su salón particular.' },
   { id: 'via', name: 'las dos vías', x: 0, y: 106, w: 320, h: 30, walkTo: { x: 200, y: 138 },
     look: 'Dos vías, una para cada sentido. Por aquí pasan trenes, así que mejor no entretenerse en medio.' },
   { id: 'fondo', name: 'el fondo del túnel', x: 278, y: 52, w: 40, h: 48, walkTo: { x: 270, y: 138 },
