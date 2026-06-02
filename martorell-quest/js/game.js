@@ -440,10 +440,14 @@
       ctx.fillRect(ox + x*sx, oy + y*sy, Math.ceil(sx), Math.ceil(sy));
     }
     LANDMARKS.forEach(L => {
-      if (L.isGoal) ctx.fillStyle = '#ff5a3c';
-      else if (L.stone && !state.flags[L.id]) ctx.fillStyle = '#ffd34d';
-      else return;
-      ctx.fillRect(ox + L.x*sx - 1, oy + L.y*sy - 1, 3, 3);
+      let col;
+      if (L.isGoal) col = '#ff5a3c';                              // the bridge
+      else if (L.stone && !state.flags[L.id]) col = '#ffd34d';    // stone to collect
+      else if (L.stone) col = '#9bd17a';                          // stone already taken
+      else col = '#7fd4ff';                                       // barris & other places
+      const mx = ox + L.x*sx, my = oy + L.y*sy;
+      ctx.fillStyle = 'rgba(0,0,0,0.65)'; ctx.fillRect(mx - 2, my - 2, 5, 5);
+      ctx.fillStyle = col; ctx.fillRect(mx - 1, my - 1, 3, 3);
     });
     if (Math.floor(now() / 300) % 2) {
       ctx.fillStyle = '#fff';
