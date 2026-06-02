@@ -336,6 +336,25 @@ const ART = (() => {
       case 'bar':
         ctx.fillStyle = '#c0504d'; ctx.fillRect(-9, -12, 18, 12);
         ctx.fillStyle = '#fff'; ctx.fillRect(-6, -10, 4, 8); ctx.fillRect(2, -10, 4, 8); break;
+      case 'house': // residential barri — little gabled house
+        ctx.fillStyle = '#e0cda2'; ctx.fillRect(-9, -10, 18, 10);
+        ctx.fillStyle = '#9a4636'; ctx.beginPath();
+        ctx.moveTo(-11, -10); ctx.lineTo(0, -19); ctx.lineTo(11, -10); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#7a4a1f'; ctx.fillRect(-3, -7, 6, 7);
+        ctx.fillStyle = '#ffd982'; ctx.fillRect(4, -8, 4, 4); break;
+      case 'warehouse': // industrial estate — wide sawtooth roof
+        ctx.fillStyle = '#9aa1a8'; ctx.fillRect(-13, -10, 26, 10);
+        ctx.fillStyle = '#54616f';
+        for (let i = -13; i < 13; i += 9) { ctx.beginPath(); ctx.moveTo(i, -10); ctx.lineTo(i + 5, -16); ctx.lineTo(i + 9, -10); ctx.closePath(); ctx.fill(); }
+        ctx.fillStyle = '#2a3340'; ctx.fillRect(-3, -7, 6, 7); break;
+      case 'kiln': { // old brick kiln (bòbila) with rising smoke
+        ctx.fillStyle = '#a0522d'; ctx.beginPath(); ctx.arc(0, -2, 11, Math.PI, 0); ctx.fill();
+        ctx.fillStyle = '#8a4424'; for (let i = -8; i <= 6; i += 4) ctx.fillRect(i, -10, 2, 9);
+        ctx.fillStyle = '#7a3b1f'; ctx.fillRect(-3, -22, 6, 12);
+        const p = (time / 240) % 1;
+        ctx.fillStyle = `rgba(120,120,120,${0.45 - p * 0.45})`;
+        ctx.beginPath(); ctx.arc(0, -24 - p * 9, 4 + p * 4, 0, 7); ctx.fill(); break;
+      }
     }
     ctx.restore();
   }

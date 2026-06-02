@@ -272,6 +272,54 @@ const LANDMARKS = [
     },
   },
   {
+    id: 'buenosaires', x: 18, y: 5, color: '#d8c39a', icon: 'house', building: { x: 17, y: 2, w: 3, h: 3 },
+    name: { es: 'Barrio de Buenos Aires', ca: 'Barri de Buenos Aires', en: 'Buenos Aires District' },
+    lines: {
+      es: ["El barrio de BUENOS AIRES creció con la gente que vino a trabajar a Martorell en los años 60 y 70.",
+           "Una vecina te saluda: «Aquí somos de mil sitios y un solo pueblo. El campanero de la TORRE DE LES HORES guarda una piedra... ¡ve a verle!»"],
+      ca: ["El barri de BUENOS AIRES va créixer amb la gent que va venir a treballar a Martorell als anys 60 i 70.",
+           "Una veïna et saluda: «Aquí som de mil llocs i un sol poble. El campaner de la TORRE DE LES HORES guarda una pedra... vés a veure'l!»"],
+      en: ["The BUENOS AIRES district grew with the people who came to work in Martorell in the 1960s and 70s.",
+           "A neighbour greets you: 'We're from a thousand places and one town. The bell-ringer at the TOWER OF THE HOURS keeps a stone... go see him!'"],
+    },
+  },
+  {
+    id: 'camifondo', x: 5, y: 7, color: '#cdbf9e', icon: 'house', building: { x: 4, y: 4, w: 3, h: 3 },
+    name: { es: 'Camí Fondo · Can Carreras', ca: 'Camí Fondo · Can Carreras', en: 'Camí Fondo · Can Carreras' },
+    lines: {
+      es: ["El CAMÍ FONDO es una antigua vía hundida entre campos que lleva al barrio de CAN CARRERAS.",
+           "Un payés con la azada al hombro: «Por estos caminos se va a todas partes. En el MUSEO DE L'ENRAJOLADA guardan una piedra muy antigua del puente.»"],
+      ca: ["El CAMÍ FONDO és una antiga via enfonsada entre camps que mena al barri de CAN CARRERAS.",
+           "Un pagès amb l'aixada a l'espatlla: «Per aquests camins s'arriba a tot arreu. Al MUSEU DE L'ENRAJOLADA guarden una pedra ben antiga del pont.»"],
+      en: ["The CAMÍ FONDO is an old sunken lane between the fields, leading to the CAN CARRERAS district.",
+           "A farmer with a hoe on his shoulder: 'These lanes take you everywhere. The L'ENRAJOLADA MUSEUM keeps a very old stone from the bridge.'"],
+    },
+  },
+  {
+    id: 'canbros', x: 37, y: 26, color: '#aeb4ba', icon: 'warehouse', building: { x: 36, y: 23, w: 4, h: 3 },
+    name: { es: 'El Pla · Polígono de Can Bros', ca: 'El Pla · Polígon de Can Bros', en: 'El Pla · Can Bros Estate' },
+    lines: {
+      es: ["EL PLA y el polígono de CAN BROS son el motor industrial de Martorell, junto a la SEAT.",
+           "Un operario, casco en mano: «Aquí se trabaja el metal. En la FÁBRICA DE LA SEAT te pueden forjar una piedra de acero. ¡No faltes!»"],
+      ca: ["EL PLA i el polígon de CAN BROS són el motor industrial de Martorell, al costat de la SEAT.",
+           "Un operari, casc a la mà: «Aquí es treballa el metall. A la FÀBRICA DE LA SEAT et poden forjar una pedra d'acer. No hi faltis!»"],
+      en: ["EL PLA and the CAN BROS estate are Martorell's industrial engine, right next to SEAT.",
+           "A worker, helmet in hand: 'We work metal here. At the SEAT FACTORY they can forge you a steel stone. Don't miss it!'"],
+    },
+  },
+  {
+    id: 'bobiles', x: 19, y: 34, color: '#b5764a', icon: 'kiln', building: { x: 18, y: 31, w: 3, h: 3 },
+    name: { es: 'La Sínia · Les Bòbiles', ca: 'La Sínia · Les Bòbiles', en: 'La Sínia · Les Bòbiles' },
+    lines: {
+      es: ["LA SÍNIA y LES BÒBILES bordean el río, donde antaño humeaban los hornos de ladrillo.",
+           "Un abuelo junto al horno: «El barro del río hizo medio Martorell. La BASÍLICA DE SANTA MARÍA guarda una piedra bendita para el puente.»"],
+      ca: ["LA SÍNIA i LES BÒBILES voregen el riu, on antany fumejaven els forns de rajola.",
+           "Un avi vora el forn: «El fang del riu va fer mig Martorell. La BASÍLICA DE SANTA MARIA guarda una pedra beneïda per al pont.»"],
+      en: ["LA SÍNIA and LES BÒBILES line the river, where the old brick kilns once smoked.",
+           "An old man by the kiln: 'The river clay built half of Martorell. The BASILICA OF SANTA MARIA keeps a blessed stone for the bridge.'"],
+    },
+  },
+  {
     id: 'parc', x: 12, y: 30, color: '#5fa55a', icon: 'park', building: null,
     name: { es: 'Parc de la Vila · Río Anoia', ca: 'Parc de la Vila · Riu Anoia', en: 'Parc de la Vila · Anoia River' },
     lines: {
@@ -292,6 +340,7 @@ const ROOFS = {
   tower: '#8a4a2a', chapel: '#9a4636', church: '#9a4636', townhall: '#a8862f',
   market: '#c75b3a', museum: '#6b5ea8', factory: '#54616f', station: '#3f4a59',
   bakery: '#b5722e', bar: '#9c3f3c', bridge: '#7a5c39', park: '#3f8a3c',
+  house: '#9a4636', warehouse: '#54616f', kiln: '#7a3b2e',
 };
 
 /* Decorative lamp posts (tile coords) that light the town at night. */
@@ -299,6 +348,7 @@ const LAMPS = [
   [21, 12], [30, 12], [21, 17], [30, 17],   // around the Plaça de la Vila
   [12, 15], [18, 15], [34, 15], [40, 15],   // along the main east–west road
   [23, 22], [23, 28], [26, 24], [26, 31],   // down the vertical road
+  [18, 6], [5, 12], [34, 26], [21, 34],     // out in the barris
 ];
 
 /* ---------------------------------------------------------------------
@@ -331,12 +381,21 @@ function buildMap() {
   for (let x = 8;  x <= 24; x++) { set(x, 22, 'R'); }
   for (let x = 25; x <= 44; x++) { set(x, 10, 'R'); }
 
+  // Roads out to the barris (neighborhoods).
+  for (let y = 6;  y <= 8;  y++) { set(24, y, 'R'); set(25, y, 'R'); } // Buenos Aires spur (north)
+  for (let x = 18; x <= 24; x++)  set(x, 6, 'R');
+  for (let y = 7;  y <= 16; y++)  set(5, y, 'R');                       // Camí Fondo (sunken NW lane)
+  set(6, 16, 'R');
+  for (let x = 31; x <= 37; x++)  set(x, 26, 'R');                      // El Pla / Can Bros (SE)
+  for (let x = 19; x <= 24; x++)  set(x, 34, 'R');                      // La Sínia / Les Bòbiles (S)
+
   rect(22, 12, 8, 6, 'S');                                  // Plaça de la Vila
 
   for (let x = 44; x <= 53; x++) set(x, 10, '~');           // Pont del Diable
   set(46, 9, '~'); set(46, 11, '~');
 
-  [[14,26],[16,27],[12,28],[38,24],[40,22],[36,26],[9,12],[11,10],[42,14],[20,30]]
+  [[14,26],[16,27],[12,28],[38,24],[40,22],[36,26],[9,12],[11,10],[42,14],[20,30],
+   [15,3],[3,8],[40,27],[16,30],[33,6],[38,20]]
     .forEach(([x, y]) => set(x, y, 'T'));
 
   rect(6, 30, 10, 6, 'P');                                  // Parc de la Vila
