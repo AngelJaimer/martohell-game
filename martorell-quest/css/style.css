@@ -30,14 +30,14 @@ h1 span { color: #9aa3ad; font-size: 13px; font-weight: normal; letter-spacing: 
 #stage { position: relative; display: inline-block; }
 
 canvas {
-  background: #6fae54;
+  background: #2c5226;
   border: 3px solid #2b3340;
   border-radius: 6px;
-  image-rendering: pixelated;
   width: 100%;
   max-width: 800px;
   height: auto;
   touch-action: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,211,77,0.15);
 }
 
 #help { font-size: 13px; color: #c2c8d0; margin: 14px 0 4px; line-height: 1.7; }

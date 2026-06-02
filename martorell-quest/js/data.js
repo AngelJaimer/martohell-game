@@ -287,6 +287,20 @@ const LANDMARKS = [
 
 const STONES_NEEDED = 5;
 
+/* Roof colours per landmark icon (used by the SNES-style building renderer). */
+const ROOFS = {
+  tower: '#8a4a2a', chapel: '#9a4636', church: '#9a4636', townhall: '#a8862f',
+  market: '#c75b3a', museum: '#6b5ea8', factory: '#54616f', station: '#3f4a59',
+  bakery: '#b5722e', bar: '#9c3f3c', bridge: '#7a5c39', park: '#3f8a3c',
+};
+
+/* Decorative lamp posts (tile coords) that light the town at night. */
+const LAMPS = [
+  [21, 12], [30, 12], [21, 17], [30, 17],   // around the Plaça de la Vila
+  [12, 15], [18, 15], [34, 15], [40, 15],   // along the main east–west road
+  [23, 22], [23, 28], [26, 24], [26, 31],   // down the vertical road
+];
+
 /* ---------------------------------------------------------------------
  *  Build the tile map of Martorell (procedural, editable).
  * ------------------------------------------------------------------- */

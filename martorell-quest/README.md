@@ -9,6 +9,13 @@ It's a hand-made homage to the town and to *The Legend of Zelda* — **pure
 HTML5 Canvas + JavaScript, no build step, no assets**. Every sprite, tile and
 sound is drawn/synthesised in code.
 
+🎨 **SNES-era look** (*A Link to the Past*-style): a pre-rendered, textured
+world (cobbled plazas, dirt paths, foam-edged animated water, layered trees),
+depth-sorted sprites so you pass *behind* canopies and rooftops, an animated
+hero with a sword-swing arc, flapping imps, particle effects & screen-shake,
+and an atmospheric **night-lighting** pass with warm lamp-glow and a player
+lantern — all still drawn from code primitives.
+
 🌍 **Trilingual:** starts in **Spanish** by default; switch to **Català** or
 **English** from the start menu (or press **L** any time).
 
